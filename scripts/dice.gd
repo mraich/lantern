@@ -11,8 +11,6 @@ const MAX = 6
 
 # Indicating the value has changed.
 signal on_value_changed
-const VALUE_CHANGED_BY_ROLL = 0
-const VALUE_CHANGED_BY_ABILITY = 1
 
 # Indicating the critical hit function was called.
 signal on_critical_hit
@@ -35,7 +33,7 @@ func generate_new_value():
 func roll():
 	generate_new_value()
 
-	emit_signal("on_value_changed", self, VALUE_CHANGED_BY_ROLL)
+	emit_signal("on_value_changed", self)
 	pass
 
 # Critical hit.
@@ -50,7 +48,7 @@ func critical_hit():
 
 	# Indicating the value is changed.
 	# We will have to evaluate the scene.
-	emit_signal("on_value_changed", self, VALUE_CHANGED_BY_ABILITY)
+	emit_signal("on_value_changed", self)
 	pass
 
 # Indicating the value is the lowest possible value.
@@ -99,5 +97,5 @@ func _counter_attack_internal(offset):
 
 	# Indicating the value is changed.
 	# We will have to evaluate the scene.
-	emit_signal("on_value_changed", self, VALUE_CHANGED_BY_ABILITY)
+	emit_signal("on_value_changed", self)
 	pass
