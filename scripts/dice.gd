@@ -14,6 +14,8 @@ signal on_value_changed
 const VALUE_CHANGED_BY_ROLL = 0
 const VALUE_CHANGED_BY_ABILITY = 1
 
+# Indicating the critical hit function was called.
+signal on_critical_hit
 
 func _ready():
 	randomize()
@@ -37,6 +39,11 @@ func roll():
 # Turns the dice upside down.
 func critical_hit():
 	value = MIN + MAX - value
+
+	# There was a critical hit occcured.
+	# We will decrease the amount of possible future critical
+	# hits count.
+	emit_signal("on_critical_hit")
 
 	# Indicating the value is changed.
 	# We will have to evaluate the scene.
