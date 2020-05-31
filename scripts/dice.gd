@@ -12,6 +12,8 @@ const MAX = 6
 # Indicating the value has changed.
 signal on_value_changed
 const VALUE_CHANGED_BY_ROLL = 0
+const VALUE_CHANGED_BY_ABILITY = 1
+
 
 func _ready():
 	randomize()
