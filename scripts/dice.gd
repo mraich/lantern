@@ -17,6 +17,9 @@ const VALUE_CHANGED_BY_ABILITY = 1
 # Indicating the critical hit function was called.
 signal on_critical_hit
 
+# Indicating the counter attach function was called.
+signal on_counter_attack
+
 func _ready():
 	randomize()
 
@@ -88,6 +91,11 @@ func _counter_attack_internal(offset):
 		value = MAX
 		return
 		pass
+
+	# There was a counter attack occcured.
+	# We will decrease the amount of possible future counter
+	# attacks count.
+	emit_signal("on_counter_attack")
 
 	# Indicating the value is changed.
 	# We will have to evaluate the scene.
