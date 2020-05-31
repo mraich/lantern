@@ -15,7 +15,7 @@ signal on_value_changed_by_roll
 func _ready():
 	randomize()
 
-	roll()
+	generate_new_value()
 	pass
 
 # Generating new value for the dice.
