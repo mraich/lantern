@@ -59,3 +59,37 @@ func is_min():
 func is_max():
 	return value == MAX
 	pass
+
+# Counter attack for adding a value.
+func counter_attack_plus():
+	_counter_attack_internal(1)
+	pass
+
+# Counter attack for subtracking a value.
+func counter_attack_minus():
+	_counter_attack_internal(-1)
+	pass
+
+# Private functuon to realize counter attack
+# in the general case.
+# Counter attack adds or subtracts a value.
+# The value MAX cannot change into MIN as
+# the value MIN cannot change into MAX.
+func _counter_attack_internal(offset):
+	value += offset
+
+	# Checking the values.
+	if value < MIN:
+		value = MIN
+		return
+		pass
+
+	if value > MAX:
+		value = MAX
+		return
+		pass
+
+	# Indicating the value is changed.
+	# We will have to evaluate the scene.
+	emit_signal("on_value_changed", self, VALUE_CHANGED_BY_ABILITY)
+	pass
