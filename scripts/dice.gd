@@ -12,11 +12,11 @@ const MAX = 6
 # Indicating the value has changed.
 signal on_value_changed
 
-# Indicating the critical hit function was called.
-signal on_critical_hit
+# Indicating the flip function is called.
+signal on_flip
 
-# Indicating the counter attach function was called.
-signal on_counter_attack
+# Indicating the plus or minus function is called.
+signal on_plus_minus
 
 func _ready():
 	randomize()
@@ -36,15 +36,13 @@ func generate_new_value():
 	value = randi() % MAX + MIN
 	pass
 
-# Critical hit.
+# Flipping the dice.
 # Turns the dice upside down.
-func critical_hit():
+func flip():
 	value = MIN + MAX - value
 
-	# There was a critical hit occcured.
-	# We will decrease the amount of possible future critical
-	# hits count.
-	emit_signal("on_critical_hit")
+	# There was a flip occcured.
+	emit_signal("on_flip")
 
 	# Indicating the value is changed.
 	# We will have to evaluate the scene.
@@ -62,21 +60,21 @@ func is_max():
 	pass
 
 # Counter attack for adding a value.
-func counter_attack_plus():
-	_counter_attack_internal(1)
+func plus():
+	_change_value(1)
 	pass
 
 # Counter attack for subtracking a value.
-func counter_attack_minus():
-	_counter_attack_internal(-1)
+func minus():
+	_change_value(-1)
 	pass
 
-# Private functuon to realize counter attack
+# Private function to realize change the value
 # in the general case.
-# Counter attack adds or subtracts a value.
+# Adds or subtracts a value.
 # The value MAX cannot change into MIN as
 # the value MIN cannot change into MAX.
-func _counter_attack_internal(offset):
+func _change_value(offset):
 	value += offset
 
 	# Checking the values.
@@ -90,10 +88,8 @@ func _counter_attack_internal(offset):
 		return
 		pass
 
-	# There was a counter attack occcured.
-	# We will decrease the amount of possible future counter
-	# attacks count.
-	emit_signal("on_counter_attack")
+	# There was a change value called.
+	emit_signal("on_plus_minus")
 
 	# Indicating the value is changed.
 	# We will have to evaluate the scene.
