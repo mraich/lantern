@@ -9,8 +9,9 @@ var value
 const MIN = 1
 const MAX = 6
 
-# Indicating the value has changed by rolling.
-signal on_value_changed_by_roll
+# Indicating the value has changed.
+signal on_value_changed
+const VALUE_CHANGED_BY_ROLL = 0
 
 func _ready():
 	randomize()
@@ -27,5 +28,5 @@ func generate_new_value():
 func roll():
 	generate_new_value()
 
-	emit_signal("on_value_changed_by_roll", self)
+	emit_signal("on_value_changed", self, VALUE_CHANGED_BY_ROLL)
 	pass
