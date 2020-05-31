@@ -32,3 +32,13 @@ func roll():
 
 	emit_signal("on_value_changed", self, VALUE_CHANGED_BY_ROLL)
 	pass
+
+# Critical hit.
+# Turns the dice upside down.
+func critical_hit():
+	value = MIN + MAX - value
+
+	# Indicating the value is changed.
+	# We will have to evaluate the scene.
+	emit_signal("on_value_changed", self, VALUE_CHANGED_BY_ABILITY)
+	pass
