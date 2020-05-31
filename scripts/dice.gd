@@ -49,3 +49,13 @@ func critical_hit():
 	# We will have to evaluate the scene.
 	emit_signal("on_value_changed", self, VALUE_CHANGED_BY_ABILITY)
 	pass
+
+# Indicating the value is the lowest possible value.
+func is_min():
+	return value == MIN
+	pass
+
+# Indicating the value is the highest possible value.
+func is_max():
+	return value == MAX
+	pass
