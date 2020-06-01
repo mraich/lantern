@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/dice_container.gd" type="Script" id=1]
+
+[node name="dice_container" type="HBoxContainer"]
+script = ExtResource( 1 )
