@@ -9,6 +9,9 @@ const _dice_class = preload("res://scenes/dice.tscn")
 # Indicating the value has changed.
 signal on_value_changed
 
+# Indicating the all dice function is called.
+signal on_all_dices_rolled
+
 func _ready():
 	for n in range(0, _DICE_COUNT):
 		var dice = _dice_class.instance()
@@ -30,4 +33,7 @@ func _on_dice_value_changed(var dice):
 func roll_all():
 	for dice in dices:
 		dice.roll()
+
+	# Notifying the outside world that the function is completed.
+	emit_signal("on_all_dices_rolled")
 	pass
