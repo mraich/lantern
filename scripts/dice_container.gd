@@ -8,5 +8,8 @@ const _dice_class = preload("res://scenes/dice.tscn")
 func _ready():
 	for n in range(0, _DICE_COUNT):
 		var dice = _dice_class.instance()
+
+		# Passing through events.
+
 		add_child(dice)
 	pass
