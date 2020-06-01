@@ -24,6 +24,10 @@ func _ready():
 	generate_new_value()
 	pass
 
+func get_width():
+	return 50
+	pass
+
 # Rolling the dice.
 func roll():
 	generate_new_value()
