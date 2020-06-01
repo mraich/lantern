@@ -15,6 +15,7 @@ signal on_all_dices_rolled
 func _ready():
 	for n in range(0, _DICE_COUNT):
 		var dice = _dice_class.instance()
+		dice.position = Vector2((n + 0.5) * dice.get_width(), 0.5 * dice.get_height())
 		dices.push_back(dice)
 
 		# Passing through events.
