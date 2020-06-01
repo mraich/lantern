@@ -28,6 +28,10 @@ func get_width():
 	return 50
 	pass
 
+func get_height():
+	return 50
+	pass
+
 # Rolling the dice.
 func roll():
 	generate_new_value()
