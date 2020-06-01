@@ -25,3 +25,9 @@ func _on_dice_value_changed(var dice):
 	# Listeners will know that this dice value has been changed.
 	emit_signal("on_value_changed", dice)
 	pass
+
+# Rolling all dices at once.
+func roll_all():
+	for dice in dices:
+		dice.roll()
+	pass
