@@ -25,7 +25,8 @@ func _ready():
 	pass
 
 func get_width():
-	return 50
+	var dice_face = get_node("dice_face")
+	return dice_face.texture.get_size().x / dice_face.hframes * scale.x
 	pass
 
 func get_height():
