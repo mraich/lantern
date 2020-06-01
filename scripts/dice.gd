@@ -34,12 +34,19 @@ func roll():
 # Generating new value for the dice.
 func generate_new_value():
 	value = randi() % MAX + MIN
+
+	_show_value()
+	pass
+
+func _show_value():
+	get_node("dice_face").frame = value - 1
 	pass
 
 # Flipping the dice.
 # Turns the dice upside down.
 func flip():
 	value = MIN + MAX - value
+	_show_value()
 
 	# There was a flip occcured.
 	emit_signal("on_flip")
@@ -80,11 +87,13 @@ func _change_value(offset):
 	# Checking the values.
 	if value < MIN:
 		value = MIN
+		_show_value()
 		return
 		pass
 
 	if value > MAX:
 		value = MAX
+		_show_value()
 		return
 		pass
 
