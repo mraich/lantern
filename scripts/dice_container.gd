@@ -2,6 +2,7 @@
 
 extends HBoxContainer
 
+var dices = []
 const _DICE_COUNT = 6
 const _dice_class = preload("res://scenes/dice.tscn")
 
@@ -11,6 +12,7 @@ signal on_value_changed
 func _ready():
 	for n in range(0, _DICE_COUNT):
 		var dice = _dice_class.instance()
+		dices.push_back(dice)
 
 		# Passing through events.
 		# Passing through the signal for a dice value changing.
