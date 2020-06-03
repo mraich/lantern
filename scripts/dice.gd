@@ -41,7 +41,7 @@ func roll():
 
 # Generating new value for the dice.
 func generate_new_value():
-	value = randi() % MAX + MIN
+	_set_value(randi() % MAX + MIN)
 
 	_show_value()
 	pass
@@ -57,7 +57,7 @@ func _show_value():
 # Flipping the dice.
 # Turns the dice upside down.
 func flip():
-	value = MIN + MAX - value
+	_set_value(MIN + MAX - value)
 	_show_value()
 
 	# There was a flip occcured.
@@ -94,7 +94,7 @@ func minus():
 # The value MAX cannot change into MIN as
 # the value MIN cannot change into MAX.
 func _change_value(offset):
-	value += offset
+	_set_value(value + offset)
 
 	# Checking the values.
 	if value < MIN:
