@@ -46,6 +46,10 @@ func generate_new_value():
 	_show_value()
 	pass
 
+func _set_value(new_value):
+	value = new_value
+	pass
+
 func _show_value():
 	get_node("dice_face").frame = value - 1
 	pass
