@@ -2,6 +2,9 @@
 
 extends Node2D
 
+# This is the old value.
+var old_value
+
 # This is our current value.
 var value
 
@@ -47,6 +50,8 @@ func generate_new_value():
 	pass
 
 func _set_value(new_value):
+	old_value = value
+
 	value = new_value
 	pass
 
