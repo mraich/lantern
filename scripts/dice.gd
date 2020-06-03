@@ -30,10 +30,6 @@ signal on_flip
 # Indicating the plus or minus function is called.
 signal on_plus_minus
 
-# This is an offset for the values 1, 2, and 3.
-# The sprite is not ideal so we have to adjust a little the y position in these case.
-var _display_offset = Vector2(0, 3)
-
 func _ready():
 	dice_face = null
 
@@ -85,18 +81,6 @@ func _show_value():
 	# Showing the right picture if present.
 	if dice_face != null:
 		get_node("dice_face").texture = dice_face
-
-	# Adjusting the position due to the sprite.
-	match old_value:
-		null, 1, 2, 3:
-			match value:
-				4, 5, 6:
-					#self.position.y -= 3
-					position -= _display_offset
-		4, 5, 6:
-			match value:
-				1, 2, 3:
-					position += _display_offset
 	pass
 
 # Flipping the dice.
