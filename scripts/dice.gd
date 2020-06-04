@@ -26,6 +26,8 @@ signal on_plus_minus
 var _display_offset = Vector2(0, 3)
 
 func _ready():
+	get_node("dice_area").connect("on_dice_clicked", self, "_on_dice_clicked")
+
 	randomize()
 
 	generate_new_value()
@@ -136,4 +138,8 @@ func _change_value(offset):
 	# Indicating the value is changed.
 	# We will have to evaluate the scene.
 	emit_signal("on_value_changed", self)
+	pass
+
+func _on_dice_clicked():
+	# This function is called when someone clicks on the dice.
 	pass
