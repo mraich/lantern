@@ -2,11 +2,20 @@
 
 extends Node2D
 
+var dice_0 = preload("res://res/dice/dice_0.svg")
+var dice_1 = preload("res://res/dice/dice_1.svg")
+var dice_2 = preload("res://res/dice/dice_2.svg")
+var dice_3 = preload("res://res/dice/dice_3.svg")
+var dice_4 = preload("res://res/dice/dice_4.svg")
+var dice_5 = preload("res://res/dice/dice_5.svg")
+var dice_6 = preload("res://res/dice/dice_6.svg")
 # This is the old value.
 var old_value
 
 # This is our current value.
 var value
+# This is the face it shows.
+var dice_face
 
 # These are the minimal and maximal possible values.
 const MIN = 1
@@ -26,6 +35,8 @@ signal on_plus_minus
 var _display_offset = Vector2(0, 3)
 
 func _ready():
+	dice_face = null
+
 	get_node("dice_area").connect("on_dice_clicked", self, "_on_dice_clicked")
 
 	randomize()
@@ -59,10 +70,21 @@ func _set_value(new_value):
 	old_value = value
 
 	value = new_value
+
+	# Determining which state it should show.
+	match value:
+		1: dice_face = dice_1
+		2: dice_face = dice_2
+		3: dice_face = dice_3
+		4: dice_face = dice_4
+		5: dice_face = dice_5
+		6: dice_face = dice_6
 	pass
 
 func _show_value():
-	get_node("dice_face").frame = value - 1
+	# Showing the right picture if present.
+	if dice_face != null:
+		get_node("dice_face").texture = dice_face
 
 	# Adjusting the position due to the sprite.
 	match old_value:
