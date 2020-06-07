@@ -9,6 +9,10 @@ var dice_3 = preload("res://res/dice/dice_3.svg")
 var dice_4 = preload("res://res/dice/dice_4.svg")
 var dice_5 = preload("res://res/dice/dice_5.svg")
 var dice_6 = preload("res://res/dice/dice_6.svg")
+var dice_7 = preload("res://res/dice/dice_7.svg")
+var dice_8 = preload("res://res/dice/dice_8.svg")
+var dice_9 = preload("res://res/dice/dice_9.svg")
+
 # This is the old value.
 var old_value
 
@@ -75,6 +79,9 @@ func _set_value(new_value):
 		4: dice_face = dice_4
 		5: dice_face = dice_5
 		6: dice_face = dice_6
+		7: dice_face = dice_7
+		8: dice_face = dice_8
+		9: dice_face = dice_9
 	pass
 
 func _show_value():
