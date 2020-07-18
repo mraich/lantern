@@ -9,6 +9,9 @@ func _ready():
 	_set_value("x")
 	pass
 
+# Overriding the _set_value function.
+# The super function is called with the . character at the begin
+# of the call.
 func _set_value(new_value):
 	# Determining which state it should show.
 	# These values differ from the ones determined in the

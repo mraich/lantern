@@ -28,6 +28,11 @@ func _ready():
 	_dice_face = null
 	pass
 
+# This function is protected which is indicated by the _
+# character at the beginning of its signature.
+# It might be overridden by the child scenes. In these overridden
+# functions this function must be called like ._set_value(value)
+# with the . character at the beginning.
 func _set_value(new_value):
 	_old_value = _value
 
