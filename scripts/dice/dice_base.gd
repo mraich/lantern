@@ -40,6 +40,7 @@ func _set_value(new_value):
 
 	# Determining which state it should show.
 	match _value:
+		0: _dice_face = _dice_0
 		1: _dice_face = _dice_1
 		2: _dice_face = _dice_2
 		3: _dice_face = _dice_3
