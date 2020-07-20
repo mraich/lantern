@@ -6,7 +6,7 @@ var _dice_x = preload("res://res/dice/dice_x.svg")
 var _dice_x_2 = preload("res://res/dice/dice_x_2.svg")
 
 func _ready():
-	_set_value("x")
+	_set_value(-1)
 	pass
 
 # Overriding the _set_value function.
@@ -17,8 +17,8 @@ func _set_value(new_value):
 	# These values differ from the ones determined in the
 	# base class.
 	match new_value:
-		"x": _dice_face = _dice_x
-		"x_2": _dice_face = _dice_x_2
+		-1: _dice_face = _dice_x
+		-2: _dice_face = _dice_x_2
 
 	# Calling the base _set_value fuction.
 	# It will set the value of the _value variable.
