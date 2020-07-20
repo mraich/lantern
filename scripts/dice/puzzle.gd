@@ -23,6 +23,4 @@ func _set_value(new_value):
 	# Calling the base _set_value fuction.
 	# It will set the value of the _value variable.
 	._set_value(new_value)
-
-	_show_value()
 	pass

@@ -53,6 +53,9 @@ func _set_value(new_value):
 
 	# Notifying the world that our value has changed.
 	emit_signal("on_value_changed", self)
+
+	# Show the value.
+	_show_value()
 	pass
 
 func _show_value():
