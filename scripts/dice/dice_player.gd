@@ -23,7 +23,7 @@ func set_rollable(is_rollable):
 
 func flip():
 	if is_flippable:
-		var new_value = _MAX + _MIN - _value
+		var new_value = _get_max_value() + _get_min_value() - _value
 		_set_value(new_value)
 	pass
 
