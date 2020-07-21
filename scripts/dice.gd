@@ -142,4 +142,5 @@ func _change_value(offset):
 
 func _on_dice_clicked():
 	# This function is called when someone clicks on the dice.
+	roll()
 	pass
