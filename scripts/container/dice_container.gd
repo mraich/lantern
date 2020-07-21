@@ -4,7 +4,7 @@ extends HBoxContainer
 
 var dices = []
 const _DICE_COUNT = 6
-const _dice_class = preload("res://scenes/dice/dice_player.tscn")
+const _dice_class = preload("res://scenes/dice/dice_playable.tscn")
 
 # Indicating the value has changed.
 signal on_value_changed
