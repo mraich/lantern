@@ -13,9 +13,16 @@ var is_rollable
 var is_alterable
 
 func _ready():
+	# Setting signal for recognize clicking on the dice area.
+	get_node("dice_area").connect("on_dice_clicked", self, "_on_dice_clicked")
+
 	set_alterable(true)
 	set_flippable(true)
 	set_rollable(true)
+	pass
+
+func _on_dice_clicked():
+	# This function is called when someone clicks on the dice.
 	pass
 
 func set_alterable(is_alterable):

@@ -1,7 +1,33 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/dice/dice_rollable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/dice/dice_playable.gd" type="Script" id=2]
 
+[sub_resource type="GDScript" id=2]
+script/source = "# script: dice_area
+
+extends Area2D
+
+# Indicating that someone clicked on the area.
+signal on_dice_clicked
+
+# Capturing the input events.
+func _input_event(viewport, event, shape_idx):
+# We are only interested in left clicks now.
+	if event is InputEventMouseButton:
+		if event.is_pressed() and event.button_index == BUTTON_LEFT:
+			emit_signal(\"on_dice_clicked\")
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20.832, 20.832 )
+
 [node name="dice_playable" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="dice_area" type="Area2D" parent="." index="1"]
+script = SubResource( 2 )
+
+[node name="dice_shape" type="CollisionShape2D" parent="dice_area" index="0"]
+shape = SubResource( 1 )
