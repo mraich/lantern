@@ -11,6 +11,9 @@ extends Area2D
 # Indicating that someone clicked on the area.
 signal on_dice_clicked
 
+func _ready():
+	pass
+
 # Capturing the input events.
 func _input_event(viewport, event, shape_idx):
 # We are only interested in left clicks now.
