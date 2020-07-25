@@ -2,18 +2,25 @@
 
 extends "res://scripts/dice/dice_rollable.gd"
 
+var _drag = false
+var _drag_offset = Vector2()
+
 func _ready():
-	# Setting signal for recognize clicking on the dice area.
-	get_node("dice_area").connect("on_dice_drag_starts", self, "_on_dice_drag_starts")
-	get_node("dice_area").connect("on_dice_drag_ends", self, "_on_dice_drag_ends")
 	pass
 
-func _on_dice_drag_starts():
-	print("drag starts")
+func _input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		# Setting values for dragging.
+		# If the moust button is pressed we drag the dice.
+		_drag = event.pressed
+		_drag_offset = position - get_global_mouse_position()
 	pass
 
-func _on_dice_drag_ends():
-	print("drag ends")
+func _process(delta):
+	if _drag:
+		# When we drag the dice we move it according to the position of the mouse.
+		if Input.is_mouse_button_pressed(BUTTON_LEFT):
+			position = get_global_mouse_position() + _drag_offset
 	pass
 
 func inc():
