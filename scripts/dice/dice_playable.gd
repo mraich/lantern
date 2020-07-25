@@ -4,12 +4,16 @@ extends "res://scripts/dice/dice_rollable.gd"
 
 func _ready():
 	# Setting signal for recognize clicking on the dice area.
-	get_node("dice_area").connect("on_dice_clicked", self, "_on_dice_clicked")
-
+	get_node("dice_area").connect("on_dice_drag_starts", self, "_on_dice_drag_starts")
+	get_node("dice_area").connect("on_dice_drag_ends", self, "_on_dice_drag_ends")
 	pass
 
-func _on_dice_clicked():
-	# This function is called when someone clicks on the dice.
+func _on_dice_drag_starts():
+	print("drag starts")
+	pass
+
+func _on_dice_drag_ends():
+	print("drag ends")
 	pass
 
 func inc():

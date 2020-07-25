@@ -8,18 +8,30 @@ script/source = "# script: dice_area
 
 extends Area2D
 
-# Indicating that someone clicked on the area.
-signal on_dice_clicked
+# Indicating that someone begins dragging the dice by this area.
+signal on_dice_drag_starts
+
+# Indicating that someone ends dragging the dice by this area.
+signal on_dice_drag_ends
+
+# Indicating that the dice is selected now.
+var drag
 
 func _ready():
+	drag = false
 	pass
 
 # Capturing the input events.
 func _input_event(viewport, event, shape_idx):
 # We are only interested in left clicks now.
 	if event is InputEventMouseButton:
-		if event.is_pressed() and event.button_index == BUTTON_LEFT:
-			emit_signal(\"on_dice_clicked\")
+		if event.button_index == BUTTON_LEFT:
+			if event.is_pressed() and !drag:
+				drag = true
+				emit_signal(\"on_dice_drag_starts\")
+			if !event.is_pressed() and drag:
+				drag = false
+				emit_signal(\"on_dice_drag_ends\")
 	pass
 "
 
