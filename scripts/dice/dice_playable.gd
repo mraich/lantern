@@ -2,25 +2,18 @@
 
 extends "res://scripts/dice/dice_rollable.gd"
 
-var _drag = false
-var _drag_offset = Vector2()
+var draggable = preload("res://scripts/helper/draggable.gd").new()
 
 func _ready():
+	draggable.set_draggable_body(self)
 	pass
 
 func _input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		# Setting values for dragging.
-		# If the moust button is pressed we drag the dice.
-		_drag = event.pressed
-		_drag_offset = position - get_global_mouse_position()
+	draggable._input_event(viewport, event, shape_idx)
 	pass
 
 func _process(delta):
-	if _drag:
-		# When we drag the dice we move it according to the position of the mouse.
-		if Input.is_mouse_button_pressed(BUTTON_LEFT):
-			position = get_global_mouse_position() + _drag_offset
+	draggable._process(delta)
 	pass
 
 func inc():
