@@ -23,6 +23,8 @@ func _ready():
 
 		# Dragging of the dice.
 		dice.connect("on_drag_begin", self, "_on_drag_begin")
+		# Dragging ends of the dice.
+		dice.connect("on_drag_end", self, "_on_drag_end")
 
 		# Passing through events.
 		# Passing through the signal for a dice value changing.
@@ -38,6 +40,10 @@ func _ready():
 func _on_drag_begin(dice):
 	# Change the z index to max for the dice we are dragging.
 	z_index._change_z_index_to_max(dice)
+	pass
+
+# Dragging ends for the dice.
+func _on_drag_end(dice):
 	pass
 
 func _on_dice_value_changed(var dice):
