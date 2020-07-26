@@ -11,6 +11,9 @@ var _drag = false
 # This is the offset.
 var _drag_offset = Vector2()
 
+# Tells if the draggable is enabled.
+var _dragging_enabled = true
+
 # Signal to indicate that dragging begins.
 signal on_drag_begin
 
@@ -22,6 +25,11 @@ func set_draggable_body(draggable_body):
 	self._draggable_body = draggable_body
 	pass
 
+# Enable or disable dragging.
+func enable_dragging(dragging_enabled):
+	self._dragging_enabled = dragging_enabled
+	pass
+
 # This is the _input_event where we catch the event of dragging.
 # It must be called in the script of the body we want to move.
 func _input_event(viewport, event, shape_idx):
@@ -29,6 +37,12 @@ func _input_event(viewport, event, shape_idx):
 		# Setting values for dragging.
 		# If the moust button is pressed we drag the dice.
 		_drag = event.pressed
+
+		# If the dragging is not enabled then we can not proceed.
+		if !_dragging_enabled:
+			_drag = false
+			pass
+
 		_drag_offset = _draggable_body.position - _draggable_body.get_global_mouse_position()
 		if _drag:
 			emit_signal("on_drag_begin")
