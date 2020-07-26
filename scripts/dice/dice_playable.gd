@@ -6,6 +6,7 @@ var t_draggable = preload("res://scripts/resource/draggable.gd")
 var draggable = t_draggable.new()
 
 signal on_drag_begin
+signal on_drag_end
 
 func _ready():
 	draggable.set_draggable_body(self)
@@ -26,6 +27,7 @@ func _on_drag_begin():
 	pass
 
 func _on_drag_end():
+	emit_signal("on_drag_end", self)
 	pass
 
 func inc():
