@@ -18,11 +18,18 @@ func _ready():
 		dice.position = Vector2(n * dice.get_width(), dice.get_height())
 		dices.push_back(dice)
 
+		# Dragging of the dice.
+		dice.connect("on_drag_begin", self, "_on_drag_begin")
+
 		# Passing through events.
 		# Passing through the signal for a dice value changing.
 		dice.connect("on_value_changed", self, "_on_dice_value_changed")
 
 		add_child(dice)
+	pass
+
+# Dragging of the dice.
+func _on_drag_begin(dice):
 	pass
 
 func _on_dice_value_changed(var dice):
