@@ -7,6 +7,7 @@ var draggable = t_draggable.new()
 
 func _ready():
 	draggable.set_draggable_body(self)
+	draggable.connect("on_drag_begin", self, "_on_drag_begin")
 	pass
 
 func _input_event(viewport, event, shape_idx):
@@ -15,6 +16,9 @@ func _input_event(viewport, event, shape_idx):
 
 func _process(delta):
 	draggable._process(delta)
+	pass
+
+func _on_drag_begin():
 	pass
 
 func inc():
