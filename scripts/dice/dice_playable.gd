@@ -30,6 +30,11 @@ func _on_drag_end():
 	emit_signal("on_drag_end", self)
 	pass
 
+# Enable or disable dragging.
+func enable_dragging(dragging_enabled):
+	draggable.enable_dragging(dragging_enabled)
+	pass
+
 func inc():
 	_alter(1)
 	pass
