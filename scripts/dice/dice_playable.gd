@@ -5,6 +5,8 @@ extends "res://scripts/dice/dice_rollable.gd"
 var t_draggable = preload("res://scripts/resource/draggable.gd")
 var draggable = t_draggable.new()
 
+signal on_drag_begin
+
 func _ready():
 	draggable.set_draggable_body(self)
 	draggable.connect("on_drag_begin", self, "_on_drag_begin")
@@ -19,6 +21,7 @@ func _process(delta):
 	pass
 
 func _on_drag_begin():
+	emit_signal("on_drag_begin", self)
 	pass
 
 func inc():
