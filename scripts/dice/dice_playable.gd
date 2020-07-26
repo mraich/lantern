@@ -2,8 +2,7 @@
 
 extends "res://scripts/dice/dice_rollable.gd"
 
-var t_draggable = preload("res://scripts/resource/draggable.gd")
-var draggable = t_draggable.new()
+var draggable = globals.draggable.new()
 
 signal on_drag_begin
 signal on_drag_end
