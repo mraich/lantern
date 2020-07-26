@@ -40,10 +40,18 @@ func _ready():
 func _on_drag_begin(dice):
 	# Change the z index to max for the dice we are dragging.
 	z_index._change_z_index_to_max(dice)
+
+	# We can drag only one dice at a time.
+	for dice_ in dices:
+		dice_.enable_dragging(dice == dice_)
 	pass
 
 # Dragging ends for the dice.
 func _on_drag_end(dice):
+	# We can drag only one dice at a time but when dragging ends
+	# we can drag any of the dices.
+	for dice_ in dices:
+		dice_.enable_dragging(true)
 	pass
 
 func _on_dice_value_changed(var dice):
