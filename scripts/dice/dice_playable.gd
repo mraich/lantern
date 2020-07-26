@@ -10,6 +10,7 @@ signal on_drag_begin
 func _ready():
 	draggable.set_draggable_body(self)
 	draggable.connect("on_drag_begin", self, "_on_drag_begin")
+	draggable.connect("on_drag_end", self, "_on_drag_end")
 	pass
 
 func _input_event(viewport, event, shape_idx):
@@ -22,6 +23,9 @@ func _process(delta):
 
 func _on_drag_begin():
 	emit_signal("on_drag_begin", self)
+	pass
+
+func _on_drag_end():
 	pass
 
 func inc():
