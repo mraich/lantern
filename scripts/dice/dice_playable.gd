@@ -2,7 +2,7 @@
 
 extends "res://scripts/dice/dice_rollable.gd"
 
-var draggable = preload("res://scripts/helper/draggable.gd").new()
+var draggable = preload("res://scripts/resource/draggable.gd").new()
 
 func _ready():
 	draggable.set_draggable_body(self)

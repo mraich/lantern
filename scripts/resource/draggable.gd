@@ -2,7 +2,7 @@
 # It can be used on a StaticBody2D.
 # The pickable attribute must be se to enabled.
 
-extends Node
+extends Resource
 
 # The body we will drag.
 var _draggable_body
