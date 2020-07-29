@@ -2,23 +2,23 @@
 
 extends "res://scripts/dice/dice_rollable.gd"
 
-var draggable = globals.draggable.new()
+var _draggable = globals.draggable.new()
 
 signal on_drag_begin
 signal on_drag_end
 
 func _ready():
-	draggable.set_draggable_body(self)
-	draggable.connect("on_drag_begin", self, "_on_drag_begin")
-	draggable.connect("on_drag_end", self, "_on_drag_end")
+	_draggable.set_draggable_body(self)
+	_draggable.connect("on_drag_begin", self, "_on_drag_begin")
+	_draggable.connect("on_drag_end", self, "_on_drag_end")
 	pass
 
 func _input_event(viewport, event, shape_idx):
-	draggable._input_event(viewport, event, shape_idx)
+	_draggable._input_event(viewport, event, shape_idx)
 	pass
 
 func _process(delta):
-	draggable._process(delta)
+	_draggable._process(delta)
 	pass
 
 func _on_drag_begin():
@@ -31,7 +31,7 @@ func _on_drag_end():
 
 # Enable or disable dragging.
 func enable_dragging(dragging_enabled):
-	draggable.enable_dragging(dragging_enabled)
+	_draggable.enable_dragging(dragging_enabled)
 	pass
 
 func inc():
