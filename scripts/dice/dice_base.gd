@@ -64,6 +64,14 @@ func _show_value():
 		get_node("face_sprite").texture = _dice_face
 	pass
 
+# Tells the minimum value this dice can show.
+func _get_min_value():
+	return 1
+
+# Tells the maximum value this dice can show.
+func _get_max_value():
+	return 6
+
 func get_width():
 	return 50
 	pass
