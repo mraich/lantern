@@ -27,6 +27,12 @@ func _on_dice_value_changed(var dice):
 	emit_signal("on_value_changed", dice)
 	pass
 
+func set_dice_action(action):
+	for dice in dices:
+		dice.set_action(action)
+		pass
+	pass
+
 # Rolling all dices at once.
 func roll_all():
 	for dice in dices:
