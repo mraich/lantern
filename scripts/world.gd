@@ -24,4 +24,5 @@ func _input(event):
 
 # On cursor state change.
 func _on_cursor_state_changed(state):
+	dice_container.set_dice_action(state)
 	pass
