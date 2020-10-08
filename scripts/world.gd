@@ -13,6 +13,12 @@ func _ready():
 	cursor.set_state(0)
 	pass
 
+func _input(event):
+	# By right clicking we increase the state.
+	if event.is_action_pressed("right_click"):
+		cursor.step_state()
+	pass
+
 # On cursor state change.
 func _on_cursor_state_changed(state):
 	pass
