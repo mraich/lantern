@@ -6,4 +6,10 @@ extends Node2D
 onready var cursor = get_node("cursor")
 
 func _ready():
+	# Connecting the state change of the cursor.
+	cursor.connect("on_cursor_state_changed", self, "_on_cursor_state_changed")
+	pass
+
+# On cursor state change.
+func _on_cursor_state_changed(state):
 	pass
