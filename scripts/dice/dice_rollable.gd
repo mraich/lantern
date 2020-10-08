@@ -1,6 +1,6 @@
 # script: dice_rollable
 
-extends "res://scripts/dice/dice_base.gd"
+extends "res://scripts/dice/dice.gd"
 
 var random = RandomNumberGenerator.new()
 

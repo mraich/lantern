@@ -1,6 +1,6 @@
 #script: puzzle
 
-extends "res://scripts/dice/dice_base.gd"
+extends "res://scripts/dice/dice.gd"
 
 var _dice_x = preload("res://res/dice/dice_x.svg")
 var _dice_x_2 = preload("res://res/dice/dice_x_2.svg")
