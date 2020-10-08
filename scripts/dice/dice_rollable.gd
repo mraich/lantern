@@ -20,11 +20,3 @@ func generate_new_value():
 func roll():
 	generate_new_value()
 	pass
-
-# Tells the minimum value this dice can show.
-func _get_min_value():
-	return 1
-
-# Tells the maximum value this dice can show.
-func _get_max_value():
-	return 6
