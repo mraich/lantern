@@ -41,9 +41,3 @@ func set_dice_action(action):
 		dice.set_action(action)
 		pass
 	pass
-
-# Rolling all dices at once.
-func roll_all():
-	for dice in dices:
-		dice.roll()
-	pass
