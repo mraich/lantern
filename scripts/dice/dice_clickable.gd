@@ -1,4 +1,4 @@
-# script: dice_playable
+# script: dice_clickable
 
 extends "res://scripts/dice/dice_rollable.gd"
 
