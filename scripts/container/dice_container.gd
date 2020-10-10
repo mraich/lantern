@@ -22,6 +22,13 @@ func _ready():
 		dice.connect("on_value_changed", self, "_on_dice_value_changed")
 
 		add_child(dice)
+
+	# Correcting the position of the dices to have them
+	# to be arranged in the center of the given position
+	# for the DiceContainer.
+	var offsetX = -next_position / 2
+	for dice in dices:
+		dice.position.x += offsetX
 	pass
 
 func _on_dice_value_changed(var dice):
