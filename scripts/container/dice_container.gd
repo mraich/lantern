@@ -10,9 +10,11 @@ const _dice_class = preload("res://scenes/dice/dice_playable.tscn")
 signal on_value_changed
 
 func _ready():
+	var next_position = 0
 	for n in range(0, _DICE_COUNT):
 		var dice = _dice_class.instance()
-		dice.position = Vector2(n * dice.get_width(), dice.get_height())
+		dice.position = Vector2(next_position, dice.get_height())
+		next_position += dice.get_width()
 		dices.push_back(dice)
 
 		# Passing through events.
