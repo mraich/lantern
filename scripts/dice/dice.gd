@@ -26,6 +26,7 @@ signal on_value_changed
 
 func _ready():
 	_dice_face = null
+	_set_value(0)
 	pass
 
 # This function is protected which is indicated by the _
