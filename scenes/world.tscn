@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/world.gd" type="Script" id=1]
 [ext_resource path="res://scenes/container/dice_container.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/dice/puzzle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/container/puzzle_container.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/cursor/cursor.tscn" type="PackedScene" id=4]
 
 [node name="world" type="Node2D"]
@@ -14,7 +14,10 @@ margin_top = 100.0
 margin_right = 200.0
 margin_bottom = 100.0
 
-[node name="puzzle" parent="." instance=ExtResource( 3 )]
-position = Vector2( 200, 200 )
+[node name="puzzle_container" parent="." instance=ExtResource( 3 )]
+margin_left = 300.0
+margin_top = 600.0
+margin_right = 300.0
+margin_bottom = 600.0
 
 [node name="cursor" parent="." instance=ExtResource( 4 )]
