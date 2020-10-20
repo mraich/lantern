@@ -26,7 +26,7 @@ func _ready():
 	# Correcting the position of the dices to have them
 	# to be arranged in the center of the given position
 	# for the DiceContainer.
-	var offsetX = -next_position / 2
+	var offsetX = -(next_position - next_position / _DICE_COUNT) / 2
 	for dice in dices:
 		dice.position.x += offsetX
 	pass
