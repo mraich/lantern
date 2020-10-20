@@ -6,7 +6,7 @@ extends Node2D
 onready var cursor = get_node("cursor")
 
 # Finding the dice container in the tree of the world.
-onready var dice_container = get_node("dice_container")
+onready var playable_container = get_node("playable_container")
 
 func _ready():
 	# Connecting the state change of the cursor.
@@ -24,5 +24,5 @@ func _input(event):
 
 # On cursor state change.
 func _on_cursor_state_changed(state):
-	dice_container.set_dice_action(state)
+	playable_container.set_dice_action(state)
 	pass
