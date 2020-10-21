@@ -3,6 +3,7 @@
 extends HBoxContainer
 
 var dices = []
+var _dice_class
 
 # Indicating the value has changed.
 signal on_value_changed
@@ -11,12 +12,13 @@ func _ready():
 	pass
 
 func init(dice_class, dice_count):
+	_dice_class = dice_class
 	for n in range(0, dice_count):
-		_add_dice(dice_class)
+		_add_dice()
 	pass
 
-func _add_dice(dice_class):
-	var dice = dice_class.instance()
+func _add_dice():
+	var dice = _dice_class.instance()
 	dices.push_back(dice)
 
 	# Passing through events.
