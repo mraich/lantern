@@ -11,10 +11,8 @@ signal on_value_changed
 func _ready():
 	pass
 
-func init(dice_class, dice_count):
+func init(dice_class):
 	_dice_class = dice_class
-
-	_ensure_dice_count(dice_count)
 	pass
 
 # Setting arrangement.
