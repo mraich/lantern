@@ -13,8 +13,17 @@ func _ready():
 
 func init(dice_class, dice_count):
 	_dice_class = dice_class
-	for n in range(0, dice_count):
+
+	_ensure_dice_count(dice_count)
+	pass
+
+func _ensure_dice_count(count):
+	# In case there are less dices then value of count then this loop will add as many dices as needed.
+	for n in range(dices.size(), count):
 		_add_dice()
+	# In case there are more dices then value of count then this loop will remove as many dices as not needed.
+	for n in range(count, dices.size()):
+		_pop_dice()
 	pass
 
 # Removing the first dice from the control.
