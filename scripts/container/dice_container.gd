@@ -12,19 +12,31 @@ func _ready():
 
 func init(dice_class, dice_count):
 	for n in range(0, dice_count):
-		var dice = dice_class.instance()
-		dice.position = Vector2(dices.size() * dice.get_width(), dice.get_height())
-		dices.push_back(dice)
+		_add_dice(dice_class)
+	pass
 
-		# Passing through events.
-		# Passing through the signal for a dice value changing.
-		dice.connect("on_value_changed", self, "_on_dice_value_changed")
+func _add_dice(dice_class):
+	var dice = dice_class.instance()
+	dices.push_back(dice)
 
-		add_child(dice)
+	# Passing through events.
+	# Passing through the signal for a dice value changing.
+	dice.connect("on_value_changed", self, "_on_dice_value_changed")
 
-	# Correcting the position of the dices to have them
-	# to be arranged in the center of the given position
-	# for the DiceContainer.
+	add_child(dice)
+
+	_update_dices_position()
+	pass
+
+# Correcting the position of the dices to have them
+# to be arranged in the center of the given position
+# for the DiceContainer.
+func _update_dices_position():
+	var i = 0
+	for dice in dices:
+		dice.position = Vector2(i * dice.get_width(), dice.get_height())
+		i += 1
+
 	var offsetX = 0
 	if dices.size() > 0:
 		offsetX = -(dices.size() - 1) * dices[0].get_width() / 2
