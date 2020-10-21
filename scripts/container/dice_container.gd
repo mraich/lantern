@@ -11,11 +11,9 @@ func _ready():
 	pass
 
 func init(dice_class, dice_count):
-	var next_position = 0
 	for n in range(0, dice_count):
 		var dice = dice_class.instance()
-		dice.position = Vector2(next_position, dice.get_height())
-		next_position += dice.get_width()
+		dice.position = Vector2(dices.size() * dice.get_width(), dice.get_height())
 		dices.push_back(dice)
 
 		# Passing through events.
@@ -27,7 +25,9 @@ func init(dice_class, dice_count):
 	# Correcting the position of the dices to have them
 	# to be arranged in the center of the given position
 	# for the DiceContainer.
-	var offsetX = -(next_position - next_position / dice_count) / 2
+	var offsetX = 0
+	if dices.size() > 0:
+		offsetX = -(dices.size() - 1) * dices[0].get_width() / 2
 	for dice in dices:
 		dice.position.x += offsetX
 	pass
