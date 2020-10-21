@@ -17,6 +17,19 @@ func init(dice_class, dice_count):
 	_ensure_dice_count(dice_count)
 	pass
 
+# Setting arrangement.
+# Layout is an array of the values to be shown on each particular dice.
+func set_arrangement(arrangement):
+	# Ensuring there will be enough dices for the layout.
+	_ensure_dice_count(arrangement.size())
+
+	# Setting arrangement values to each particular dices.
+	var i = 0
+	for dice in dices:
+		dice._set_value(arrangement[i])
+		i += 1
+	pass
+
 func _ensure_dice_count(count):
 	# In case there are less dices then value of count then this loop will add as many dices as needed.
 	for n in range(dices.size(), count):
