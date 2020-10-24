@@ -89,3 +89,12 @@ func set_dice_action(action):
 		dice.set_action(action)
 		pass
 	pass
+
+# Getting the values of all of the dices in an array.
+func get_values():
+	var dice_values = []
+	for dice in dices:
+		dice_values.push_back(dice.get_value())
+		pass
+	return dice_values
+	pass
