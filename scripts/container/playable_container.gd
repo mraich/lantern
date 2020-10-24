@@ -6,8 +6,6 @@ var playable_class = preload("res://scenes/dice/dice_playable.tscn")
 
 func _ready():
 	init(playable_class)
-
-	set_dice_count(6)
 	pass
 
 func set_dice_action(action):

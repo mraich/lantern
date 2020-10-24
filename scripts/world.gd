@@ -16,6 +16,14 @@ func _ready():
 	# Initial state of the cursor.
 	cursor.set_state(0)
 
+	# This lines are for testing purposes so they will be
+	# removed when the stage handling is ready.
+	# The playable container should show this count of dices.
+	playable_container.set_dice_count(6)
+	# The puzzle container should show this arrangement.
+	var arrangement = [1, 2, 3, 4, -1, -2]
+	puzzle_container.set_arrangement(arrangement)
+
 	# Getting notified about the changes made on the playable field.
 	playable_container.connect("on_value_changed", self, "on_playable_value_changed")
 
