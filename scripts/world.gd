@@ -18,6 +18,9 @@ func _ready():
 
 	# Getting notified about the changes made on the playable field.
 	playable_container.connect("on_value_changed", self, "on_playable_value_changed")
+
+	# Getting notified about the changes made on the puzzle field.
+	puzzle_container.connect("on_value_changed", self, "on_puzzle_value_changed")
 	pass
 
 func _input(event):
@@ -32,4 +35,7 @@ func _on_cursor_state_changed(state):
 	pass
 
 func on_playable_value_changed(dice):
+	pass
+
+func on_puzzle_value_changed(dice):
 	pass
