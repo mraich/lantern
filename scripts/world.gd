@@ -1,4 +1,4 @@
-#script: world
+# script: world
 
 extends Node2D
 

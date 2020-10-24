@@ -1,4 +1,4 @@
-#script: puzzle
+# script: puzzle
 
 extends "res://scripts/dice/dice.gd"
 

@@ -1,4 +1,4 @@
-#script: dice_container
+# script: dice_container
 
 extends HBoxContainer
 
