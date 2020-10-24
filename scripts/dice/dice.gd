@@ -67,7 +67,6 @@ func _show_value():
 
 func get_value():
 	return _value
-	pass
 
 # Tells the minimum value this dice can show.
 func _get_min_value():
@@ -79,8 +78,6 @@ func _get_max_value():
 
 func get_width():
 	return 50
-	pass
 
 func get_height():
 	return 50
-	pass
