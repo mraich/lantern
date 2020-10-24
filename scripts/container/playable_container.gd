@@ -9,3 +9,8 @@ func _ready():
 
 	set_dice_count(6)
 	pass
+
+func set_dice_action(action):
+	for dice in dices:
+		dice.set_action(action)
+	pass

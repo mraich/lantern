@@ -84,11 +84,6 @@ func _on_dice_value_changed(var dice):
 	emit_signal("on_value_changed", dice)
 	pass
 
-func set_dice_action(action):
-	for dice in dices:
-		dice.set_action(action)
-	pass
-
 # Getting the values of all of the dices in an array.
 func get_values():
 	var dice_values = []
