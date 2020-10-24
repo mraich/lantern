@@ -41,12 +41,15 @@ func _ensure_dice_count(count):
 		_pop_dice()
 	pass
 
+# Adding dice to the end of the list.
+# This dice is added to the tree of this control.
 func _add_dice():
 	var dice = _dice_class.instance()
 	dices.push_back(dice)
 
 	add_child(dice)
 
+	# Update the position of the dices.
 	_update_dices_position()
 
 	# Passing through events.
@@ -60,6 +63,7 @@ func _pop_dice():
 		remove_child(dices[0])
 		dices.pop_front()
 
+	# Update the position of the dices.
 	_update_dices_position()
 	pass
 
