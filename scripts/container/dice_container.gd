@@ -41,15 +41,6 @@ func _ensure_dice_count(count):
 		_pop_dice()
 	pass
 
-# Removing the first dice from the control.
-func _pop_dice():
-	if dices.size() > 0:
-		remove_child(dices[0])
-		dices.pop_front()
-
-	_update_dices_position()
-	pass
-
 func _add_dice():
 	var dice = _dice_class.instance()
 	dices.push_back(dice)
@@ -59,6 +50,15 @@ func _add_dice():
 	dice.connect("on_value_changed", self, "_on_dice_value_changed")
 
 	add_child(dice)
+
+	_update_dices_position()
+	pass
+
+# Removing the first dice from the control.
+func _pop_dice():
+	if dices.size() > 0:
+		remove_child(dices[0])
+		dices.pop_front()
 
 	_update_dices_position()
 	pass
