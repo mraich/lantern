@@ -45,13 +45,13 @@ func _add_dice():
 	var dice = _dice_class.instance()
 	dices.push_back(dice)
 
-	# Passing through events.
-	# Passing through the signal for a dice value changing.
-	dice.connect("on_value_changed", self, "_on_dice_value_changed")
-
 	add_child(dice)
 
 	_update_dices_position()
+
+	# Passing through events.
+	# Passing through the signal for a dice value changing.
+	dice.connect("on_value_changed", self, "_on_dice_value_changed")
 	pass
 
 # Removing the first dice from the control.
