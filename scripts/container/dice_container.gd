@@ -87,7 +87,6 @@ func _on_dice_value_changed(var dice):
 func set_dice_action(action):
 	for dice in dices:
 		dice.set_action(action)
-		pass
 	pass
 
 # Getting the values of all of the dices in an array.
@@ -95,6 +94,4 @@ func get_values():
 	var dice_values = []
 	for dice in dices:
 		dice_values.push_back(dice.get_value())
-		pass
 	return dice_values
-	pass
