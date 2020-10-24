@@ -7,6 +7,7 @@ onready var cursor = get_node("cursor")
 
 # Finding the dice container in the tree of the world.
 onready var playable_container = get_node("playable_container")
+onready var puzzle_container = get_node("puzzle_container")
 
 func _ready():
 	# Connecting the state change of the cursor.
