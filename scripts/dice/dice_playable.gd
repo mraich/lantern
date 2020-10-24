@@ -38,7 +38,6 @@ func _alter(alter_by):
 	var new_value = _value + alter_by
 	if new_value >= _get_min_value() and new_value <= _get_max_value():
 		_set_value(new_value)
-		pass
 	pass
 
 func flip():
