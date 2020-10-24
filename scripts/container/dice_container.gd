@@ -28,6 +28,10 @@ func set_arrangement(arrangement):
 		i += 1
 	pass
 
+func set_dice_count(count):
+	_ensure_dice_count(count)
+	pass
+
 func _ensure_dice_count(count):
 	# In case there are less dices then value of count then this loop will add as many dices as needed.
 	for n in range(dices.size(), count):
