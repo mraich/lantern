@@ -14,6 +14,9 @@ func _ready():
 
 	# Initial state of the cursor.
 	cursor.set_state(0)
+
+	# Getting notified about the changes made on the playable field.
+	playable_container.connect("on_value_changed", self, "on_playable_value_changed")
 	pass
 
 func _input(event):
@@ -25,4 +28,7 @@ func _input(event):
 # On cursor state change.
 func _on_cursor_state_changed(state):
 	playable_container.set_dice_action(state)
+	pass
+
+func on_playable_value_changed(dice):
 	pass
