@@ -7,5 +7,7 @@ func _ready():
 	get_node("dice_area").connect("on_dice_clicked", self, "_on_dice_clicked")
 	pass
 
+# Inherited scenes will override this function to be notified
+# when they were clicked.
 func _on_dice_clicked():
 	pass
