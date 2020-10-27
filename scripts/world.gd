@@ -5,6 +5,11 @@ extends Node2D
 # Finding the cursor in the tree of the world.
 onready var cursor = get_node("cursor")
 
+# Loading the dice checker algorithm.
+const dice_checker_script = preload("res://scripts/algorithm/dice_checker.gd")
+# Creating the dice checker instance.
+onready var dice_checker = dice_checker_script.new()
+
 # Finding the dice container in the tree of the world.
 onready var playable_container = get_node("playable_container")
 onready var puzzle_container = get_node("puzzle_container")
