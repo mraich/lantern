@@ -5,8 +5,8 @@ extends Node2D
 # Signal to notify when the state of the cursor is changed.
 signal on_cursor_state_changed
 
-# States should be between 0 and 4.
-const _MAX_STATES = 5
+# States should be between 0 and 5.
+const _MAX_STATES = 6
 
 # Initial state.
 var _state = 0
