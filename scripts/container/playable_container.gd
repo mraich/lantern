@@ -18,3 +18,9 @@ func roll_all():
 	for dice in dices:
 		dice.roll()
 	pass
+
+# Rolling all of the dices which were selected for rolling.
+func roll_multiple():
+	for dice in dices:
+		dice.roll_multiple()
+	pass
