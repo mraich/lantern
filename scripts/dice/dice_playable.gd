@@ -15,6 +15,10 @@ const ACTION_ROLL_MULTIPLE_OFF = 5
 const ACTION_ROLL_MULTIPLE_ON = -1
 var _action = ACTION_NOTHING
 
+func _ready():
+	set_action(ACTION_NOTHING)
+	pass
+
 func _on_dice_clicked():
 	# This function is called when someone clicks on the dice.
 	match _action:
