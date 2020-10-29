@@ -47,8 +47,8 @@ func _on_cursor_state_changed(state):
 	playable_container.set_dice_action(state)
 	pass
 
-func on_playable_value_changed(dice):
+func on_playable_value_changed():
 	pass
 
-func on_puzzle_value_changed(dice):
+func on_puzzle_value_changed():
 	pass
