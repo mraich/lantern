@@ -13,6 +13,7 @@ onready var dice_checker = dice_checker_script.new()
 # Finding the dice container in the tree of the world.
 onready var playable_container = get_node("playable_container")
 onready var puzzle_container = get_node("puzzle_container")
+onready var roll_selected = get_node("roll_selected")
 
 func _ready():
 	# Connecting the state change of the cursor.
@@ -20,6 +21,9 @@ func _ready():
 
 	# Initial state of the cursor.
 	cursor.set_state(0)
+
+	# roll_selected.get_node("dice_area").connect("on_dice_clicked", self, "_on_roll_selected_clicked")
+	roll_selected.connect("on_dice_clicked", self, "_on_roll_selected_clicked")
 
 	# This lines are for testing purposes so they will be
 	# removed when the stage handling is ready.
@@ -51,4 +55,8 @@ func on_playable_value_changed():
 	pass
 
 func on_puzzle_value_changed():
+	pass
+
+func _on_roll_selected_clicked():
+	playable_container.roll_multiple()
 	pass
