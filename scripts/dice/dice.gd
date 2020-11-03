@@ -29,6 +29,12 @@ func _ready():
 	_set_value(0)
 	pass
 
+# Setting a value.
+# This function is the public version of the _set_value function.
+func set_value(new_value):
+	_set_value(new_value)
+	pass
+
 # This function is protected which is indicated by the _
 # character at the beginning of its signature.
 # It might be overridden by the child scenes. In these overridden
