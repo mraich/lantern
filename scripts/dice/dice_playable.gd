@@ -15,9 +15,6 @@ const ACTION_ROLL_MULTIPLE_OFF = 5
 const ACTION_ROLL_MULTIPLE_ON = -1
 var _action = ACTION_NOTHING
 
-# This is a region on the dice which indicates this dice is selected.
-onready var selected_sprite = get_node("selected_sprite")
-
 func _ready():
 	set_action(ACTION_NOTHING)
 	pass
@@ -44,9 +41,9 @@ func set_action(action):
 
 	# We show that this dice is selected.
 	if not _action == ACTION_ROLL_MULTIPLE_ON:
-		selected_sprite.visible = false
+		$selected_sprite.visible = false
 	else:
-		selected_sprite.visible = true
+		$selected_sprite.visible = true
 	pass
 
 func inc():
