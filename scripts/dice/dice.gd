@@ -68,7 +68,7 @@ func _set_value(new_value):
 func _show_value():
 	# Showing the right picture if present.
 	if _dice_face != null:
-		get_node("face_sprite").texture = _dice_face
+		$face_sprite.texture = _dice_face
 	pass
 
 func get_value():
