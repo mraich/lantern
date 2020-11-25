@@ -9,13 +9,13 @@ func _ready():
 	# Initial state of the cursor.
 	$cursor.set_state(0)
 
-	$roll_selected.connect("on_dice_clicked", self, "_on_roll_selected_clicked")
-
 	# Getting notified about the changes made on the playable field.
 	$playable_container.connect("on_value_changed", self, "on_playable_value_changed")
 
 	# Getting notified about the loading of the stages.
 	$stage_manager.connect("on_stage_load", self, "_on_stage_load")
+
+	$roll_selected.connect("on_dice_clicked", self, "_on_roll_selected_clicked")
 
 	# Game starts.
 	$stage_manager.on_game_start()
