@@ -28,6 +28,16 @@ func _input(event):
 		$cursor.step_state()
 	pass
 
+# On cursor state change.
+func _on_cursor_state_changed(state):
+	$playable_container.set_dice_action(state)
+	pass
+
+# Rolling the selected dices.
+func _on_roll_selected_clicked():
+	$playable_container.roll_multiple()
+	pass
+
 # On loading the next stage.
 func _on_stage_load(stage, playing_dices_count, puzzle):
 	# The puzzle container should show this arrangement.
@@ -39,18 +49,8 @@ func _on_stage_load(stage, playing_dices_count, puzzle):
 	$playable_container.roll_all()
 	pass
 
-# On cursor state change.
-func _on_cursor_state_changed(state):
-	$playable_container.set_dice_action(state)
-	pass
-
 func on_playable_value_changed():
 	if $dice_checker.check($playable_container.get_values(), $puzzle_container.get_values()):
 		$stage_manager.on_stage_win()
 		pass
-	pass
-
-# Rolling the selected dices.
-func _on_roll_selected_clicked():
-	$playable_container.roll_multiple()
 	pass
