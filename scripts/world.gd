@@ -49,8 +49,11 @@ func _on_stage_load(stage, playing_dices_count, puzzle):
 	$playable_container.roll_all()
 	pass
 
+# Called when a dice action is completed.
 func on_playable_value_changed():
+	# Checking the state of the gameboard.
 	if $dice_checker.check($playable_container.get_values(), $puzzle_container.get_values()):
+		# We won the puzzle.
 		$stage_manager.on_stage_win()
 		pass
 	pass
