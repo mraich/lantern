@@ -3,6 +3,10 @@
 extends Node
 
 func check(dices, puzzles):
+	# Null dice board is solved.
+	if dices.size() == 0:
+		return true
+
 	# We can't solve a null puzzle.
 	if puzzles.size() == 0:
 		return false
