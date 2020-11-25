@@ -18,7 +18,7 @@ func _ready():
 	# Rolling the selected dices button.
 	$roll_selected.connect("on_dice_clicked", self, "_on_roll_selected_clicked")
 
-	# Game starts.
+	# The game starts.
 	$stage_manager.on_game_start()
 	pass
 
