@@ -30,13 +30,13 @@ func _input(event):
 
 # On loading the next stage.
 func _on_stage_load(stage, playing_dices_count, puzzle):
+	# The puzzle container should show this arrangement.
+	$puzzle_container.set_arrangement(puzzle)
+
 	# The playable container should show this count of dices.
 	$playable_container.set_dice_count(playing_dices_count)
 	# New set of values for the dices.
 	$playable_container.roll_all()
-
-	# The puzzle container should show this arrangement.
-	$puzzle_container.set_arrangement(puzzle)
 	pass
 
 # On cursor state change.
