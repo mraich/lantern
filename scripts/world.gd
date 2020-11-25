@@ -12,11 +12,6 @@ func _ready():
 	# roll_selected.get_node("dice_area").connect("on_dice_clicked", self, "_on_roll_selected_clicked")
 	$roll_selected.connect("on_dice_clicked", self, "_on_roll_selected_clicked")
 
-	# This lines are for testing purposes so they will be
-	# removed when the stage handling is ready.
-	# The playable container should show this count of dices.
-	$playable_container.set_dice_count(6)
-
 	# Getting notified about the changes made on the playable field.
 	$playable_container.connect("on_value_changed", self, "on_playable_value_changed")
 
@@ -37,7 +32,9 @@ func _input(event):
 	pass
 
 # On loading the next stage.
-func _on_stage_load(puzzle):
+func _on_stage_load(stage, playing_dices_count, puzzle):
+	# The playable container should show this count of dices.
+	$playable_container.set_dice_count(playing_dices_count)
 	# New set of values for the dices.
 	$playable_container.roll_all()
 

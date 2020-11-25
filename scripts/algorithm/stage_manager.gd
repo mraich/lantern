@@ -7,6 +7,9 @@ var stage = 1
 # Puzzle variable.
 onready var puzzle = [1, 2, 3, 4, 5, 6]
 
+# Dices count to play.
+onready var playing_dices_count = 6
+
 # Emitted when we loaded a new stage.
 signal on_stage_load
 
@@ -25,5 +28,5 @@ func on_stage_lose():
 	pass
 
 func _load_stage():
-	emit_signal("on_stage_load", puzzle)
+	emit_signal("on_stage_load", stage, playing_dices_count, puzzle)
 	pass
