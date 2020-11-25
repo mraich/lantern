@@ -2,11 +2,6 @@
 
 extends Node2D
 
-# Loading the dice checker algorithm.
-const dice_checker_script = preload("res://scripts/algorithm/dice_checker.gd")
-# Creating the dice checker instance.
-onready var dice_checker = dice_checker_script.new()
-
 func _ready():
 	# Connecting the state change of the cursor.
 	$cursor.connect("on_cursor_state_changed", self, "_on_cursor_state_changed")
