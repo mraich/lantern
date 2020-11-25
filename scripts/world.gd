@@ -9,7 +9,6 @@ func _ready():
 	# Initial state of the cursor.
 	$cursor.set_state(0)
 
-	# roll_selected.get_node("dice_area").connect("on_dice_clicked", self, "_on_roll_selected_clicked")
 	$roll_selected.connect("on_dice_clicked", self, "_on_roll_selected_clicked")
 
 	# Getting notified about the changes made on the playable field.
