@@ -3,6 +3,10 @@
 extends Node
 
 func check(dices, puzzles):
+	# We can't solve a null puzzle.
+	if puzzles.size() == 0:
+		return false
+
 	# Checking for individual matches.
 	for p in range(0, puzzles.size()):
 		for d in range(0, dices.size()):
