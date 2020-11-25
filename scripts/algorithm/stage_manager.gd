@@ -2,19 +2,14 @@
 
 extends Node
 
-var stage = 1
-
-# Puzzle variable.
-onready var puzzle = [1, 2, 3, 4, 5, 6]
-
-# Dices count to play.
-onready var playing_dices_count = 6
+# On which stage are we in.
+var stage
 
 # Emitted when we loaded a new stage.
 signal on_stage_load
 
 func on_game_start():
-	stage = 1
+	stage = 0
 	_load_stage()
 	pass
 
@@ -28,5 +23,9 @@ func on_stage_lose():
 	pass
 
 func _load_stage():
-	emit_signal("on_stage_load", stage, playing_dices_count, puzzle)
+	if stage >= $stage_database.DATA.size():
+		return
+
+	var stage_data = $stage_database.DATA[stage]
+	emit_signal("on_stage_load", stage + 1, stage_data[1], stage_data[2])
 	pass
