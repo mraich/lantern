@@ -15,6 +15,7 @@ func _ready():
 	# Getting notified about the loading of the stages.
 	$stage_manager.connect("on_stage_load", self, "_on_stage_load")
 
+	# Rolling the selected dices button.
 	$roll_selected.connect("on_dice_clicked", self, "_on_roll_selected_clicked")
 
 	# Game starts.
@@ -49,6 +50,7 @@ func on_playable_value_changed():
 		pass
 	pass
 
+# Rolling the selected dices.
 func _on_roll_selected_clicked():
 	$playable_container.roll_multiple()
 	pass
