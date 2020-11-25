@@ -15,9 +15,6 @@ func _ready():
 	# Getting notified about the changes made on the playable field.
 	$playable_container.connect("on_value_changed", self, "on_playable_value_changed")
 
-	# Getting notified about the changes made on the puzzle field.
-	$puzzle_container.connect("on_value_changed", self, "on_puzzle_value_changed")
-
 	# Getting notified about the loading of the stages.
 	$stage_manager.connect("on_stage_load", self, "_on_stage_load")
 
@@ -51,9 +48,6 @@ func on_playable_value_changed():
 	if $dice_checker.check($playable_container.get_values(), $puzzle_container.get_values()):
 		$stage_manager.on_stage_win()
 		pass
-	pass
-
-func on_puzzle_value_changed():
 	pass
 
 func _on_roll_selected_clicked():
