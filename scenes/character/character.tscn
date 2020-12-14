@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/character/character.gd" type="Script" id=1]
 [ext_resource path="res://res/character/hero_001.png" type="Texture" id=2]
@@ -83,6 +83,22 @@ tracks/0/keys = {
 "values": [ 52, 53, 54, 55, 56, 57, 58, 59 ]
 }
 
+[sub_resource type="Animation" id=6]
+resource_name = "thrust_left"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 65, 66, 67, 68, 69, 70, 71, 72 ]
+}
+
 [node name="character" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -97,3 +113,4 @@ anims/spellcast_left = SubResource( 2 )
 anims/spellcast_down = SubResource( 3 )
 anims/spellcast_right = SubResource( 4 )
 anims/thrust_up = SubResource( 5 )
+anims/thrust_left = SubResource( 6 )
