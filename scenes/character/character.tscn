@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scripts/character/character.gd" type="Script" id=1]
 [ext_resource path="res://res/character/hero_001.png" type="Texture" id=2]
@@ -395,6 +395,22 @@ tracks/0/keys = {
 "values": [ 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259 ]
 }
 
+[sub_resource type="Animation" id=25]
+resource_name = "hurt"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 260, 261, 262, 263, 264, 264, 264, 263, 262, 261, 260 ]
+}
+
 [node name="character" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -428,3 +444,4 @@ anims/shoot_up = SubResource( 21 )
 anims/shoot_left = SubResource( 22 )
 anims/shoot_down = SubResource( 23 )
 anims/shoot_right = SubResource( 24 )
+anims/hurt = SubResource( 25 )
