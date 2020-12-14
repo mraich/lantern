@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/character/character.gd" type="Script" id=1]
 [ext_resource path="res://res/character/hero_001.png" type="Texture" id=2]
@@ -283,6 +283,22 @@ tracks/0/keys = {
 "values": [ 156, 157, 158, 159, 160, 161 ]
 }
 
+[sub_resource type="Animation" id=18]
+resource_name = "slash_left"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 169, 170, 171, 172, 173, 174 ]
+}
+
 [node name="character" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -309,3 +325,4 @@ anims/walk_down = SubResource( 14 )
 anims/walk_right_idle = SubResource( 15 )
 anims/walk_right = SubResource( 16 )
 anims/slash_up = SubResource( 17 )
+anims/slash_left = SubResource( 18 )
