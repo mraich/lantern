@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/character/character.gd" type="Script" id=1]
 [ext_resource path="res://res/character/hero_001.png" type="Texture" id=2]
@@ -233,6 +233,23 @@ tracks/0/keys = {
 "values": [ 131, 132, 133, 134, 135, 136, 137, 138 ]
 }
 
+[sub_resource type="Animation" id=15]
+resource_name = "walk_right_idle"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 143 ]
+}
+
 [node name="character" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -256,3 +273,4 @@ anims/walk_left_idle = SubResource( 11 )
 anims/walk_left = SubResource( 12 )
 anims/walk_down_idle = SubResource( 13 )
 anims/walk_down = SubResource( 14 )
+anims/walk_right_idle = SubResource( 15 )
