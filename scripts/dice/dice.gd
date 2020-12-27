@@ -83,7 +83,7 @@ func _get_max_value():
 	return 6
 
 func get_width():
-	return 50
+	return $face_sprite.texture.get_size().x * scale.x
 
 func get_height():
-	return 50
+	return $face_sprite.texture.get_size().y * scale.y
