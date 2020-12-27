@@ -4,7 +4,7 @@ extends Node2D
 
 var direction = 1
 
-var move = Vector2(300, 0)
+var move = Vector2(300 * 3.4 , 0)
 
 func _ready():
 	$animation.current_animation = "flaming"
