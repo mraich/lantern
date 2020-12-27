@@ -434,6 +434,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 21
 hframes = 13
+frame = 143
 
 [node name="animation" type="AnimationPlayer" parent="."]
 anims/spellcast_up = SubResource( 1 )
