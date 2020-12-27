@@ -17,15 +17,15 @@ script = ExtResource( 1 )
 
 [node name="playable_container" parent="." instance=ExtResource( 4 )]
 margin_left = 300.0
-margin_top = 540.0
+margin_top = 380.0
 margin_right = 300.0
-margin_bottom = 540.0
+margin_bottom = 380.0
 
 [node name="puzzle_container" parent="." instance=ExtResource( 5 )]
 margin_left = 300.0
-margin_top = 600.0
+margin_top = 460.0
 margin_right = 300.0
-margin_bottom = 600.0
+margin_bottom = 460.0
 
 [node name="roll_selected" parent="." instance=ExtResource( 6 )]
 position = Vector2( 175, 715 )
