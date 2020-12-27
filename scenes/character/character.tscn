@@ -132,7 +132,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=9]
-resource_name = "walk_up_idle"
+resource_name = "idle_up"
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -166,7 +166,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=11]
-resource_name = "walk_left_idle"
+resource_name = "idle_left"
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -200,7 +200,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=13]
-resource_name = "walk_down_idle"
+resource_name = "idle_down"
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -234,7 +234,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=15]
-resource_name = "walk_right_idle"
+resource_name = "idle_right"
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -445,13 +445,13 @@ anims/thrust_up = SubResource( 5 )
 anims/thrust_left = SubResource( 6 )
 anims/thrust_down = SubResource( 7 )
 anims/thrust_right = SubResource( 8 )
-anims/walk_up_idle = SubResource( 9 )
+anims/idle_up = SubResource( 9 )
 anims/walk_up = SubResource( 10 )
-anims/walk_left_idle = SubResource( 11 )
+anims/idle_left = SubResource( 11 )
 anims/walk_left = SubResource( 12 )
-anims/walk_down_idle = SubResource( 13 )
+anims/idle_down = SubResource( 13 )
 anims/walk_down = SubResource( 14 )
-anims/walk_right_idle = SubResource( 15 )
+anims/idle_right = SubResource( 15 )
 anims/walk_right = SubResource( 16 )
 anims/slash_up = SubResource( 17 )
 anims/slash_left = SubResource( 18 )
