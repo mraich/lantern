@@ -2,8 +2,8 @@
 
 extends Node2D
 
-enum STATE { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD }
-enum ANIMATION { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD }
+enum STATE { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESURRECT }
+enum ANIMATION { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESURRECT }
 enum DIRECTION { UP, LEFT, DOWN, RIGHT }
 
 var state = STATE.IDLE
@@ -74,7 +74,7 @@ func _on_anim_finished(anim_name):
 	# Automatic transitions between states.
 	# The other states are periodic because we set them again in the _update_animation_by_direction function.
 	match state:
-		STATE.IDLE, STATE.SPELLCAST, STATE.THRUST, STATE.SLASH, STATE.SHOOT, STATE.HURT:
+		STATE.IDLE, STATE.SPELLCAST, STATE.THRUST, STATE.SLASH, STATE.SHOOT, STATE.HURT, STATE.RESURRECT:
 			set_state(STATE.IDLE)
 		STATE.DIE:
 			set_state(STATE.DEAD)
@@ -112,6 +112,8 @@ func _update_animation_by_direction():
 			_set_animation(ANIMATION.DIE)
 		STATE.DEAD:
 			_set_animation(ANIMATION.DEAD)
+		STATE.RESURRECT:
+			_set_animation(ANIMATION.RESURRECT)
 
 	var animation_string = ANIMATION.keys()[animation].to_lower()
 	var dir_string = DIRECTION.keys()[direction].to_lower()
@@ -120,6 +122,6 @@ func _update_animation_by_direction():
 		ANIMATION.IDLE, ANIMATION.SPELLCAST, ANIMATION.THRUST, ANIMATION.WALK, ANIMATION.SLASH, ANIMATION.SHOOT:
 			$animation.play(animation_string + "_" + dir_string)
 		# These animations are not affected by the direction.
-		ANIMATION.HURT, ANIMATION.DIE, ANIMATION.DEAD:
+		ANIMATION.HURT, ANIMATION.DIE, ANIMATION.DEAD, ANIMATION.RESURRECT:
 			$animation.play(animation_string)
 	pass
