@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://scripts/character/character.gd" type="Script" id=1]
 [ext_resource path="res://res/character/hero_001.png" type="Texture" id=2]
@@ -459,6 +459,262 @@ tracks/0/keys = {
 "values": [ 265, 264, 263, 262, 261, 260, 260 ]
 }
 
+[sub_resource type="Animation" id=29]
+resource_name = "turn_left_up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 117, 104, 104 ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "turn_left_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 117, 104, 143, 143 ]
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "turn_left_down"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 117, 130, 130 ]
+}
+
+[sub_resource type="Animation" id=32]
+resource_name = "turn_up_right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 104, 143, 143 ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "turn_up_down"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 104, 143, 130, 130 ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "turn_up_left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 104, 117, 117 ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "turn_right_down"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 143, 130, 130 ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "turn_right_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 143, 130, 117, 117 ]
+}
+
+[sub_resource type="Animation" id=37]
+resource_name = "turn_right_up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 143, 104, 104 ]
+}
+
+[sub_resource type="Animation" id=38]
+resource_name = "turn_down_left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 130, 117, 117 ]
+}
+
+[sub_resource type="Animation" id=39]
+resource_name = "turn_down_up"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 130, 117, 104, 104 ]
+}
+
+[sub_resource type="Animation" id=40]
+resource_name = "turn_down_right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 130, 143, 143 ]
+}
+
+[sub_resource type="Animation" id=41]
+resource_name = "spinning_left_right"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 117, 104, 143, 130, 117, 104, 143, 130, 117, 104, 143, 130 ]
+}
+
+[sub_resource type="Animation" id=42]
+resource_name = "spinning_up_right"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 104, 143, 130, 117, 104, 143, 130, 117, 104, 143, 130 ]
+}
+
+[sub_resource type="Animation" id=43]
+resource_name = "spinning_right_right"
+length = 1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 143, 130, 117, 104, 143, 130, 117, 104, 143, 130 ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "spinning_down_right"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 130, 117, 104, 143, 130, 117, 104, 143, 130 ]
+}
+
 [node name="character" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -497,3 +753,19 @@ anims/hurt = SubResource( 25 )
 anims/die = SubResource( 26 )
 anims/dead = SubResource( 27 )
 anims/resurrect = SubResource( 28 )
+anims/turn_left_up = SubResource( 29 )
+anims/turn_left_right = SubResource( 30 )
+anims/turn_left_down = SubResource( 31 )
+anims/turn_up_right = SubResource( 32 )
+anims/turn_up_down = SubResource( 33 )
+anims/turn_up_left = SubResource( 34 )
+anims/turn_right_down = SubResource( 35 )
+anims/turn_right_left = SubResource( 36 )
+anims/turn_right_up = SubResource( 37 )
+anims/turn_down_left = SubResource( 38 )
+anims/turn_down_up = SubResource( 39 )
+anims/turn_down_right = SubResource( 40 )
+anims/spinning_left_right = SubResource( 41 )
+anims/spinning_up_right = SubResource( 42 )
+anims/spinning_right_right = SubResource( 43 )
+anims/spinning_down_right = SubResource( 44 )
