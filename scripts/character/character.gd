@@ -180,3 +180,6 @@ func _update_animation_by_direction():
 
 func is_dead():
 	return state == STATE.SPINNING_LEFT_RIGHT || state == STATE.SPINNING_UP_RIGHT || state == STATE.SPINNING_RIGHT_RIGHT || state == STATE.SPINNING_DOWN_RIGHT || state == STATE.DIE || state == STATE.DEAD
+
+func _can_interrupt():
+	return !is_dead() || state == STATE.WALK
