@@ -122,7 +122,6 @@ func _update_animation_by_direction():
 		STATE.HURT:
 			_set_animation(ANIMATION.HURT)
 		STATE.DIE:
-			set_direction(DIRECTION.DOWN)
 			_set_animation(ANIMATION.DIE)
 		STATE.DEAD:
 			_set_animation(ANIMATION.DEAD)
