@@ -59,11 +59,9 @@ func set_state(new_state):
 	pass
 
 func set_direction(new_direction):
+	if direction == new_direction:
+		return
 	direction = new_direction
-
-	# When we turn it ends in the idle state.
-	if state != STATE.IDLE:
-		set_state(STATE.IDLE)
 
 	# Let's update the animation.
 	_update_animation_by_direction()
