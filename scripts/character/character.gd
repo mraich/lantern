@@ -55,6 +55,7 @@ func set_state(new_state):
 	if next_state == null:
 		next_state = new_state
 		_update_animation_by_direction()
+		return
 	next_state = new_state
 	pass
 
