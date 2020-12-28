@@ -177,3 +177,6 @@ func _update_animation_by_direction():
 		ANIMATION.SPINNING_LEFT_RIGHT, ANIMATION.SPINNING_UP_RIGHT, ANIMATION.SPINNING_RIGHT_RIGHT, ANIMATION.SPINNING_DOWN_RIGHT:
 			$animation.play(animation_string)
 	pass
+
+func is_dead():
+	return state == STATE.SPINNING_LEFT_RIGHT || state == STATE.SPINNING_UP_RIGHT || state == STATE.SPINNING_RIGHT_RIGHT || state == STATE.SPINNING_DOWN_RIGHT || state == STATE.DIE || state == STATE.DEAD
