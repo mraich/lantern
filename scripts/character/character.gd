@@ -183,3 +183,55 @@ func is_dead():
 
 func _can_interrupt():
 	return !is_dead() || state == STATE.WALK
+
+func turn_left():
+	if !_can_interrupt():
+		return
+
+	match direction:
+		DIRECTION.UP:
+			set_state(STATE.TURN_UP_LEFT)
+		DIRECTION.RIGHT:
+			set_state(STATE.TURN_RIGHT_LEFT)
+		DIRECTION.DOWN:
+			set_state(STATE.TURN_DOWN_LEFT)
+	pass
+
+func turn_up():
+	if !_can_interrupt():
+		return
+
+	match direction:
+		DIRECTION.RIGHT:
+			set_state(STATE.TURN_RIGHT_UP)
+		DIRECTION.DOWN:
+			set_state(STATE.TURN_DOWN_UP)
+		DIRECTION.LEFT:
+			set_state(STATE.TURN_LEFT_UP)
+	pass
+
+func turn_right():
+	if !_can_interrupt():
+		return
+
+	match direction:
+		DIRECTION.LEFT:
+			set_state(STATE.TURN_LEFT_RIGHT)
+		DIRECTION.UP:
+			set_state(STATE.TURN_UP_RIGHT)
+		DIRECTION.DOWN:
+			set_state(STATE.TURN_DOWN_RIGHT)
+	pass
+
+func turn_down():
+	if !_can_interrupt():
+		return
+
+	match direction:
+		DIRECTION.LEFT:
+			set_state(STATE.TURN_LEFT_DOWN)
+		DIRECTION.UP:
+			set_state(STATE.TURN_UP_DOWN)
+		DIRECTION.RIGHT:
+			set_state(STATE.TURN_RIGHT_DOWN)
+	pass
