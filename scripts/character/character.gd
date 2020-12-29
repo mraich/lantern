@@ -11,7 +11,7 @@ var next_state = null
 var animation = ANIMATION.WALK
 var direction = DIRECTION.LEFT
 
-var speed = Vector2(75, 0)
+var speed = Vector2(75, 32)
 
 func _ready():
 	# Changing the appearance of the hero.
