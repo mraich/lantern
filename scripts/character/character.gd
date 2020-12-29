@@ -235,3 +235,43 @@ func turn_down():
 		DIRECTION.RIGHT:
 			set_state(STATE.TURN_RIGHT_DOWN)
 	pass
+
+func go_left():
+	if !_can_interrupt():
+		return
+
+	if direction == DIRECTION.LEFT:
+		set_state(STATE.WALK)
+	else:
+		turn_left()
+	pass
+
+func go_up():
+	if !_can_interrupt():
+		return
+
+	if direction == DIRECTION.UP:
+		set_state(STATE.WALK)
+	else:
+		turn_up()
+	pass
+
+func go_right():
+	if !_can_interrupt():
+		return
+
+	if direction == DIRECTION.RIGHT:
+		set_state(STATE.WALK)
+	else:
+		turn_right()
+	pass
+
+func go_down():
+	if !_can_interrupt():
+		return
+
+	if direction == DIRECTION.DOWN:
+		set_state(STATE.WALK)
+	else:
+		turn_down()
+	pass
