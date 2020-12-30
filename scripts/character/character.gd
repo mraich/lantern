@@ -5,11 +5,13 @@ extends Node2D
 enum STATE { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESURRECT, TURN_LEFT_UP, TURN_LEFT_RIGHT, TURN_LEFT_DOWN, TURN_UP_RIGHT, TURN_UP_DOWN, TURN_UP_LEFT, TURN_RIGHT_DOWN, TURN_RIGHT_LEFT, TURN_RIGHT_UP, TURN_DOWN_LEFT, TURN_DOWN_UP, TURN_DOWN_RIGHT, SPINNING_LEFT_RIGHT, SPINNING_UP_RIGHT, SPINNING_RIGHT_RIGHT, SPINNING_DOWN_RIGHT }
 enum ANIMATION { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESURRECT, TURN_LEFT_UP, TURN_LEFT_RIGHT, TURN_LEFT_DOWN, TURN_UP_RIGHT, TURN_UP_DOWN, TURN_UP_LEFT, TURN_RIGHT_DOWN, TURN_RIGHT_LEFT, TURN_RIGHT_UP, TURN_DOWN_LEFT, TURN_DOWN_UP, TURN_DOWN_RIGHT, SPINNING_LEFT_RIGHT, SPINNING_UP_RIGHT, SPINNING_RIGHT_RIGHT, SPINNING_DOWN_RIGHT }
 enum DIRECTION { UP, LEFT, DOWN, RIGHT }
+enum ATTACK { THRUST, SLASH, SHOOT }
 
 var state = STATE.IDLE
 var next_state = null
 var animation = ANIMATION.WALK
 var direction = DIRECTION.LEFT
+var attack = ATTACK.SLASH
 
 var speed = Vector2(48, 32)
 
@@ -23,6 +25,7 @@ func _ready():
 	# For setting default values and start animating the character.
 	set_direction(DIRECTION.RIGHT)
 	set_state(STATE.IDLE)
+	set_attack(ATTACK.SLASH)
 	pass
 
 func _process(delta):
@@ -274,4 +277,41 @@ func go_down():
 		set_state(STATE.WALK)
 	else:
 		turn_down()
+	pass
+
+func slash():
+	set_state(STATE.SLASH)
+	pass
+
+func hurt():
+	set_state(STATE.HURT)
+	pass
+
+func set_attack(new_attack):
+	attack = new_attack
+	pass
+
+func set_attack_slash():
+	set_attack(ATTACK.SLASH)
+	pass
+
+func set_attack_shoot():
+	set_attack(ATTACK.SHOOT)
+	pass
+
+func set_attack_thrust():
+	set_attack(ATTACK.THRUST)
+	pass
+
+func attack():
+	match attack:
+		ATTACK.SLASH:
+			set_state(STATE.SLASH)
+			pass
+		ATTACK.SHOOT:
+			set_state(STATE.SHOOT)
+			pass
+		ATTACK.THRUST:
+			set_state(STATE.THRUST)
+			pass
 	pass
