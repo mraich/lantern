@@ -21,29 +21,41 @@ func _ready():
 	# The game starts.
 	$stage_manager.on_game_start()
 
-	$character/sprite.set_texture(load("res://res/character/hero_002.png"))
-	$character2/sprite.set_texture(load("res://res/character/skeleton_with_dagger.png"))
+	$hero/sprite.set_texture(load("res://res/character/hero_002.png"))
+	$enemy/sprite.set_texture(load("res://res/character/skeleton_with_dagger.png"))
+	$enemy.set_direction($enemy.DIRECTION.LEFT)
+	$enemy.set_attack_thrust()
 	pass
 
 func _input(event):
 	# By right clicking we increase the state.
 	if event.is_action_pressed("right_click"):
 		$cursor.step_state()
-	if event.is_action_pressed("ui_left"):
-		$character.go_left()
-	if event.is_action_pressed("ui_up"):
-		$character.go_up()
-	if event.is_action_pressed("ui_right"):
-		$character.go_right()
-	if event.is_action_pressed("ui_down"):
-		$character.go_down()
+	if event.is_action_pressed("left_click"):
+		$critical_hit/animation.play("critical_hit")
+		$counter_attack/animation.play("counter_attack")
+		$magic_spell/animation.play("magic_spell")
+		$constitution/animation.play("constitution")
+		$hero.attack()
+		$enemy.hurt()
 	if event.is_action_pressed("ui_attack"):
-		$character.spellcast()
+		$magic_spell/animation.play("magic_spell")
+		$hero.spellcast()
+		$enemy.hurt()
+	if event.is_action_pressed("ui_left"):
+		$hero.go_left()
+	if event.is_action_pressed("ui_up"):
+		$hero.go_up()
+	if event.is_action_pressed("ui_right"):
+		$hero.go_right()
+	if event.is_action_pressed("ui_down"):
+		$hero.go_down()
 	pass
 
 # On cursor state change.
 func _on_cursor_state_changed(state):
-	$playable_container.set_dice_action(state)	
+	$playable_container.set_dice_action(state)
+	$roll_selected.set_value(state)
 	pass
 
 # Rolling the selected dices.
