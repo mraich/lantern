@@ -26,6 +26,10 @@ func step_state():
 
 # Setting the state.
 func set_state(new_state):
+	# We don't use idle state for now.
+	if new_state == 0:
+		new_state = 1
+
 	_state = new_state
 
 	# Notifying the outside world that our state is changed.
