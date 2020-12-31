@@ -315,3 +315,7 @@ func attack():
 			set_state(STATE.THRUST)
 			pass
 	pass
+
+func spellcast():
+	set_state(STATE.SPELLCAST)
+	pass
