@@ -17,6 +17,7 @@ func _ready():
 
 	# Rolling the selected dices button.
 	$roll_selected.connect("on_dice_clicked", self, "_on_roll_selected_clicked")
+	$roll_selected.set_value(0)
 
 	# The game starts.
 	$stage_manager.on_game_start()
@@ -55,7 +56,6 @@ func _input(event):
 # On cursor state change.
 func _on_cursor_state_changed(state):
 	$playable_container.set_dice_action(state)
-	$roll_selected.set_value(state)
 	pass
 
 # Rolling the selected dices.
