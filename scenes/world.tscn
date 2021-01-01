@@ -23,18 +23,18 @@ script = ExtResource( 1 )
 
 [node name="playable_container" parent="." instance=ExtResource( 4 )]
 margin_left = 300.0
-margin_top = 380.0
+margin_top = 480.0
 margin_right = 300.0
-margin_bottom = 380.0
+margin_bottom = 480.0
 
 [node name="puzzle_container" parent="." instance=ExtResource( 5 )]
 margin_left = 300.0
-margin_top = 460.0
+margin_top = 560.0
 margin_right = 300.0
-margin_bottom = 460.0
+margin_bottom = 560.0
 
 [node name="roll_selected" parent="." instance=ExtResource( 6 )]
-position = Vector2( 100, 650 )
+position = Vector2( 100, 480 )
 
 [node name="hero" parent="." instance=ExtResource( 7 )]
 position = Vector2( 150, 300 )
@@ -49,19 +49,19 @@ position = Vector2( 150, 150 )
 scale = Vector2( 3.4, 3.4 )
 
 [node name="critical_hit" parent="." instance=ExtResource( 9 )]
-position = Vector2( 120, 80 )
+position = Vector2( 120, 740 )
 scale = Vector2( 3, 3 )
 
 [node name="counter_attack" parent="." instance=ExtResource( 10 )]
-position = Vector2( 240, 80 )
+position = Vector2( 240, 740 )
 scale = Vector2( 3, 3 )
 
 [node name="magic_spell" parent="." instance=ExtResource( 11 )]
-position = Vector2( 360, 80 )
+position = Vector2( 360, 740 )
 scale = Vector2( 3, 3 )
 
 [node name="constitution" parent="." instance=ExtResource( 12 )]
-position = Vector2( 480, 80 )
+position = Vector2( 480, 740 )
 scale = Vector2( 3, 3 )
 
 [node name="cursor" parent="." instance=ExtResource( 13 )]
