@@ -22,8 +22,7 @@ func _ready():
 	$stage_manager.connect("on_stage_load", self, "_on_stage_load")
 
 	# Rolling the selected dices button.
-	$roll_selected.connect("on_dice_clicked", self, "_on_roll_selected_clicked")
-	$roll_selected.set_value(0)
+	$roll_selected/icon_clickable.connect("on_icon_clicked", self, "_on_roll_selected_clicked")
 
 	# The game starts.
 	$stage_manager.on_game_start()
@@ -62,6 +61,7 @@ func _on_cursor_state_changed(state):
 
 # Rolling the selected dices.
 func _on_roll_selected_clicked():
+	$constitution.on_action()
 	$playable_container.roll_multiple()
 	pass
 
