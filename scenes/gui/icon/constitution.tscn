@@ -11,6 +11,10 @@ extends Node2D
 func _ready():
 	pass
 
+func on_action():
+	$animation.play(\"constitution\")
+	pass
+
 func on_clicked():
 	$animation.play(\"on_selected\")
 	pass
