@@ -30,6 +30,14 @@ func set_state(new_state):
 	if new_state == 0:
 		new_state = 1
 
+	# If we are in the magic spell state we alternate between adding or decreasing the value.
+	if _state == new_state:
+		if _state == 3:
+			new_state = 4
+		if _state == 4:
+			new_state = 3
+		pass
+
 	_state = new_state
 
 	# Notifying the outside world that our state is changed.
