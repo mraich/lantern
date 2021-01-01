@@ -1,9 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://res/gui/icons/icons_shikashi.png" type="Texture" id=1]
+[ext_resource path="res://scenes/gui/icon/icon_clickable.tscn" type="PackedScene" id=2]
 
-[sub_resource type="Animation" id=1]
-resource_name = "idle"
+[sub_resource type="GDScript" id=1]
+script/source = "# script: magic_spell
+
+extends Node2D
+
+func _ready():
+	$icon_clickable.connect(\"on_icon_clicked\", self, \"_on_icon_clicked\")
+	pass
+
+func _on_icon_clicked():
+	pass
+"
+
+[sub_resource type="Animation" id=2]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite_002:visible")
@@ -18,8 +31,7 @@ tracks/0/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "magic_spell"
+[sub_resource type="Animation" id=3]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite_002:visible")
@@ -45,6 +57,7 @@ tracks/1/keys = {
 }
 
 [node name="magic_spell" type="Node2D"]
+script = SubResource( 1 )
 
 [node name="sprite_001" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -62,5 +75,7 @@ hframes = 16
 frame = 5
 
 [node name="animation" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 1 )
-anims/magic_spell = SubResource( 2 )
+anims/idle = SubResource( 2 )
+anims/magic_spell = SubResource( 3 )
+
+[node name="icon_clickable" parent="." instance=ExtResource( 2 )]

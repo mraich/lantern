@@ -1,9 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://res/gui/icons/icons_shikashi.png" type="Texture" id=1]
+[ext_resource path="res://scenes/gui/icon/icon_clickable.tscn" type="PackedScene" id=2]
 
-[sub_resource type="Animation" id=1]
-resource_name = "critical_hit"
+[sub_resource type="GDScript" id=1]
+script/source = "# script: critical_hit
+
+extends Node2D
+
+func _ready():
+	$icon_clickable.connect(\"on_icon_clicked\", self, \"_on_icon_clicked\")
+	pass
+
+func _on_icon_clicked():
+	pass
+"
+
+[sub_resource type="Animation" id=2]
 length = 1.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:scale")
@@ -30,11 +43,11 @@ tracks/1/keys = {
 "values": [ 95, 59, 95 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
+[sub_resource type="Animation" id=3]
 loop = true
 
 [node name="critical_hit" type="Node2D"]
+script = SubResource( 1 )
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -43,5 +56,7 @@ hframes = 16
 frame = 95
 
 [node name="animation" type="AnimationPlayer" parent="."]
-anims/critical_hit = SubResource( 1 )
-anims/idle = SubResource( 2 )
+anims/critical_hit = SubResource( 2 )
+anims/idle = SubResource( 3 )
+
+[node name="icon_clickable" parent="." instance=ExtResource( 2 )]

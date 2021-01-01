@@ -1,9 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://res/gui/icons/icons_shikashi.png" type="Texture" id=1]
+[ext_resource path="res://scenes/gui/icon/icon_clickable.tscn" type="PackedScene" id=2]
 
-[sub_resource type="Animation" id=1]
-resource_name = "counter_attack"
+[sub_resource type="GDScript" id=1]
+script/source = "# script: counter_attack
+
+extends Node2D
+
+func _ready():
+	$icon_clickable.connect(\"on_icon_clicked\", self, \"_on_icon_clicked\")
+	pass
+
+func _on_icon_clicked():
+	pass
+"
+
+[sub_resource type="Animation" id=2]
 length = 1.7
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("sprite_000:position:x")
@@ -56,10 +69,11 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.5, 0.6, 0.9, 1.2, 1.6 )
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 loop = true
 
 [node name="counter_attack" type="Node2D"]
+script = SubResource( 1 )
 
 [node name="sprite_000" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -77,5 +91,7 @@ hframes = 16
 frame = 81
 
 [node name="animation" type="AnimationPlayer" parent="."]
-anims/counter_attack = SubResource( 1 )
-anims/idle = SubResource( 2 )
+anims/counter_attack = SubResource( 2 )
+anims/idle = SubResource( 3 )
+
+[node name="icon_clickable" parent="." instance=ExtResource( 2 )]
