@@ -9,6 +9,12 @@ func _ready():
 	# Initial state of the cursor.
 	$cursor.set_state(0)
 
+	# Action icons.
+	$critical_hit/icon_clickable.connect("on_icon_clicked", self, "_on_critical_hit_clicked")
+	$counter_attack/icon_clickable.connect("on_icon_clicked", self, "_on_counter_attack_clicked")
+	$magic_spell/icon_clickable.connect("on_icon_clicked", self, "_on_magic_spell_clicked")
+	$constitution/icon_clickable.connect("on_icon_clicked", self, "_on_constitution_clicked")
+
 	# Getting notified about the changes made on the playable field.
 	$playable_container.connect("on_value_changed", self, "on_playable_value_changed")
 
@@ -81,4 +87,20 @@ func on_playable_value_changed():
 		# We won the puzzle.
 		$stage_manager.on_stage_win()
 		pass
+	pass
+
+func _on_critical_hit_clicked():
+	$cursor.set_state(1)
+	pass
+
+func _on_counter_attack_clicked():
+	$cursor.set_state(2)
+	pass
+
+func _on_magic_spell_clicked():
+	$cursor.set_state(3)
+	pass
+
+func _on_constitution_clicked():
+	$cursor.set_state(5)
 	pass
