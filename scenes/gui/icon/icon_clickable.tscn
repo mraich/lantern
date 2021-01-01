@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "# script: icon_clickable
+
+extends Node2D
+
+# This signal is for hiding icon_area from the other
+# scenes who want to sign up for the click event.
+signal on_icon_clicked
+
+func _ready():
+	# Setting signal for recognize clicking on the dice area.
+	$icon_area.connect(\"on_icon_area\", self, \"_on_icon_clicked\")
+
+	# Sending signal for those who want to receive it.
+	# I don't want to send this signal in the _on_dice_clicked
+	# function as it is to be overridden in the child scenes and
+	# it is not guaranteed that the child scenes
+	# in the _on_dice_clicked will call this super function.
+	$icon_area.connect(\"on_icon_clicked\", self, \"_on_icon_clicked_internal\")
+	pass
+
+# Inherited scenes will override this function to be notified
+# when they were clicked.
+func _on_icon_clicked():
+	pass
+
+# When someone clicks on this dice we will emit this signal too.
+# This is for hiding the dice_area scene from the other scenes.
+func _on_icon_clicked_internal():
+	emit_signal(\"on_icon_clicked\")
+	pass
+
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "# script: icon_area
+
+extends Area2D
+
+# Indicating that someone clicked on the area.
+signal on_icon_clicked
+
+func _ready():
+	pass
+
+# Capturing the input events.
+func _input_event(viewport, event, shape_idx):
+# We are only interested in left clicks now.
+	if event is InputEventMouseButton:
+		if event.is_pressed() and event.button_index == BUTTON_LEFT:
+			emit_signal(\"on_icon_clicked\")
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 16 )
+
+[node name="icon_clickable" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="icon_area" type="Area2D" parent="."]
+script = SubResource( 2 )
+
+[node name="shape" type="CollisionShape2D" parent="icon_area"]
+shape = SubResource( 3 )
