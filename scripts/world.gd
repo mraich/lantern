@@ -39,10 +39,6 @@ func _input(event):
 	if event.is_action_pressed("right_click"):
 		$cursor.step_state()
 	if event.is_action_pressed("left_click"):
-		$critical_hit/animation.play("critical_hit")
-		$counter_attack/animation.play("counter_attack")
-		$magic_spell/animation.play("magic_spell")
-		$constitution/animation.play("constitution")
 		$hero.attack()
 		$enemy.hurt()
 	if event.is_action_pressed("ui_attack"):
