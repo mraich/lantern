@@ -86,17 +86,21 @@ func on_playable_value_changed():
 	pass
 
 func _on_critical_hit_clicked():
+	$critical_hit.on_clicked()
 	$cursor.set_state(1)
 	pass
 
 func _on_counter_attack_clicked():
+	$counter_attack.on_clicked()
 	$cursor.set_state(2)
 	pass
 
 func _on_magic_spell_clicked():
+	$magic_spell.on_clicked()
 	$cursor.set_state(3)
 	pass
 
 func _on_constitution_clicked():
+	$constitution.on_clicked()
 	$cursor.set_state(5)
 	pass

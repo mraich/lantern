@@ -9,10 +9,9 @@ script/source = "# script: constitution
 extends Node2D
 
 func _ready():
-	$icon_clickable.connect(\"on_icon_clicked\", self, \"_on_icon_clicked\")
 	pass
 
-func _on_icon_clicked():
+func on_clicked():
 	$animation.play(\"on_selected\")
 	pass
 "
@@ -20,7 +19,7 @@ func _on_icon_clicked():
 [sub_resource type="Animation" id=2]
 length = 2.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprites/sprite_001:visible")
+tracks/0/path = NodePath("../constitution/sprites/sprite_001:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -32,7 +31,7 @@ tracks/0/keys = {
 "values": [ false, true, true, false ]
 }
 tracks/1/type = "bezier"
-tracks/1/path = NodePath("sprites/sprite_001:rotation_degrees")
+tracks/1/path = NodePath("../constitution/sprites/sprite_001:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -42,7 +41,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 2 )
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("sprites/sprite_003:visible")
+tracks/2/path = NodePath("../constitution/sprites/sprite_003:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -54,7 +53,7 @@ tracks/2/keys = {
 "values": [ false, true, true, false ]
 }
 tracks/3/type = "bezier"
-tracks/3/path = NodePath("sprites/sprite_003:scale:x")
+tracks/3/path = NodePath("../constitution/sprites/sprite_003:scale:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -64,7 +63,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.2, 1, 1.3 )
 }
 tracks/4/type = "bezier"
-tracks/4/path = NodePath("sprites/sprite_003:scale:y")
+tracks/4/path = NodePath("../constitution/sprites/sprite_003:scale:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -74,7 +73,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.2, 1, 1.3 )
 }
 tracks/5/type = "bezier"
-tracks/5/path = NodePath("sprites/sprite_002:rotation_degrees")
+tracks/5/path = NodePath("../constitution/sprites/sprite_002:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -87,7 +86,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("sprites/sprite_001:visible")
+tracks/0/path = NodePath("../constitution/sprites/sprite_001:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -99,7 +98,7 @@ tracks/0/keys = {
 "values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("sprites/sprite_003:visible")
+tracks/1/path = NodePath("../constitution/sprites/sprite_003:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -115,7 +114,7 @@ tracks/1/keys = {
 resource_name = "on_selected"
 length = 0.5
 tracks/0/type = "bezier"
-tracks/0/path = NodePath("sprites:scale:x")
+tracks/0/path = NodePath("../constitution/sprites:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -125,7 +124,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4 )
 }
 tracks/1/type = "bezier"
-tracks/1/path = NodePath("sprites:scale:y")
+tracks/1/path = NodePath("../constitution/sprites:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false

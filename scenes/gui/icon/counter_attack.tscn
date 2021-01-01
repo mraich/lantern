@@ -9,10 +9,9 @@ script/source = "# script: counter_attack
 extends Node2D
 
 func _ready():
-	$icon_clickable.connect(\"on_icon_clicked\", self, \"_on_icon_clicked\")
 	pass
 
-func _on_icon_clicked():
+func on_clicked():
 	$animation.play(\"on_selected\")
 	pass
 "
