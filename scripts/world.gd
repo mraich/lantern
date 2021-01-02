@@ -39,7 +39,15 @@ func _ready():
 func _input(event):
 	# By right clicking we increase the state.
 	if event.is_action_pressed("right_click"):
-		$cursor.step_state()
+		match action:
+			1:
+				_on_counter_attack_clicked()
+			2, 3:
+				_on_magic_spell_clicked()
+			4:
+				_on_constitution_clicked()
+			5:
+				_on_critical_hit_clicked()
 	if event.is_action_pressed("left_click"):
 		$hero.attack()
 		$enemy.hurt()
