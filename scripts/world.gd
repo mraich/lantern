@@ -90,6 +90,16 @@ func _on_stage_load(stage, playing_dices_count, puzzle):
 
 # Called when a dice action is completed.
 func on_playable_value_changed():
+	# Using the action.
+	match action:
+		1:
+			$critical_hit.on_action()
+		2:
+			$counter_attack.on_action()
+		3, 4:
+			$magic_spell.on_action()
+		5:
+			$constitution.on_action()
 	# Checking the state of the gameboard.
 	if $dice_checker.check($playable_container.get_values(), $puzzle_container.get_values()):
 		# We won the puzzle.
