@@ -6,10 +6,6 @@ func _ready():
 	# Connecting the state change of the cursor.
 	$cursor.connect("on_cursor_state_changed", self, "_on_cursor_state_changed")
 
-	# Initial state of the cursor.
-	$cursor.set_state(0)
-	$roll_selected.set_visible(false)
-
 	# Action icons.
 	$critical_hit/icon_clickable.connect("on_icon_clicked", self, "_on_critical_hit_clicked")
 	$counter_attack/icon_clickable.connect("on_icon_clicked", self, "_on_counter_attack_clicked")
@@ -32,6 +28,9 @@ func _ready():
 	$enemy/sprite.set_texture(load("res://res/character/skeleton_with_dagger.png"))
 	$enemy.set_direction($enemy.DIRECTION.LEFT)
 	$enemy.set_attack_thrust()
+
+	# Initial state of the cursor.
+	_on_critical_hit_clicked()
 	pass
 
 func _input(event):
