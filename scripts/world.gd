@@ -48,9 +48,6 @@ func _input(event):
 				_on_constitution_clicked()
 			5:
 				_on_critical_hit_clicked()
-	if event.is_action_pressed("left_click"):
-		$hero.attack()
-		$enemy.hurt()
 	if event.is_action_pressed("ui_attack"):
 		$magic_spell/animation.play("magic_spell")
 		$hero.spellcast()
@@ -94,12 +91,20 @@ func on_playable_value_changed():
 	match action:
 		1:
 			$critical_hit.on_action()
+			$hero.attack()
+			$enemy.hurt()
 		2:
 			$counter_attack.on_action()
+			$hero.hurt()
+			$enemy.attack()
 		3, 4:
 			$magic_spell.on_action()
+			$hero.spellcast()
+			$enemy.hurt()
 		5:
 			$constitution.on_action()
+			$hero.attack()
+			$enemy.hurt()
 	# Checking the state of the gameboard.
 	if $dice_checker.check($playable_container.get_values(), $puzzle_container.get_values()):
 		# We won the puzzle.
