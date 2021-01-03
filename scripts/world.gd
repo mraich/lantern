@@ -23,6 +23,7 @@ func _ready():
 
 	# Rolling the selected dices button.
 	$roll_selected/icon_clickable.connect("on_icon_clicked", self, "_on_roll_selected_clicked")
+	$roll_selected/animation.play("spinning")
 
 	# The game starts.
 	$stage_manager.on_game_start()
