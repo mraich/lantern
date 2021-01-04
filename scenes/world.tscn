@@ -65,3 +65,4 @@ position = Vector2( 100, 100 )
 scale = Vector2( 3, 3 )
 
 [node name="cursor" parent="." instance=ExtResource( 12 )]
+position = Vector2( 300, 400 )
