@@ -25,10 +25,16 @@ func _ready():
 	# Listening to know if an amination is finished.
 	$animation.connect("animation_finished", self, "_on_anim_finished")
 
+	# Detecting when something hit us.
+	$area.connect("area_entered", self, "_on_body_enter")
+
 	# For setting default values and start animating the character.
 	set_direction(DIRECTION.RIGHT)
 	set_state(STATE.IDLE)
 	set_attack(ATTACK.SLASH)
+	pass
+
+func _on_body_enter(other):
 	pass
 
 func _process(delta):
