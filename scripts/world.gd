@@ -2,6 +2,8 @@
 
 extends Node2D
 
+var fireball_class = preload("res://scenes/object/fireball/fireball.tscn")
+
 # This is the action selected on the cursor.
 onready var action = 0
 
@@ -29,6 +31,7 @@ func _ready():
 	$stage_manager.on_game_start()
 
 	$hero/sprite.set_texture(load("res://res/character/hero_002.png"))
+	$hero.connect("on_fireball_summoned", self, "_on_fireball_summoned")
 	$enemy/sprite.set_texture(load("res://res/character/skeleton_with_dagger.png"))
 	$enemy.set_direction($enemy.DIRECTION.LEFT)
 	$enemy.set_attack_thrust()
@@ -135,4 +138,17 @@ func _on_constitution_clicked():
 	$constitution.on_clicked()
 	$roll_selected.set_visible(true)
 	$cursor.set_state(5)
+	pass
+
+func _on_fireball_summoned(position, fireball_direction):
+	# Creating a new fireball.
+	var fireball = fireball_class.instance()
+	# Setting its size.
+	fireball.scale.x = 3
+	fireball.scale.y = 3
+	# Setting its position.
+	fireball.position = position
+	# Setting its direction.
+	fireball.set_direction(fireball_direction)
+	add_child(fireball)
 	pass
