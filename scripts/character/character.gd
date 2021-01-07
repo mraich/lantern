@@ -35,6 +35,7 @@ func _ready():
 	pass
 
 func _on_body_enter(other):
+	set_state(STATE.HURT)
 	pass
 
 func _process(delta):
