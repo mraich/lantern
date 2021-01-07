@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://scripts/character/character.gd" type="Script" id=1]
 [ext_resource path="res://res/character/hero_001.png" type="Texture" id=2]
@@ -696,6 +696,9 @@ tracks/0/keys = {
 "values": [ 105, 106, 107, 108, 109, 110, 111, 112 ]
 }
 
+[sub_resource type="RectangleShape2D" id=45]
+extents = Vector2( 10, 23.1438 )
+
 [node name="character" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -750,3 +753,9 @@ anims/walk_down = SubResource( 41 )
 anims/walk_left = SubResource( 42 )
 anims/walk_right = SubResource( 43 )
 anims/walk_up = SubResource( 44 )
+
+[node name="area" type="Area2D" parent="."]
+
+[node name="collisionshape" type="CollisionShape2D" parent="area"]
+position = Vector2( -0.362002, 6.15404 )
+shape = SubResource( 45 )
