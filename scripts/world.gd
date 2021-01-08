@@ -104,7 +104,6 @@ func on_playable_value_changed():
 		3, 4:
 			$magic_spell.on_action()
 			$hero.spellcast()
-			$enemy.hurt()
 		5:
 			$constitution.on_action()
 			$hero.attack()
