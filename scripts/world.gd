@@ -139,7 +139,7 @@ func _on_constitution_clicked():
 	$cursor.set_state(5)
 	pass
 
-func _on_fireball_summoned(position, fireball_direction):
+func _on_fireball_summoned(other, position, fireball_direction):
 	# Creating a new fireball.
 	var fireball = fireball_class.instance()
 	# Setting its size.
