@@ -35,7 +35,7 @@ func _ready():
 	pass
 
 func _on_body_enter(other):
-	if other.name == "fireball":
+	if other.name == "fireball" && other.friend != self:
 		# Deleting the instance of the item.
 		other.queue_free()
 		set_state(STATE.HURT)
