@@ -142,6 +142,9 @@ func _on_constitution_clicked():
 func _on_fireball_summoned(other, position, fireball_direction):
 	# Creating a new fireball.
 	var fireball = fireball_class.instance()
+	# Setting the friend who can't be hurt until they overlapped once.
+	# It will be usually the summoner character.
+	fireball.friend = other
 	# Setting its size.
 	fireball.scale.x = 3
 	fireball.scale.y = 3
