@@ -10,7 +10,6 @@ var friend = null
 
 func _ready():
 	$animation.current_animation = "flaming"
-	set_direction(1)
 
 	$shape.connect("area_exited", self, "_on_area_exited")
 	pass
