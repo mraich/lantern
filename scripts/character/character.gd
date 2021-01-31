@@ -36,6 +36,8 @@ func _ready():
 
 func _on_body_enter(other):
 	if other.name == "fireball":
+		# Deleting the instance of the item.
+		other.queue_free()
 		set_state(STATE.HURT)
 	pass
 
