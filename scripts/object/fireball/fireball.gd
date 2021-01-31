@@ -6,9 +6,19 @@ var direction = 1
 
 var move = Vector2(300 * 3.4 , 0)
 
+var friend = null
+
 func _ready():
 	$animation.current_animation = "flaming"
 	set_direction(1)
+
+	$shape.connect("area_exited", self, "_on_area_exited")
+	pass
+
+func _on_area_exited(other):
+	if friend == other:
+		friend = null
+		pass
 	pass
 
 func _process(delta):
