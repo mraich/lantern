@@ -35,7 +35,8 @@ func _ready():
 	pass
 
 func _on_body_enter(other):
-	set_state(STATE.HURT)
+	if other.name == "fireball":
+		set_state(STATE.HURT)
 	pass
 
 func _process(delta):
