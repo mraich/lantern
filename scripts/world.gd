@@ -38,6 +38,9 @@ func _ready():
 
 	# Initial state of the cursor.
 	_on_critical_hit_clicked()
+
+	# We follow the hero with the camera.
+	$camera.scene_followed = $hero
 	pass
 
 func _input(event):
