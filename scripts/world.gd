@@ -12,20 +12,20 @@ func _ready():
 	$cursor.connect("on_cursor_state_changed", self, "_on_cursor_state_changed")
 
 	# Action icons.
-	$critical_hit/icon_clickable.connect("on_icon_clicked", self, "_on_critical_hit_clicked")
-	$counter_attack/icon_clickable.connect("on_icon_clicked", self, "_on_counter_attack_clicked")
-	$magic_spell/icon_clickable.connect("on_icon_clicked", self, "_on_magic_spell_clicked")
-	$constitution/icon_clickable.connect("on_icon_clicked", self, "_on_constitution_clicked")
+	$control_layer/critical_hit/icon_clickable.connect("on_icon_clicked", self, "_on_critical_hit_clicked")
+	$control_layer/counter_attack/icon_clickable.connect("on_icon_clicked", self, "_on_counter_attack_clicked")
+	$control_layer/magic_spell/icon_clickable.connect("on_icon_clicked", self, "_on_magic_spell_clicked")
+	$control_layer/constitution/icon_clickable.connect("on_icon_clicked", self, "_on_constitution_clicked")
 
 	# Getting notified about the changes made on the playable field.
-	$playable_container.connect("on_value_changed", self, "on_playable_value_changed")
+	$control_layer/playable_container.connect("on_value_changed", self, "on_playable_value_changed")
 
 	# Getting notified about the loading of the stages.
 	$stage_manager.connect("on_stage_load", self, "_on_stage_load")
 
 	# Rolling the selected dices button.
-	$roll_selected/icon_clickable.connect("on_icon_clicked", self, "_on_roll_selected_clicked")
-	$roll_selected/animation.play("spinning")
+	$control_layer/roll_selected/icon_clickable.connect("on_icon_clicked", self, "_on_roll_selected_clicked")
+	$control_layer/roll_selected/animation.play("spinning")
 
 	# The game starts.
 	$stage_manager.on_game_start()
@@ -59,7 +59,7 @@ func _input(event):
 			5:
 				_on_critical_hit_clicked()
 	if event.is_action_pressed("ui_attack"):
-		$magic_spell/animation.play("magic_spell")
+		$control_layer/magic_spell/animation.play("magic_spell")
 		$hero.spellcast()
 		$enemy.hurt()
 	if event.is_action_pressed("ui_left"):
@@ -75,24 +75,24 @@ func _input(event):
 # On cursor state change.
 func _on_cursor_state_changed(state):
 	action = state
-	$playable_container.set_dice_action(state)
+	$control_layer/playable_container.set_dice_action(state)
 	pass
 
 # Rolling the selected dices.
 func _on_roll_selected_clicked():
-	$constitution.on_action()
-	$playable_container.roll_multiple()
+	$control_layer/constitution.on_action()
+	$control_layer/playable_container.roll_multiple()
 	pass
 
 # On loading the next stage.
 func _on_stage_load(stage, playing_dices_count, puzzle):
 	# The puzzle container should show this arrangement.
-	$puzzle_container.set_arrangement(puzzle)
+	$control_layer/puzzle_container.set_arrangement(puzzle)
 
 	# The playable container should show this count of dices.
-	$playable_container.set_dice_count(playing_dices_count)
+	$control_layer/playable_container.set_dice_count(playing_dices_count)
 	# New set of values for the dices.
-	$playable_container.roll_all()
+	$control_layer/playable_container.roll_all()
 	pass
 
 # Called when a dice action is completed.
@@ -100,48 +100,48 @@ func on_playable_value_changed():
 	# Using the action.
 	match action:
 		1:
-			$critical_hit.on_action()
+			$control_layer/critical_hit.on_action()
 			$hero.attack()
 			$enemy.hurt()
 		2:
-			$counter_attack.on_action()
+			$control_layer/counter_attack.on_action()
 			$hero.hurt()
 			$enemy.attack()
 		3, 4:
-			$magic_spell.on_action()
+			$control_layer/magic_spell.on_action()
 			$hero.spellcast()
 		5:
-			$constitution.on_action()
+			$control_layer/constitution.on_action()
 			$hero.attack()
 			$enemy.hurt()
 	# Checking the state of the gameboard.
-	if $dice_checker.check($playable_container.get_values(), $puzzle_container.get_values()):
+	if $dice_checker.check($control_layer/playable_container.get_values(), $control_layer/puzzle_container.get_values()):
 		# We won the puzzle.
 		$stage_manager.on_stage_win()
 		pass
 	pass
 
 func _on_critical_hit_clicked():
-	$critical_hit.on_clicked()
-	$roll_selected.set_visible(false)
+	$control_layer/critical_hit.on_clicked()
+	$control_layer/roll_selected.set_visible(false)
 	$cursor.set_state(1)
 	pass
 
 func _on_counter_attack_clicked():
-	$counter_attack.on_clicked()
-	$roll_selected.set_visible(false)
+	$control_layer/counter_attack.on_clicked()
+	$control_layer/roll_selected.set_visible(false)
 	$cursor.set_state(2)
 	pass
 
 func _on_magic_spell_clicked():
-	$magic_spell.on_clicked()
-	$roll_selected.set_visible(false)
+	$control_layer/magic_spell.on_clicked()
+	$control_layer/roll_selected.set_visible(false)
 	$cursor.set_state(3)
 	pass
 
 func _on_constitution_clicked():
-	$constitution.on_clicked()
-	$roll_selected.set_visible(true)
+	$control_layer/constitution.on_clicked()
+	$control_layer/roll_selected.set_visible(true)
 	$cursor.set_state(5)
 	pass
 
