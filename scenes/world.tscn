@@ -24,7 +24,6 @@ position = Vector2( 0, -1 )
 [node name="stage_manager" parent="." instance=ExtResource( 4 )]
 
 [node name="control_layer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="playable_container" parent="control_layer" instance=ExtResource( 5 )]
 margin_left = 300.0
@@ -58,7 +57,7 @@ scale = Vector2( 3, 3 )
 position = Vector2( 480, 740 )
 scale = Vector2( 3, 3 )
 
-[node name="cursor" parent="." instance=ExtResource( 11 )]
+[node name="cursor" parent="control_layer" instance=ExtResource( 11 )]
 position = Vector2( 300, 400 )
 z_index = 1
 

@@ -9,7 +9,7 @@ onready var action = 0
 
 func _ready():
 	# Connecting the state change of the cursor.
-	$cursor.connect("on_cursor_state_changed", self, "_on_cursor_state_changed")
+	$control_layer/cursor.connect("on_cursor_state_changed", self, "_on_cursor_state_changed")
 
 	# Action icons.
 	$control_layer/critical_hit/icon_clickable.connect("on_icon_clicked", self, "_on_critical_hit_clicked")
@@ -124,25 +124,25 @@ func on_playable_value_changed():
 func _on_critical_hit_clicked():
 	$control_layer/critical_hit.on_clicked()
 	$control_layer/roll_selected.set_visible(false)
-	$cursor.set_state(1)
+	$control_layer/cursor.set_state(1)
 	pass
 
 func _on_counter_attack_clicked():
 	$control_layer/counter_attack.on_clicked()
 	$control_layer/roll_selected.set_visible(false)
-	$cursor.set_state(2)
+	$control_layer/cursor.set_state(2)
 	pass
 
 func _on_magic_spell_clicked():
 	$control_layer/magic_spell.on_clicked()
 	$control_layer/roll_selected.set_visible(false)
-	$cursor.set_state(3)
+	$control_layer/cursor.set_state(3)
 	pass
 
 func _on_constitution_clicked():
 	$control_layer/constitution.on_clicked()
 	$control_layer/roll_selected.set_visible(true)
-	$cursor.set_state(5)
+	$control_layer/cursor.set_state(5)
 	pass
 
 func _on_fireball_summoned(other, position, fireball_direction):
