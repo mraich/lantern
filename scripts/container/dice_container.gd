@@ -23,6 +23,7 @@ func init(dice_class):
 # It will be loaded by the load_arrangement function.
 func set_arrangement(new_arrangement):
 	arrangement = new_arrangement
+	$animation.play("load_arrangement")
 	pass
 
 # Setting arrangement.
