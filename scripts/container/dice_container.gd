@@ -5,6 +5,10 @@ extends HBoxContainer
 var dices = []
 var _dice_class
 
+# This is the arrangement needs to be loaded later.
+# It won't change the arrangement shown until the load_arrangement function called.
+var arrangement = []
+
 # Indicating the value has changed.
 signal on_value_changed
 
@@ -15,9 +19,15 @@ func init(dice_class):
 	_dice_class = dice_class
 	pass
 
+# Setting the arrangement.
+# It will be loaded by the load_arrangement function.
+func set_arrangement(new_arrangement):
+	arrangement = new_arrangement
+	pass
+
 # Setting arrangement.
 # Layout is an array of the values to be shown on each particular dice.
-func set_arrangement(arrangement):
+func load_arrangement():
 	# Ensuring there will be enough dices for the layout.
 	_ensure_dice_count(arrangement.size())
 
