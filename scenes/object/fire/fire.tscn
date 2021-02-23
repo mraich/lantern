@@ -31,5 +31,5 @@ hframes = 10
 frame = 59
 
 [node name="animation" type="AnimationPlayer" parent="."]
-playback_speed = 30.0
+playback_speed = 60.0
 anims/fire = SubResource( 1 )
