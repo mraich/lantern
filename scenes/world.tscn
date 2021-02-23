@@ -64,6 +64,7 @@ z_index = 1
 
 [node name="fire" parent="." instance=ExtResource( 12 )]
 position = Vector2( 300, 300 )
+z_index = -4
 
 [node name="hero" parent="." instance=ExtResource( 13 )]
 position = Vector2( 149, 301 )
