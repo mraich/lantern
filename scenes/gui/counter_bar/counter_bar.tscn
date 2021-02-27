@@ -5,6 +5,87 @@ script/source = "# script: counter_bar
 
 extends VBoxContainer
 
+var _bar_class = preload(\"res://scenes/gui/counter_bar/bar.tscn\")
+
+var bars = []
+
+func _ready():
+	pass
+
+func set_bar_count(count):
+	_ensure_bar_count(count)
+	pass
+
+func show_value(value):
+	var i = 0
+	for bar in bars:
+		if i < value:
+			bar.switch(true)
+		else:
+			bar.switch(false)
+		i += 1
+	pass
+
+func _ensure_bar_count(count):
+	# In case there are less bars then value of count then this loop will add as many bars as needed.
+	for n in range(bars.size(), count):
+		_add_bar()
+	# In case there are more bars then value of count then this loop will remove as many bars as not needed.
+	for n in range(count, bars.size()):
+		_pop_bar()
+	pass
+
+# Adding bar to the end of the list.
+# This bar is added to the tree of this control.
+func _add_bar():
+	var bar = _bar_class.instance()
+	bars.push_back(bar)
+
+	add_child(bar)
+
+	# Update the position of the dices.
+	_update_bars_position()
+	pass
+
+# Removing the first bar from the control.
+func _pop_bar():
+	if bars.size() > 0:
+		remove_child(bars[0])
+		bars.pop_front()
+
+	# Update the position of the bars.
+	_update_bars_position()
+	pass
+
+# Correcting the position of the bars to have them arranged accordingly.
+func _update_bars_position():
+	var i = 0
+	for bar in bars:
+		bar.position = Vector2(bar.get_width(), bar.get_height() - i * 10 / 3)
+		i += 1
+
+	var offsetY = 0
+	if bars.size() > 0:
+		offsetY = -(bars.size() - 1) * bars[0].get_height() / 2
+	for bar in bars:
+		bar.position.y += offsetY
+	pass
+
+func inc():
+	for i in range(0, bars.size()):
+		var bar = bars[i]
+		if not bar.is_on():
+			bar.switch(true)
+			return true
+	return false
+
+func dec():
+	for i in range(bars.size() - 1, -1, -1):
+		var bar = bars[i]
+		if bar.is_on():
+			bar.switch(false)
+			return true
+	return false
 "
 
 [node name="counter_bar" type="VBoxContainer"]
