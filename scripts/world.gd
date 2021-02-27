@@ -13,9 +13,13 @@ func _ready():
 
 	# Action icons.
 	$control_layer/critical_hit/icon_clickable.connect("on_icon_clicked", self, "_on_critical_hit_clicked")
+	$control_layer/critical_hit/counter_bar.set_bar_count(7)
 	$control_layer/counter_attack/icon_clickable.connect("on_icon_clicked", self, "_on_counter_attack_clicked")
+	$control_layer/counter_attack/counter_bar.set_bar_count(7)
 	$control_layer/magic_spell/icon_clickable.connect("on_icon_clicked", self, "_on_magic_spell_clicked")
+	$control_layer/magic_spell/counter_bar.set_bar_count(7)
 	$control_layer/constitution/icon_clickable.connect("on_icon_clicked", self, "_on_constitution_clicked")
+	$control_layer/constitution/counter_bar.set_bar_count(7)
 
 	# Getting notified about the changes made on the playable field.
 	$control_layer/playable_container.connect("on_value_changed", self, "on_playable_value_changed")
