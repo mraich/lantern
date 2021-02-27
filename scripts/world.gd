@@ -43,6 +43,12 @@ func _ready():
 	# Initial state of the cursor.
 	_on_critical_hit_clicked()
 
+	# Initial values for counters.
+	$control_layer/critical_hit/counter_bar.show_value(7)
+	$control_layer/counter_attack/counter_bar.show_value(7)
+	$control_layer/magic_spell/counter_bar.show_value(7)
+	$control_layer/constitution/counter_bar.show_value(7)
+
 	# We follow the hero with the camera.
 	# 300 x 400 is at the center of the screen as its resolution is 600 x 800.
 	# The dimension of the hero sprite is 64 x 64.
