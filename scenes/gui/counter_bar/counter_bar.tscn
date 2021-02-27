@@ -26,6 +26,12 @@ func show_value(value):
 		i += 1
 	pass
 
+func is_enabled():
+	for bar in bars:
+		if bar.is_on():
+			return true
+	return false
+
 func _ensure_bar_count(count):
 	# In case there are less bars then value of count then this loop will add as many bars as needed.
 	for n in range(bars.size(), count):
