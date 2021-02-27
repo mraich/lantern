@@ -11,10 +11,10 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 20
 hframes = 16
-frame = 288
+frame = 289
 
 [node name="sprite_off" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 vframes = 20
 hframes = 16
-frame = 289
+frame = 288
