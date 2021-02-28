@@ -6,6 +6,10 @@ func _ready():
 	switch(false)
 	pass
 
+func fade():
+	$animation.play("fade")
+	pass
+
 func switch(is_on):
 	$sprite_on.visible = is_on
 	$sprite_off.visible = not is_on
