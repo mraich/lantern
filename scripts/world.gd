@@ -90,7 +90,6 @@ func _on_cursor_state_changed(state):
 
 # Rolling the selected dices.
 func _on_roll_selected_clicked():
-	$control_layer/constitution.on_action()
 	$control_layer/playable_container.roll_multiple()
 	pass
 
