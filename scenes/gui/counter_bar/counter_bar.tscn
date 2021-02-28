@@ -89,7 +89,7 @@ func dec():
 	for i in range(bars.size() - 1, -1, -1):
 		var bar = bars[i]
 		if bar.is_on():
-			bar.switch(false)
+			bar.fade()
 			return true
 	return false
 "
