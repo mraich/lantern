@@ -13,7 +13,7 @@ var animation = ANIMATION.WALK
 var direction = DIRECTION.LEFT
 var attack = ATTACK.SLASH
 
-var speed = Vector2(48, 32)
+var speed = Vector2(48, 32) * 3
 
 # A fireball summoned signal.
 signal on_fireball_summoned
