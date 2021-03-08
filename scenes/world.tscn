@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/world.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera.tscn" type="PackedScene" id=2]
@@ -11,8 +11,9 @@
 [ext_resource path="res://scenes/gui/icon/counter_attack.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/gui/icon/magic_spell.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/cursor/action_cursor.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/object/fire/fire.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/character/character.tscn" type="PackedScene" id=13]
+[ext_resource path="res://res/node.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/object/fire/fire.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/character/character.tscn" type="PackedScene" id=14]
 
 [node name="world" type="Node2D"]
 script = ExtResource( 1 )
@@ -62,16 +63,21 @@ scale = Vector2( 3, 3 )
 position = Vector2( 300, 400 )
 z_index = 1
 
-[node name="fire" parent="." instance=ExtResource( 12 )]
+[node name="node" parent="." instance=ExtResource( 12 )]
+position = Vector2( -400, -400 )
+scale = Vector2( 3.4, 3.4 )
+z_index = -10
+
+[node name="fire" parent="." instance=ExtResource( 13 )]
 position = Vector2( 300, 300 )
 z_index = -4
 
-[node name="hero" parent="." instance=ExtResource( 13 )]
+[node name="hero" parent="." instance=ExtResource( 14 )]
 position = Vector2( 149, 301 )
 scale = Vector2( 3.4, 3.4 )
 z_index = -2
 
-[node name="enemy" parent="." instance=ExtResource( 13 )]
+[node name="enemy" parent="." instance=ExtResource( 14 )]
 position = Vector2( 450, 300 )
 scale = Vector2( 3.4, 3.4 )
 z_as_relative = false
