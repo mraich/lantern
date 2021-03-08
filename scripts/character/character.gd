@@ -49,20 +49,12 @@ func _process(delta):
 			match direction:
 				DIRECTION.UP:
 					offset.y = -1
-					if position.y < 0:
-						position.y = 700
 				DIRECTION.LEFT:
 					offset.x = -1
-					if position.x < -200:
-						position.x = 700
 				DIRECTION.DOWN:
 					offset.y = 1
-					if position.y > 700:
-						position.y = 0
 				DIRECTION.RIGHT:
 					offset.x = 1
-					if position.x > 700:
-						position.x = -200
 
 	position += speed * delta * offset
 	pass
