@@ -53,7 +53,7 @@ func _ready():
 	# 300 x 400 is at the center of the screen as its resolution is 600 x 800.
 	# The dimension of the hero sprite is 64 x 64.
 	$camera.offset = Vector2(-1 * ((600 - 64) / 2) + 64 * 2, -1 * ((800 - 64) / 2))
-	$camera.scene_followed = $hero
+	$camera.set_follow($hero)
 	pass
 
 func _input(event):
