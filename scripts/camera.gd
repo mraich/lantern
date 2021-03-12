@@ -33,6 +33,11 @@ func set_follow(to_follow):
 	scene_followed = to_follow
 	pass
 
+# Replace just the followed scene but leave the list intact.
+func replace_follow(to_follow):
+	scene_followed = to_follow
+	pass
+
 # Follow this scene but remember the last scene.
 func push_follow(to_follow):
 	scenes_followed.push_back(scene_followed)
