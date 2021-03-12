@@ -22,11 +22,6 @@ func _on_area_exited(other):
 
 func _process(delta):
 	position += move * delta * direction
-
-	if direction > 0 and position.x > 700:
-		position.x = -200
-	if direction < 0 and position.x < -200:
-		position.x = 700
 	pass
 
 func set_direction(new_direction):
