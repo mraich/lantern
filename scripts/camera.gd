@@ -8,7 +8,7 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	if scene_followed != null:
+	if scene_followed != null and weakref(scene_followed).get_ref():
 		var position = scene_followed.get_position()
 		set_position(position)
 		pass
