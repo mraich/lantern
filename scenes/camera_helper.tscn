@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "# script camera_helper
+
+extends Node2D
+
+var _animating = false
+
+var _last_scene = null
+var _next_scene = null
+
+func _ready():
+	$anim.connect(\"animation_started\", self, \"_on_animation_started\")
+	$anim.connect(\"animation_finished\", self, \"_on_animation_finished\")
+	pass
+
+func _physics_process(delta):
+	if _animating and _last_scene != null and _next_scene != null:
+		# When we have a nice usable scene to follow.
+		var position = _last_scene.get_position() + (_next_scene.get_position() - _last_scene.get_position()) * rotation_degrees / 100
+		set_position(position)
+		pass
+	pass
+
+func _on_animation_started(anim):
+	_animating = true
+	pass
+
+func _on_animation_finished(anim):
+	_animating = false
+	pass
+
+func _set_last_pos(new_last_scene):
+	_last_scene = new_last_scene
+	pass
+
+func _set_next_pos(new_next_scene):
+	_next_scene = new_next_scene
+	pass
+
+func go(from, to):
+	if not _animating:
+		_set_last_pos(from)
+		_set_next_pos(to)
+		rotation_degrees = 0
+		$anim.play(\"find\")
+	pass
+"
+
+[sub_resource type="Animation" id=2]
+length = 5.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0, 100, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 4.7, 5 )
+}
+
+[node name="camera_helper" type="Node2D"]
+rotation = -18.8496
+script = SubResource( 1 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+playback_speed = 25.0
+anims/find = SubResource( 2 )
