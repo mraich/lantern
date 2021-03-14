@@ -12,6 +12,8 @@ func _ready():
 	$animation.current_animation = "flaming"
 
 	$shape.connect("area_exited", self, "_on_area_exited")
+
+	$timer.connect("timeout", self, "_on_timer_timeout")
 	pass
 
 func _on_area_exited(other):
@@ -31,4 +33,8 @@ func set_direction(new_direction):
 		rotation_degrees = 180
 	if direction < 0:
 		rotation_degrees = 0
+	pass
+
+func _on_timer_timeout():
+	get_parent().remove_child(self)
 	pass
