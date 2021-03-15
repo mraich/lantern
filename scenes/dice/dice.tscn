@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scripts/dice/dice.gd" type="Script" id=1]
+[ext_resource path="res://scenes/dice/dice.gd" type="Script" id=1]
+
 
 [node name="dice_base" type="Node2D"]
 scale = Vector2( 1.6, 1.6 )
