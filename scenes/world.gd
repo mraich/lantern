@@ -34,11 +34,11 @@ func _ready():
 	# The game starts.
 	$stage_manager.on_game_start()
 
-	$hero/sprite.set_texture(load("res://scenes/character/res/hero_002.png"))
-	$hero.connect("on_fireball_summoned", self, "_on_fireball_summoned")
-	$enemy/sprite.set_texture(load("res://scenes/character/res/skeleton_with_dagger.png"))
-	$enemy.set_direction($enemy.DIRECTION.LEFT)
-	$enemy.set_attack_thrust()
+	$terrain_layer/hero/sprite.set_texture(load("res://scenes/character/res/hero_002.png"))
+	$terrain_layer/hero.connect("on_fireball_summoned", self, "_on_fireball_summoned")
+	$terrain_layer/enemy/sprite.set_texture(load("res://scenes/character/res/skeleton_with_dagger.png"))
+	$terrain_layer/enemy.set_direction($terrain_layer/enemy.DIRECTION.LEFT)
+	$terrain_layer/enemy.set_attack_thrust()
 
 	# Initial state of the cursor.
 	_on_critical_hit_clicked()
@@ -53,7 +53,7 @@ func _ready():
 	# 300 x 400 is at the center of the screen as its resolution is 600 x 800.
 	# The dimension of the hero sprite is 64 x 64.
 	$camera.offset = Vector2(-1 * ((600 - 64) / 2) + 64 * 2, -1 * ((800 - 64) / 2))
-	$camera.set_follow($hero)
+	$camera.set_follow($terrain_layer/hero)
 	pass
 
 func _input(event):
@@ -70,16 +70,16 @@ func _input(event):
 				_on_critical_hit_clicked()
 	if event.is_action_pressed("ui_attack"):
 		$control_layer/magic_spell/animation.play("magic_spell")
-		$hero.spellcast()
-		$enemy.hurt()
+		$terrain_layer/hero.spellcast()
+		$terrain_layer/enemy.hurt()
 	if event.is_action_pressed("ui_left"):
-		$hero.go_left()
+		$terrain_layer/hero.go_left()
 	if event.is_action_pressed("ui_up"):
-		$hero.go_up()
+		$terrain_layer/hero.go_up()
 	if event.is_action_pressed("ui_right"):
-		$hero.go_right()
+		$terrain_layer/hero.go_right()
 	if event.is_action_pressed("ui_down"):
-		$hero.go_down()
+		$terrain_layer/hero.go_down()
 	pass
 
 # On cursor state change.
@@ -110,19 +110,19 @@ func on_playable_value_changed():
 	match action:
 		1:
 			$control_layer/critical_hit.on_action()
-			$hero.attack()
-			$enemy.hurt()
+			$terrain_layer/hero.attack()
+			$terrain_layer/enemy.hurt()
 		2:
 			$control_layer/counter_attack.on_action()
-			$hero.hurt()
-			$enemy.attack()
+			$terrain_layer/hero.hurt()
+			$terrain_layer/enemy.attack()
 		3, 4:
 			$control_layer/magic_spell.on_action()
-			$hero.spellcast()
+			$terrain_layer/hero.spellcast()
 		5:
 			$control_layer/constitution.on_action()
-			$hero.attack()
-			$enemy.hurt()
+			$terrain_layer/hero.attack()
+			$terrain_layer/enemy.hurt()
 	# Checking the state of the gameboard.
 	if $dice_checker.check($control_layer/playable_container.get_values(), $control_layer/puzzle_container.get_values()):
 		# We won the puzzle.
