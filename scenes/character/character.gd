@@ -83,14 +83,8 @@ func _on_anim_finished(anim_name):
 	match state:
 		STATE.IDLE, STATE.SPELLCAST, STATE.THRUST, STATE.SLASH, STATE.SHOOT, STATE.HURT, STATE.RESURRECT:
 			if state == STATE.SPELLCAST:
-				var fireball_direction = 0
-				match direction:
-					DIRECTION.RIGHT:
-						fireball_direction = 1
-					DIRECTION.LEFT:
-						fireball_direction = -1
 				# Telling the outside world that a fireball must be summoned.
-				emit_signal("on_fireball_summoned", self, position - Vector2(0, scale.y * 22), fireball_direction)
+				emit_signal("on_fireball_summoned", self, position - Vector2(0, scale.y * 22), direction)
 			set_state(STATE.IDLE)
 		STATE.TURN_LEFT_UP, STATE.TURN_LEFT_RIGHT, STATE.TURN_LEFT_DOWN, STATE.TURN_UP_RIGHT, STATE.TURN_UP_DOWN, STATE.TURN_UP_LEFT, STATE.TURN_RIGHT_DOWN, STATE.TURN_RIGHT_LEFT, STATE.TURN_RIGHT_UP, STATE.TURN_DOWN_LEFT, STATE.TURN_DOWN_UP, STATE.TURN_DOWN_RIGHT:
 			match state:
