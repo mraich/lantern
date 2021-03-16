@@ -2,9 +2,12 @@
 
 extends Node2D
 
-var direction = 1
+enum DIRECTION { UP, LEFT, DOWN, RIGHT }
 
-var move = Vector2(300 * 3.4 , 0)
+var direction = DIRECTION.RIGHT
+
+var speed = Vector2(300 * 3.4, 300 * 3.4)
+var move = Vector2(0, 0)
 
 var friend = null
 
@@ -23,16 +26,25 @@ func _on_area_exited(other):
 	pass
 
 func _process(delta):
-	position += move * delta * direction
+	position += move * delta * speed
 	pass
 
 func set_direction(new_direction):
 	direction = new_direction
 
-	if direction > 0:
-		rotation_degrees = 180
-	if direction < 0:
-		rotation_degrees = 0
+	match direction:
+		DIRECTION.LEFT:
+			rotation_degrees = 0
+			move = Vector2(-1, 0)
+		DIRECTION.DOWN:
+			rotation_degrees = 270
+			move = Vector2(0, 1)
+		DIRECTION.RIGHT:
+			rotation_degrees = 180
+			move = Vector2(1, 0)
+		DIRECTION.UP:
+			rotation_degrees = 90
+			move = Vector2(0, -1)
 	pass
 
 func _on_timer_timeout():
