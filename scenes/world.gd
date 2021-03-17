@@ -134,12 +134,14 @@ func _on_critical_hit_clicked():
 	$control_layer/critical_hit.on_clicked()
 	$control_layer/roll_selected.set_visible(false)
 	$control_layer/cursor.set_state(1)
+	$control_layer/magic_spell.set_state(0)
 	pass
 
 func _on_counter_attack_clicked():
 	$control_layer/counter_attack.on_clicked()
 	$control_layer/roll_selected.set_visible(false)
 	$control_layer/cursor.set_state(2)
+	$control_layer/magic_spell.set_state(0)
 	pass
 
 func _on_magic_spell_clicked():
@@ -152,6 +154,7 @@ func _on_constitution_clicked():
 	$control_layer/constitution.on_clicked()
 	$control_layer/roll_selected.set_visible(true)
 	$control_layer/cursor.set_state(5)
+	$control_layer/magic_spell.set_state(0)
 	pass
 
 func _on_fireball_summoned(other, position, fireball_direction):
