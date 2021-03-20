@@ -40,6 +40,8 @@ func _on_body_enter(other):
 			# Deleting the instance of the item.
 			other.queue_free()
 			set_state(STATE.HURT)
+	else:
+		set_state(STATE.IDLE)
 	pass
 
 func _process(delta):
