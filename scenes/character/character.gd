@@ -15,6 +15,9 @@ var attack = ATTACK.SLASH
 
 var speed = Vector2(48, 32) * 3
 
+var stuck = false
+var old_positions = []
+
 # A fireball summoned signal.
 signal on_fireball_summoned
 
@@ -25,8 +28,12 @@ func _ready():
 	# Listening to know if an amination is finished.
 	$animation.connect("animation_finished", self, "_on_anim_finished")
 
-	# Detecting when something hit us.
-	$area.connect("area_entered", self, "_on_body_enter")
+	# Detecting when something wants to go through us.
+	$area.connect("area_entered", self, "_on_legs_enter")
+	$area.connect("area_exited", self, "_on_legs_exit")
+
+	# Attack area.
+	$attack_area.connect("area_entered", self, "_on_body_enter")
 
 	# For setting default values and start animating the character.
 	set_direction(DIRECTION.RIGHT)
@@ -40,8 +47,23 @@ func _on_body_enter(other):
 			# Deleting the instance of the item.
 			other.queue_free()
 			set_state(STATE.HURT)
-	else:
-		set_state(STATE.IDLE)
+	pass
+
+func _on_legs_enter(other):
+	# Including our attack area.
+	if other.name == "attack_area":
+		return
+	# Any fireball should not affect the leg movement.
+	if other.name == "fireball":
+		return
+
+	# In every other cases we are stuck and we go idle
+	stuck = true
+	set_state(STATE.IDLE)
+	pass
+
+func _on_legs_exit(other):
+	stuck = false
 	pass
 
 func _process(delta):
@@ -59,7 +81,14 @@ func _process(delta):
 				DIRECTION.RIGHT:
 					offset.x = 1
 
-	position += speed * delta * offset
+	if not stuck:
+		old_positions.push_back(position)
+		if old_positions.size() > 2:
+			old_positions.pop_front()
+		position += speed * delta * offset
+	else:
+		position = old_positions.pop_front()
+		stuck = false
 	pass
 
 func set_state(new_state):
