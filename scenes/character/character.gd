@@ -14,7 +14,7 @@ var direction = DIRECTION.LEFT
 var attack = ATTACK.SLASH
 
 var _speed_percent = 100
-var speed = Vector2(48, 32) * 3
+var speed = Vector2(48 / 3.4, 32 / 3.4) * 3
 
 var stuck = false
 var old_positions = []
@@ -73,24 +73,29 @@ func _on_legs_exit(other):
 
 func _process(delta):
 	var offset = Vector2(0, 0)
+	var speed_scale = 1
 
 	match state:
 		STATE.WALK:
 			match direction:
 				DIRECTION.UP:
 					offset.y = -1
+					speed_scale = scale.y
 				DIRECTION.LEFT:
 					offset.x = -1
+					speed_scale = scale.x
 				DIRECTION.DOWN:
 					offset.y = 1
+					speed_scale = scale.y
 				DIRECTION.RIGHT:
 					offset.x = 1
+					speed_scale = scale.x
 
 	if not stuck:
 		old_positions.push_back(position)
 		if old_positions.size() > 2:
 			old_positions.pop_front()
-		position += speed * delta * offset * _speed_percent / 100
+		position += speed * delta * offset * _speed_percent / 100 * speed_scale
 	else:
 		position = old_positions.pop_front()
 		stuck = false
