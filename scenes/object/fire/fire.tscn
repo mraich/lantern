@@ -1,9 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/object/fire/fire.gd" type="Script" id=1]
 [ext_resource path="res://scenes/object/fire/res/fire1_64.png" type="Texture" id=2]
-
-
 
 [sub_resource type="Animation" id=1]
 resource_name = "fire"
@@ -21,6 +19,9 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 ]
 }
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 41.6769, 18.0397 )
+
 [node name="fire" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -35,3 +36,9 @@ frame = 59
 [node name="animation" type="AnimationPlayer" parent="."]
 playback_speed = 60.0
 anims/fire = SubResource( 1 )
+
+[node name="fire_area" type="Area2D" parent="."]
+
+[node name="collisionshape" type="CollisionShape2D" parent="fire_area"]
+position = Vector2( -1.29485, -16.4014 )
+shape = SubResource( 2 )
