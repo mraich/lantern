@@ -12,7 +12,7 @@ var move = Vector2(0, 0)
 var friend = null
 
 func _ready():
-	$animation.current_animation = "flaming"
+	$animation.play("flaming")
 
 	$shape.connect("area_exited", self, "_on_area_exited")
 
