@@ -13,6 +13,7 @@ var animation = ANIMATION.WALK
 var direction = DIRECTION.LEFT
 var attack = ATTACK.SLASH
 
+var _speed_percent = 100
 var speed = Vector2(48, 32) * 3
 
 var stuck = false
@@ -39,6 +40,10 @@ func _ready():
 	set_direction(DIRECTION.RIGHT)
 	set_state(STATE.IDLE)
 	set_attack(ATTACK.SLASH)
+	pass
+
+func set_speed_percent(speed_percent):
+	_speed_percent = speed_percent
 	pass
 
 func _on_body_enter(other):
@@ -85,7 +90,7 @@ func _process(delta):
 		old_positions.push_back(position)
 		if old_positions.size() > 2:
 			old_positions.pop_front()
-		position += speed * delta * offset
+		position += speed * delta * offset * _speed_percent / 100
 	else:
 		position = old_positions.pop_front()
 		stuck = false
