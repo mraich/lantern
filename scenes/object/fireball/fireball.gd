@@ -47,6 +47,10 @@ func set_direction(new_direction):
 			move = Vector2(0, -1)
 	pass
 
+func set_summoner(other):
+	friend = other
+	pass
+
 func _on_timer_timeout():
 	get_parent().remove_child(self)
 	pass

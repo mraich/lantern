@@ -162,7 +162,7 @@ func _on_fireball_summoned(other, position, fireball_direction):
 	var fireball = fireball_class.instance()
 	# Setting the friend who can't be hurt until they overlapped once.
 	# It will be usually the summoner character.
-	fireball.friend = other
+	fireball.set_summoner(other)
 	fireball.z_index = other.z_index - 1
 	# Setting its size.
 	fireball.scale.x = 3
