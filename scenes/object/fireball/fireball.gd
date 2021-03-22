@@ -10,6 +10,7 @@ var speed = Vector2(300 * 3.4, 300 * 3.4)
 var move = Vector2(0, 0)
 
 var friend = null
+var friend_global_position = null
 
 func _ready():
 	$animation.play("flaming")
@@ -49,6 +50,7 @@ func set_direction(new_direction):
 
 func set_summoner(other):
 	friend = other
+	friend_global_position = Vector2(other.global_position.x, other.global_position.y)
 	pass
 
 func _on_timer_timeout():
