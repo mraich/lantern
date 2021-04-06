@@ -33,6 +33,9 @@ func _ready():
 # This function is the public version of the _set_value function.
 func set_value(new_value):
 	_set_value(new_value)
+
+	if visible == false:
+		visible = true
 	pass
 
 # This function is protected which is indicated by the _
