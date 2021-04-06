@@ -13,7 +13,11 @@ const ACTION_ROLL_MULTIPLE_OFF = 5
 # Rolling with multiple dicesswitched on.
 # This state will be reached only by clicking on a dice at the state ACTION_ROLL_MULTIPLE_OFF.
 const ACTION_ROLL_MULTIPLE_ON = -1
+# Preparing.
+const ACTION_PREPARE = 6
 var _action = ACTION_NOTHING
+
+signal on_prepared
 
 func _ready():
 	set_action(ACTION_NOTHING)
@@ -34,6 +38,8 @@ func _on_dice_clicked():
 			set_action(ACTION_ROLL_MULTIPLE_ON)
 		ACTION_ROLL_MULTIPLE_ON:
 			set_action(ACTION_ROLL_MULTIPLE_OFF)
+		ACTION_PREPARE:
+			prepare()
 	pass
 
 func set_action(action):
@@ -44,6 +50,15 @@ func set_action(action):
 		$selected_sprite.visible = false
 	else:
 		$selected_sprite.visible = true
+	pass
+
+func prepare():
+	visible = false
+	emit_signal("on_prepared", self)
+	pass
+
+func dice_unprepare():
+	visible = true
 	pass
 
 func inc():
