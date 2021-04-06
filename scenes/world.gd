@@ -23,6 +23,8 @@ func _ready():
 
 	# Getting notified about the changes made on the playable field.
 	$control_layer/playable_container.connect("on_value_changed", self, "on_playable_value_changed")
+	# Getting notified about the prepared actions.
+	$control_layer/playable_container.connect("on_prepared", self, "on_prepared")
 
 	# Getting notified about the loading of the stages.
 	$stage_manager.connect("on_stage_load", self, "_on_stage_load")
@@ -128,6 +130,9 @@ func on_playable_value_changed(var dice):
 		# We won the puzzle.
 		$stage_manager.on_stage_win()
 		pass
+	pass
+
+func on_prepared(var dice):
 	pass
 
 func _on_critical_hit_clicked():
