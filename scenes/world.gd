@@ -105,7 +105,7 @@ func _on_stage_load(stage, playing_dices_count, puzzle):
 	pass
 
 # Called when a dice action is completed.
-func on_playable_value_changed():
+func on_playable_value_changed(var dice):
 	# Using the action.
 	match action:
 		1:

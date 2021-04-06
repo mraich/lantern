@@ -96,7 +96,7 @@ func _update_dices_position():
 
 func _on_dice_value_changed(var dice):
 	# Listeners will know that this dice value has been changed.
-	emit_signal("on_value_changed")
+	emit_signal("on_value_changed", dice)
 	pass
 
 # Getting the values of all of the dices in an array.
