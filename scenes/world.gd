@@ -135,6 +135,7 @@ func on_playable_value_changed(var dice):
 	pass
 
 func on_prepared(var dice):
+	$control_layer/tent.set_helper_dice(dice)
 	pass
 
 func _on_critical_hit_clicked():
