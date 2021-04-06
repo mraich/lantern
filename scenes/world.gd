@@ -56,6 +56,8 @@ func _ready():
 	# The dimension of the hero sprite is 64 x 64.
 	$camera.offset = Vector2(-1 * ((600 - 64) / 2) + 64 * 2, -1 * ((800 - 64) / 2))
 	$camera.set_follow($terrain_layer/hero)
+
+	$control_layer/cursor.set_state(6)
 	pass
 
 func _input(event):
