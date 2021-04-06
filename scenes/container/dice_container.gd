@@ -12,6 +12,9 @@ var arrangement = []
 # Indicating the value has changed.
 signal on_value_changed
 
+# Indicating that a dice is prepared.
+signal on_prepared
+
 func _ready():
 	pass
 
@@ -57,7 +60,6 @@ func _ensure_dice_count(count):
 func _add_dice():
 	var dice = _dice_class.instance()
 	dices.push_back(dice)
-
 	add_child(dice)
 
 	# Update the position of the dices.
@@ -66,6 +68,8 @@ func _add_dice():
 	# Passing through events.
 	# Passing through the signal for a dice value changing.
 	dice.connect("on_value_changed", self, "_on_dice_value_changed")
+	# Passing through the prepare event.
+	dice.connect("on_prepared", self, "_on_prepared")
 	pass
 
 # Removing the first dice from the control.
@@ -97,6 +101,15 @@ func _update_dices_position():
 func _on_dice_value_changed(var dice):
 	# Listeners will know that this dice value has been changed.
 	emit_signal("on_value_changed", dice)
+	pass
+
+func _on_prepared(var dice):
+	# Listeners will know that the prepare action clicked.
+	emit_signal("on_prepared", dice)
+	pass
+
+func on_unprepared(var dice):
+	dice.unprepare()
 	pass
 
 # Getting the values of all of the dices in an array.
