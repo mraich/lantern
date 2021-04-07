@@ -21,6 +21,8 @@ func _ready():
 	$control_layer/constitution/icon_clickable.connect("on_icon_clicked", self, "_on_constitution_clicked")
 	$control_layer/constitution/counter_bar.set_bar_count(7)
 
+	$control_layer/tent.connect("on_clicked", self, "_on_tent_clicked")
+
 	# Getting notified about the changes made on the playable field.
 	$control_layer/playable_container.connect("on_value_changed", self, "on_playable_value_changed")
 	# Getting notified about the prepared actions.
@@ -163,6 +165,10 @@ func _on_constitution_clicked():
 	$control_layer/roll_selected.set_visible(true)
 	$control_layer/cursor.set_state(5)
 	$control_layer/magic_spell.set_state(0)
+	pass
+
+func _on_tent_clicked(var dice):
+	dice.visible = true
 	pass
 
 func _on_fireball_summoned(other, position, fireball_direction):
