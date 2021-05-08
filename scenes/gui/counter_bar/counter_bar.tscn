@@ -9,6 +9,10 @@ var _bar_class = preload(\"res://scenes/gui/counter_bar/bar.tscn\")
 
 var bars = []
 
+enum STATE { PICK_VALUE, VALUE_PICKED, NORMAL, EMPTY }
+
+var state = STATE.PICK_VALUE
+
 func _ready():
 	pass
 
@@ -24,7 +28,18 @@ func show_value(value):
 		else:
 			bar.switch(false)
 		i += 1
+
+	state = STATE.VALUE_PICKED
 	pass
+
+func remove_value():
+	var sum = 0
+	for bar in bars:
+		if bar.is_on():
+			sum += 1
+
+	state = STATE.PICK_VALUE
+	return sum
 
 func is_enabled():
 	for bar in bars:
@@ -92,6 +107,14 @@ func dec():
 			bar.fade()
 			return true
 	return false
+
+func get_value():
+	var sum = 0
+	for i in range(0, bars.size()):
+		var bar = bars[i]
+		if bar.is_on():
+			sum += 1
+	return sum
 "
 
 [node name="counter_bar" type="VBoxContainer"]

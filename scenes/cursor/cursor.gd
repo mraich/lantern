@@ -43,3 +43,6 @@ func set_state(new_state):
 	# Notifying the outside world that our state is changed.
 	emit_signal("on_cursor_state_changed", _state)
 	pass
+
+func get_state():
+	return _state

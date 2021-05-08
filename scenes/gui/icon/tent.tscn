@@ -41,7 +41,7 @@ func show_value(var value):
 	pass
 "
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 loop = true
 
 [node name="tent" type="Node2D"]
@@ -57,7 +57,7 @@ hframes = 16
 frame = 67
 
 [node name="animation" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 3 )
+anims/idle = SubResource( 2 )
 
 [node name="icon_clickable" parent="." instance=ExtResource( 2 )]
 scale = Vector2( 3, 3 )

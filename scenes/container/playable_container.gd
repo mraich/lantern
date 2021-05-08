@@ -28,6 +28,7 @@ func roll_all():
 
 	for dice in dices:
 		dice.roll()
+		dice. visible = true
 
 	_on_data_change_signal_enabled = true
 	emit_signal("on_value_changed")

@@ -11,6 +11,8 @@ extends Node2D
 
 var _state = -1
 
+var _helper = null
+
 func _ready():
 	pass
 
@@ -45,6 +47,20 @@ func set_state(state):
 		$animation_arrow.play(\"arrow_x_0\")
 
 	_state = state
+	pass
+
+func set_helper(var helper):
+	_helper = helper
+	pass
+
+func revoke_value():
+	if _helper != null:
+		# Revoking value.
+		$counter_bar.show_value(0)
+		# Showing the dice again.
+		_helper.set_visible(true)
+		_helper = null
+		pass
 	pass
 "
 
