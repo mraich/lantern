@@ -75,6 +75,9 @@ func _ready():
 	$camera.set_follow($terrain_layer/hero)
 	pass
 
+func _process(delta):
+	pass
+
 func _input(event):
 	# By right clicking we increase the state.
 	if event.is_action_pressed("right_click"):
