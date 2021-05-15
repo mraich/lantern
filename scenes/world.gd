@@ -92,13 +92,29 @@ func _input(event):
 		$terrain_layer/hero.spellcast()
 		$terrain_layer/enemy.hurt()
 	if event.is_action_pressed("ui_left"):
-		$terrain_layer/hero.go_left()
+		_on_left_pressed()
 	if event.is_action_pressed("ui_up"):
-		$terrain_layer/hero.go_up()
+		_on_up_pressed()
 	if event.is_action_pressed("ui_right"):
-		$terrain_layer/hero.go_right()
+		_on_right_pressed()
 	if event.is_action_pressed("ui_down"):
-		$terrain_layer/hero.go_down()
+		_on_down_pressed()
+	pass
+
+func _on_left_pressed():
+	$terrain_layer/hero.go_left()
+	pass
+
+func _on_up_pressed():
+	$terrain_layer/hero.go_up()
+	pass
+
+func _on_right_pressed():
+	$terrain_layer/hero.go_right()
+	pass
+
+func _on_down_pressed():
+	$terrain_layer/hero.go_down()
 	pass
 
 # On cursor state change.
