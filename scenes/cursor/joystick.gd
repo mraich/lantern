@@ -2,8 +2,12 @@
 
 extends Node2D
 
+var state = null
+
 var is_pressing = false
 var original_position = null
+
+signal on_joystick_heading_changed
 
 func _ready():
 	pass
@@ -58,4 +62,8 @@ func _process(delta):
 # 2 - Right.
 # 3 - Down.
 func _set_state(state):
+	if not self.state == state:
+		emit_signal("on_joystick_heading_changed", state)
+		pass
+	self.state = state
 	pass

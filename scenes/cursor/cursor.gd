@@ -5,6 +5,9 @@ extends Node2D
 # Signal to notify when the state of the cursor is changed.
 signal on_cursor_state_changed
 
+# Signal which tells if a joystick state changes.
+signal on_joystick_heading_changed
+
 # States should be between 0 and 5.
 const _MAX_STATES = 6
 
@@ -13,6 +16,7 @@ var _state = 0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	$joystick.connect("on_joystick_heading_changed", self, "_on_joystick_heading_changed")
 	pass
 
 func _process(delta):
@@ -46,3 +50,7 @@ func set_state(new_state):
 
 func get_state():
 	return _state
+
+func _on_joystick_heading_changed(joystick_heading):
+	emit_signal("on_joystick_heading_changed", joystick_heading)
+	pass
