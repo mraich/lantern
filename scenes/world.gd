@@ -82,6 +82,15 @@ func _ready():
 	pass
 
 func _process(delta):
+	match joystick_heading:
+		0:
+			_on_left_pressed()
+		1:
+			_on_up_pressed()
+		2:
+			_on_right_pressed()
+		3:
+			_on_down_pressed()
 	pass
 
 func _input(event):
