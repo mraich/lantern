@@ -11,15 +11,9 @@ var prepared_states = []
 # This is the action selected on the cursor.
 onready var action = 0
 
-# This is the joystick heading.
-var joystick_heading = -1
-
 func _ready():
 	# Connecting the state change of the cursor.
 	$control_layer/cursor.connect("on_cursor_state_changed", self, "_on_cursor_state_changed")
-
-	# Connecting the heading change of the joystick.
-	$control_layer/cursor.connect("on_joystick_heading_changed", self, "_on_joystick_heading_changed")
 
 	# Action icons.
 	$control_layer/critical_hit/icon_clickable.connect("on_icon_clicked", self, "_on_critical_hit_clicked")
@@ -82,15 +76,6 @@ func _ready():
 	pass
 
 func _process(delta):
-	match joystick_heading:
-		0:
-			_on_left_pressed()
-		1:
-			_on_up_pressed()
-		2:
-			_on_right_pressed()
-		3:
-			_on_down_pressed()
 	pass
 
 func _input(event):
@@ -306,8 +291,4 @@ func preparation_back(state):
 		prepared_states.push_front(state)
 		prepared_states.sort()
 		prepare_state = prepared_states.pop_front()
-	pass
-
-func _on_joystick_heading_changed(joystick_heading):
-	self.joystick_heading = joystick_heading
 	pass
