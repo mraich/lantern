@@ -369,3 +369,7 @@ func attack():
 func spellcast():
 	set_state(STATE.SPELLCAST)
 	pass
+
+func stop():
+	set_state(STATE.IDLE)
+	pass
