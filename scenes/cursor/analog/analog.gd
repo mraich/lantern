@@ -132,7 +132,13 @@ func sendSignal2Listener():
 		map_analog_dpad()
 
 func map_analog_dpad():
-	Input.action_press("ui_left") if currentForce.x < -0.2 else Input.action_release("ui_left")
-	Input.action_press("ui_right") if currentForce.x > 0.2 else Input.action_release("ui_right")
-	Input.action_press("ui_down") if currentForce.y < -0.2 else Input.action_release("ui_down")
-	Input.action_press("ui_up") if currentForce.y > 0.2 else Input.action_release("ui_up")
+	simulate_input("ui_left") if currentForce.x < -0.2 else Input.action_release("ui_left")
+	simulate_input("ui_right") if currentForce.x > 0.2 else Input.action_release("ui_right")
+	simulate_input("ui_down") if currentForce.y < -0.2 else Input.action_release("ui_down")
+	simulate_input("ui_up") if currentForce.y > 0.2 else Input.action_release("ui_up")
+
+func simulate_input(value):
+	var input = InputEventAction.new()
+	input.action = value
+	input.pressed = true
+	Input.parse_input_event(input)
