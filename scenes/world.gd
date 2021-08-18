@@ -102,6 +102,8 @@ func _input(event):
 		_on_right_pressed()
 	if event.is_action_pressed("ui_down"):
 		_on_down_pressed()
+	if event.is_action_pressed("ui_stop"):
+		$terrain_layer/hero.stop()
 	pass
 
 func _on_left_pressed():
