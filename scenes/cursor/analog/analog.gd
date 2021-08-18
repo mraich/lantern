@@ -136,6 +136,10 @@ func map_analog_dpad():
 	simulate_input("ui_right") if currentForce.x > 0.2 else Input.action_release("ui_right")
 	simulate_input("ui_down") if currentForce.y < -0.2 else Input.action_release("ui_down")
 	simulate_input("ui_up") if currentForce.y > 0.2 else Input.action_release("ui_up")
+	if (abs(currentForce.x) < 0.2 and abs(currentForce.y) < 0.2):
+		simulate_input("ui_stop")
+	else:
+		Input.action_release("ui_stop")
 
 func simulate_input(value):
 	var input = InputEventAction.new()
