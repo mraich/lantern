@@ -4,10 +4,10 @@
 [ext_resource path="res://scenes/gui/icon/res/icons_shikashi.png" type="Texture" id=2]
 [ext_resource path="res://scenes/gui/icon/icon_clickable.tscn" type="PackedScene" id=3]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 script/source = "# script: magic_spell
 
-extends Node2D
+extends Control
 
 var _state = -1
 
@@ -64,7 +64,7 @@ func revoke_value():
 	pass
 "
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=9]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprites/sprite_002:visible")
@@ -305,8 +305,8 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4, 0.53 )
 }
 
-[node name="magic_spell" type="Node2D"]
-script = SubResource( 1 )
+[node name="magic_spell" type="Control"]
+script = SubResource( 2 )
 
 [node name="counter_bar" parent="." instance=ExtResource( 1 )]
 margin_left = 15.0
@@ -344,7 +344,7 @@ hframes = 16
 frame = 32
 
 [node name="animation" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 2 )
+anims/idle = SubResource( 9 )
 anims/magic_spell = SubResource( 3 )
 anims/on_selected = SubResource( 4 )
 

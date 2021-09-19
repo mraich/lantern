@@ -31,42 +31,62 @@ position = Vector2( 0, -1 )
 
 [node name="playable_container" parent="control_layer" instance=ExtResource( 5 )]
 margin_left = 300.0
-margin_top = 480.0
+margin_top = 450.0
 margin_right = 300.0
-margin_bottom = 480.0
+margin_bottom = 450.0
+rect_scale = Vector2( 1.2, 1.2 )
 
 [node name="puzzle_container" parent="control_layer" instance=ExtResource( 6 )]
 margin_left = 300.0
-margin_top = 560.0
+margin_top = 550.0
 margin_right = 300.0
-margin_bottom = 560.0
+margin_bottom = 550.0
+rect_scale = Vector2( 1.2, 1.2 )
 
 [node name="roll_selected" parent="control_layer" instance=ExtResource( 7 )]
-position = Vector2( 100, 480 )
-scale = Vector2( 1.6, 1.6 )
+visible = false
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 100.0
+margin_bottom = 100.0
 
 [node name="critical_hit" parent="control_layer" instance=ExtResource( 8 )]
-position = Vector2( 120, 740 )
-scale = Vector2( 3, 3 )
+margin_left = 100.0
+margin_top = 720.0
+margin_right = 100.0
+margin_bottom = 720.0
+rect_scale = Vector2( 3, 3 )
 
 [node name="counter_attack" parent="control_layer" instance=ExtResource( 9 )]
-position = Vector2( 240, 740 )
-scale = Vector2( 3, 3 )
+margin_left = 230.0
+margin_top = 720.0
+margin_right = 230.0
+margin_bottom = 720.0
+rect_scale = Vector2( 3, 3 )
 
 [node name="magic_spell" parent="control_layer" instance=ExtResource( 10 )]
-position = Vector2( 360, 740 )
-scale = Vector2( 3, 3 )
+margin_left = 360.0
+margin_top = 720.0
+margin_right = 360.0
+margin_bottom = 720.0
+rect_scale = Vector2( 3, 3 )
 
 [node name="constitution" parent="control_layer" instance=ExtResource( 7 )]
-position = Vector2( 480, 740 )
-scale = Vector2( 3, 3 )
+margin_left = 480.0
+margin_top = 720.0
+margin_right = 480.0
+margin_bottom = 720.0
+rect_scale = Vector2( 3, 3 )
 
 [node name="cursor" parent="control_layer" instance=ExtResource( 11 )]
 position = Vector2( 300, 400 )
 z_index = 1
 
 [node name="tent" parent="control_layer" instance=ExtResource( 12 )]
-position = Vector2( 500, 50 )
+margin_left = 540.0
+margin_top = 60.0
+margin_right = 540.0
+margin_bottom = 60.0
 
 [node name="analog" parent="control_layer" instance=ExtResource( 13 )]
 margin_left = 113.778

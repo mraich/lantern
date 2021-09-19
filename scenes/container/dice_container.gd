@@ -1,6 +1,6 @@
 # script: dice_container
 
-extends HBoxContainer
+extends Control
 
 var dices = []
 var _dice_class
@@ -59,6 +59,7 @@ func _ensure_dice_count(count):
 # This dice is added to the tree of this control.
 func _add_dice():
 	var dice = _dice_class.instance()
+	dice.rect_scale = rect_scale
 	dices.push_back(dice)
 	add_child(dice)
 
@@ -88,14 +89,15 @@ func _pop_dice():
 func _update_dices_position():
 	var i = 0
 	for dice in dices:
-		dice.position = Vector2(i * dice.get_width(), dice.get_height())
+		dice.rect_position = Vector2(i * dice.get_width() * 1.2, dice.get_height())
 		i += 1
 
 	var offsetX = 0
 	if dices.size() > 0:
-		offsetX = -(dices.size() - 1) * dices[0].get_width() / 2
+		offsetX = -(dices.size() - 0) * dices[0].get_width() / 2
 	for dice in dices:
-		dice.position.x += offsetX
+		dice.rect_position.x += offsetX
+		# dice.rect_position += rect_position
 	pass
 
 func _on_dice_value_changed(var dice):

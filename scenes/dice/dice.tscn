@@ -2,12 +2,7 @@
 
 [ext_resource path="res://scenes/dice/dice.gd" type="Script" id=1]
 
-
-[node name="dice_base" type="Node2D"]
-scale = Vector2( 1.6, 1.6 )
+[node name="dice_base" type="Control"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="face_sprite" type="Sprite" parent="."]

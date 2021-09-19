@@ -7,7 +7,7 @@
 [sub_resource type="GDScript" id=1]
 script/source = "# script: counter_attack
 
-extends Node2D
+extends Control
 
 var _helper = null
 
@@ -118,7 +118,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4 )
 }
 
-[node name="counter_attack" type="Node2D"]
+[node name="counter_attack" type="Control"]
 script = SubResource( 1 )
 
 [node name="counter_bar" parent="." instance=ExtResource( 1 )]

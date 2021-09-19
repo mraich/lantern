@@ -1,6 +1,6 @@
 # script: dice_base
 
-extends Node2D
+extends Control
 
 var _dice_0 = preload("res://scenes/dice/res/dice_0.svg")
 var _dice_1 = preload("res://scenes/dice/res/dice_1.svg")
@@ -86,7 +86,7 @@ func _get_max_value():
 	return 6
 
 func get_width():
-	return $face_sprite.texture.get_size().x * scale.x
+	return $face_sprite.texture.get_size().x * rect_scale.x
 
 func get_height():
-	return $face_sprite.texture.get_size().y * scale.y
+	return $face_sprite.texture.get_size().y * rect_scale.y
