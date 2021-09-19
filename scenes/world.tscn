@@ -45,10 +45,11 @@ rect_scale = Vector2( 1.2, 1.2 )
 
 [node name="roll_selected" parent="control_layer" instance=ExtResource( 7 )]
 visible = false
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 100.0
-margin_bottom = 100.0
+margin_left = 500.0
+margin_top = 420.0
+margin_right = 500.0
+margin_bottom = 420.0
+rect_scale = Vector2( 3, 3 )
 
 [node name="critical_hit" parent="control_layer" instance=ExtResource( 8 )]
 margin_left = 100.0
