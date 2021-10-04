@@ -54,6 +54,10 @@ ui_stop={
 "deadzone": 0.5,
 "events": [  ]
 }
+ui_tent_selected={
+"deadzone": 0.5,
+"events": [  ]
+}
 
 [input_devices]
 
