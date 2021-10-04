@@ -66,6 +66,10 @@ ui_roll_selected_selected={
 "deadzone": 0.5,
 "events": [  ]
 }
+ui_critical_hit_selected={
+"deadzone": 0.5,
+"events": [  ]
+}
 
 [input_devices]
 

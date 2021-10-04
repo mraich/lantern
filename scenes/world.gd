@@ -16,7 +16,6 @@ func _ready():
 	$control_layer/cursor.connect("on_cursor_state_changed", self, "_on_cursor_state_changed")
 
 	# Action icons.
-	$control_layer/critical_hit/icon_clickable.connect("on_icon_clicked", self, "_on_critical_hit_clicked")
 	$control_layer/critical_hit/counter_bar.set_bar_count(7)
 	$control_layer/counter_attack/icon_clickable.connect("on_icon_clicked", self, "_on_counter_attack_clicked")
 	$control_layer/counter_attack/counter_bar.set_bar_count(7)
@@ -102,6 +101,8 @@ func _input(event):
 		$terrain_layer/hero.stop()
 	if event.is_action_pressed("ui_constitution_selected"):
 		_on_constitution_clicked()
+	if event.is_action_pressed("ui_critical_hit_selected"):
+		_on_critical_hit_clicked()
 	if event.is_action_pressed("ui_roll_selected_selected"):
 		_on_roll_selected_clicked()
 	if event.is_action_pressed("ui_tent_selected"):
