@@ -22,7 +22,6 @@ func _ready():
 	$control_layer/counter_attack/counter_bar.set_bar_count(7)
 	$control_layer/magic_spell/icon_clickable.connect("on_icon_clicked", self, "_on_magic_spell_clicked")
 	$control_layer/magic_spell/counter_bar.set_bar_count(7)
-	$control_layer/constitution/icon_clickable.connect("on_icon_clicked", self, "_on_constitution_clicked")
 	$control_layer/constitution/counter_bar.set_bar_count(7)
 
 	# Getting notified about the changes made on the playable field.
@@ -36,7 +35,6 @@ func _ready():
 	$stage_manager.connect("on_stage_load", self, "_on_stage_load")
 
 	# Rolling the selected dices button.
-	$control_layer/roll_selected/icon_clickable.connect("on_icon_clicked", self, "_on_roll_selected_clicked")
 	$control_layer/roll_selected/animation.play("spinning")
 
 	$terrain_layer/hero/sprite.set_texture(load("res://scenes/character/res/hero_002.png"))
@@ -102,6 +100,8 @@ func _input(event):
 		_on_down_pressed()
 	if event.is_action_pressed("ui_stop"):
 		$terrain_layer/hero.stop()
+	if event.is_action_pressed("ui_constitution_selected"):
+		_on_constitution_clicked()
 	if event.is_action_pressed("ui_tent_selected"):
 		$control_layer/tent.on_clicked()
 	pass

@@ -2,7 +2,6 @@
 
 [ext_resource path="res://scenes/gui/counter_bar/counter_bar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/gui/icon/res/icons_shikashi.png" type="Texture" id=2]
-[ext_resource path="res://scenes/gui/icon/icon_clickable.tscn" type="PackedScene" id=3]
 
 [sub_resource type="GDScript" id=1]
 script/source = "# script: constitution
@@ -171,6 +170,9 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 4.9 )
 }
 
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 16, 16 )
+
 [node name="constitution" type="Control"]
 script = SubResource( 1 )
 
@@ -210,4 +212,6 @@ anims/idle = SubResource( 3 )
 anims/on_selected = SubResource( 4 )
 anims/spinning = SubResource( 5 )
 
-[node name="icon_clickable" parent="." instance=ExtResource( 3 )]
+[node name="button" type="TouchScreenButton" parent="."]
+shape = SubResource( 6 )
+action = "ui_constitution_selected"
