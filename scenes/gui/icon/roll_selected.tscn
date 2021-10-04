@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/gui/icon/res/icons_shikashi.png" type="Texture" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprites/sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 113, 113 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "spinning"
+length = 5.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("sprites/sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 360, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 4.9 )
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 16 )
+
+[node name="roll_selected" type="Control"]
+
+[node name="sprites" type="Node2D" parent="."]
+
+[node name="sprite" type="Sprite" parent="sprites"]
+texture = ExtResource( 1 )
+vframes = 20
+hframes = 16
+frame = 113
+
+[node name="animation" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 1 )
+anims/spinning = SubResource( 2 )
+
+[node name="button" type="TouchScreenButton" parent="."]
+shape = SubResource( 3 )
+action = "ui_roll_selected_selected"

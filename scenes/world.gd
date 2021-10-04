@@ -102,6 +102,8 @@ func _input(event):
 		$terrain_layer/hero.stop()
 	if event.is_action_pressed("ui_constitution_selected"):
 		_on_constitution_clicked()
+	if event.is_action_pressed("ui_roll_selected_selected"):
+		_on_roll_selected_clicked()
 	if event.is_action_pressed("ui_tent_selected"):
 		$control_layer/tent.on_clicked()
 	pass

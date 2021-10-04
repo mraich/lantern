@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/world.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera.tscn" type="PackedScene" id=2]
@@ -6,16 +6,17 @@
 [ext_resource path="res://scenes/algorithm/stage_manager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/container/playable_container.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/container/puzzle_container.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/gui/icon/constitution.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/gui/icon/roll_selected.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/gui/icon/critical_hit.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/gui/icon/counter_attack.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/gui/icon/magic_spell.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/cursor/action_cursor.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/gui/icon/tent.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/cursor/analog/analog.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/node.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/object/fire/fire.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/character/character.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/gui/icon/constitution.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/cursor/action_cursor.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/gui/icon/tent.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/cursor/analog/analog.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/node.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/object/fire/fire.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/character/character.tscn" type="PackedScene" id=17]
 
 [node name="world" type="Node2D"]
 script = ExtResource( 1 )
@@ -72,44 +73,44 @@ margin_right = 360.0
 margin_bottom = 720.0
 rect_scale = Vector2( 3, 3 )
 
-[node name="constitution" parent="control_layer" instance=ExtResource( 7 )]
+[node name="constitution" parent="control_layer" instance=ExtResource( 11 )]
 margin_left = 480.0
 margin_top = 720.0
 margin_right = 480.0
 margin_bottom = 720.0
 rect_scale = Vector2( 3, 3 )
 
-[node name="cursor" parent="control_layer" instance=ExtResource( 11 )]
+[node name="cursor" parent="control_layer" instance=ExtResource( 12 )]
 position = Vector2( 300, 400 )
 z_index = 1
 
-[node name="tent" parent="control_layer" instance=ExtResource( 12 )]
+[node name="tent" parent="control_layer" instance=ExtResource( 13 )]
 margin_left = 540.0
 margin_top = 60.0
 margin_right = 540.0
 margin_bottom = 60.0
 
-[node name="analog" parent="control_layer" instance=ExtResource( 13 )]
+[node name="analog" parent="control_layer" instance=ExtResource( 14 )]
 margin_left = 113.778
 margin_top = 438.859
 margin_right = 113.778
 margin_bottom = 438.859
 
-[node name="node" parent="." instance=ExtResource( 14 )]
+[node name="node" parent="." instance=ExtResource( 15 )]
 position = Vector2( -400, -400 )
 scale = Vector2( 3.4, 3.4 )
 z_index = -10
 
 [node name="terrain_layer" type="YSort" parent="."]
 
-[node name="fire" parent="terrain_layer" instance=ExtResource( 15 )]
+[node name="fire" parent="terrain_layer" instance=ExtResource( 16 )]
 position = Vector2( 300, 300 )
 
-[node name="hero" parent="terrain_layer" instance=ExtResource( 16 )]
+[node name="hero" parent="terrain_layer" instance=ExtResource( 17 )]
 position = Vector2( 149, 301 )
 scale = Vector2( 3.4, 3.4 )
 
-[node name="enemy" parent="terrain_layer" instance=ExtResource( 16 )]
+[node name="enemy" parent="terrain_layer" instance=ExtResource( 17 )]
 position = Vector2( 450, 300 )
 scale = Vector2( 3.4, 3.4 )
 z_as_relative = false
