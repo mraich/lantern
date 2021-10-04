@@ -74,6 +74,10 @@ ui_counter_attack_selected={
 "deadzone": 0.5,
 "events": [  ]
 }
+ui_magic_spell_selected={
+"deadzone": 0.5,
+"events": [  ]
+}
 
 [input_devices]
 
