@@ -258,7 +258,7 @@ func _on_constitution_clicked():
 	pass
 
 func _on_tent_clicked(var dice):
-	if action == 6:
+	if action == 6 and dice != null:
 		# Revoking value.
 		# Showing the dice again.
 		dice.visible = true
