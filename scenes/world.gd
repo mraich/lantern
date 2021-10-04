@@ -17,7 +17,6 @@ func _ready():
 
 	# Action icons.
 	$control_layer/critical_hit/counter_bar.set_bar_count(7)
-	$control_layer/counter_attack/icon_clickable.connect("on_icon_clicked", self, "_on_counter_attack_clicked")
 	$control_layer/counter_attack/counter_bar.set_bar_count(7)
 	$control_layer/magic_spell/icon_clickable.connect("on_icon_clicked", self, "_on_magic_spell_clicked")
 	$control_layer/magic_spell/counter_bar.set_bar_count(7)
@@ -101,6 +100,8 @@ func _input(event):
 		$terrain_layer/hero.stop()
 	if event.is_action_pressed("ui_constitution_selected"):
 		_on_constitution_clicked()
+	if event.is_action_pressed("ui_counter_attack_selected"):
+		_on_counter_attack_clicked()
 	if event.is_action_pressed("ui_critical_hit_selected"):
 		_on_critical_hit_clicked()
 	if event.is_action_pressed("ui_roll_selected_selected"):

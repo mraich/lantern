@@ -70,6 +70,10 @@ ui_critical_hit_selected={
 "deadzone": 0.5,
 "events": [  ]
 }
+ui_counter_attack_selected={
+"deadzone": 0.5,
+"events": [  ]
+}
 
 [input_devices]
 
