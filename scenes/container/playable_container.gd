@@ -44,3 +44,17 @@ func roll_multiple():
 	_on_data_change_signal_enabled = true
 	emit_signal("on_value_changed")
 	pass
+
+func _add_dice():
+	# Calling the add_dice function of the base class
+	._add_dice()
+
+	# Updating input actions.
+	# It's not too efficient to iterate over all of the dices
+	# every time we add a dice but it works every time.
+	# And it's not the time for optimalization yet.
+	var i = 0
+	for dice in dices:
+		dice.set_input_action("ui_playable_dice_clicked_" + str(i))
+		i += 1
+	pass

@@ -23,6 +23,12 @@ func _ready():
 	set_action(ACTION_NOTHING)
 	pass
 
+func _input(event):
+	# This is our event set.
+	if event.is_action_pressed($button.action):
+		_on_dice_clicked()
+	pass
+
 func _on_dice_clicked():
 	# This function is called when someone clicks on the dice.
 	match _action:
