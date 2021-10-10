@@ -19,6 +19,11 @@ var speed = Vector2(48 / 3.4, 32 / 3.4) * 3
 var stuck = false
 var old_positions = []
 
+# This is the stage number to send when the hero arrives near this character.
+var _on_near_stage_number = null
+# Signal to send when the hero is near.
+signal on_near_to_character
+
 # A fireball summoned signal.
 signal on_fireball_summoned
 
@@ -35,6 +40,9 @@ func _ready():
 
 	# Attack area.
 	$attack_area.connect("area_entered", self, "_on_body_enter")
+
+	# Nearing area.
+	$near_area.connect("area_entered", self, "_on_body_near")
 
 	# For setting default values and start animating the character.
 	set_direction(DIRECTION.RIGHT)
@@ -54,12 +62,29 @@ func _on_body_enter(other):
 			set_state(STATE.HURT)
 	pass
 
+func _on_body_near(other):
+	# Nearing an other character.
+	# It means our near area crosses the area of that character.
+	if other.name == "area" and $area != other:
+		# This area is not our own area.
+		if $area != other:
+			# If we know who we are then we tell them.
+			# This will initiate the stage loading function in the world node.
+			if _on_near_stage_number != null:
+				emit_signal("on_near_to_character", _on_near_stage_number)
+				pass
+			pass
+	pass
+
 func _on_legs_enter(other):
 	# Including our attack area.
 	if other.name == "attack_area":
 		return
 	# Any fireball should not affect the leg movement.
 	if other.name == "fireball":
+		return
+	# Nearing an other character should not affect moving.
+	if other.name == "near_area":
 		return
 
 	# In every other cases we are stuck and we go idle
@@ -97,9 +122,15 @@ func _process(delta):
 			old_positions.pop_front()
 		position += speed * delta * offset * _speed_percent / 100 * speed_scale
 	else:
-		position = old_positions.pop_front()
+		if old_positions.size() > 0:
+			position = old_positions.pop_front()
 		stuck = false
 	pass
+
+func set_on_near_stage_number(on_near_stage_number):
+	self._on_near_stage_number = on_near_stage_number
+	pass
+
 
 func set_state(new_state):
 	if next_state == null:

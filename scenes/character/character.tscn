@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://scenes/character/character.gd" type="Script" id=1]
 [ext_resource path="res://scenes/character/res/hero_001.png" type="Texture" id=2]
@@ -702,6 +702,9 @@ extents = Vector2( 10, 4 )
 [sub_resource type="RectangleShape2D" id=46]
 extents = Vector2( 9.87843, 22.9641 )
 
+[sub_resource type="CircleShape2D" id=47]
+radius = 75.0
+
 [node name="character" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -769,3 +772,9 @@ shape = SubResource( 45 )
 [node name="collisionshape" type="CollisionShape2D" parent="attack_area"]
 position = Vector2( 0, -23 )
 shape = SubResource( 46 )
+
+[node name="near_area" type="Area2D" parent="."]
+
+[node name="collisionshape" type="CollisionShape2D" parent="near_area"]
+position = Vector2( 0, -25 )
+shape = SubResource( 47 )

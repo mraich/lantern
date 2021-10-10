@@ -39,6 +39,8 @@ func _ready():
 	$terrain_layer/enemy/sprite.set_texture(load("res://scenes/character/res/skeleton_with_dagger.png"))
 	$terrain_layer/enemy.set_direction($terrain_layer/enemy.DIRECTION.LEFT)
 	$terrain_layer/enemy.set_attack_thrust()
+	$terrain_layer/enemy.set_on_near_stage_number(1)
+	$terrain_layer/enemy.connect("on_near_to_character", self, "_on_near_character")
 
 	# Initial state of the cursor.
 	_on_critical_hit_clicked()
@@ -152,6 +154,11 @@ func _on_stage_load(stage, playing_dices_count, puzzle):
 	$control_layer/playable_container.roll_all()
 	pass
 
+# The hero got near to this enemy.
+func _on_near_character(stage_number):
+	$stage_manager.load_stage(stage_number)
+	pass
+
 # Called when a dice action is completed.
 func on_playable_value_changed(var dice):
 	# Using the action.
@@ -174,7 +181,6 @@ func on_playable_value_changed(var dice):
 	# Checking the state of the gameboard.
 	if $dice_checker.check($control_layer/playable_container.get_values(), $control_layer/puzzle_container.get_values()):
 		# We won the puzzle.
-		$stage_manager.on_stage_win()
 		pass
 	pass
 
@@ -207,8 +213,6 @@ func on_prepared(var dice):
 		$control_layer/puzzle_container.visible = true
 		prepare_state = PREPARE_STATE.NONE
 		$control_layer/cursor.set_state(0)
-
-		$stage_manager.on_game_start()
 	pass
 
 func _on_critical_hit_clicked():
