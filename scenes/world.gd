@@ -145,13 +145,16 @@ func _on_roll_selected_clicked():
 
 # On loading the next stage.
 func _on_stage_load(stage, playing_dices_count, puzzle):
+	# Analog should not be visible while combat.
+	$control_layer/analog.visible = false
+
 	# The puzzle container should show this arrangement.
+	$control_layer/puzzle_container.visible = true
 	$control_layer/puzzle_container.set_arrangement(puzzle)
 
 	# The playable container should show this count of dices.
+	$control_layer/playable_container.visible = true
 	$control_layer/playable_container.set_dice_count(playing_dices_count)
-	# New set of values for the dices.
-	$control_layer/playable_container.roll_all()
 	pass
 
 # The hero got near to this enemy.
@@ -210,7 +213,8 @@ func on_prepared(var dice):
 		preparation_forward()
 	else:
 		$control_layer/playable_container.roll_all()
-		$control_layer/puzzle_container.visible = true
+		$control_layer/playable_container.visible = false
+		$control_layer/analog.visible = true
 		prepare_state = PREPARE_STATE.NONE
 		$control_layer/cursor.set_state(0)
 	pass

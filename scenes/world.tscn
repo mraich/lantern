@@ -91,6 +91,7 @@ margin_right = 540.0
 margin_bottom = 60.0
 
 [node name="analog" parent="control_layer" instance=ExtResource( 14 )]
+visible = false
 margin_left = 113.778
 margin_top = 438.859
 margin_right = 113.778
