@@ -8,6 +8,9 @@ enum PREPARE_STATE { NONE, CRITICAL_HIT, COUNTER_ATTACK, MAGIC_SPELL, CONSTITUTI
 var prepare_state = PREPARE_STATE.NONE
 var prepared_states = []
 
+# This is the character whom which we are in combat with.
+var in_combat_character = null
+
 # This is the action selected on the cursor.
 onready var action = 0
 
@@ -86,9 +89,11 @@ func _input(event):
 			5:
 				_on_critical_hit_clicked()
 	if event.is_action_pressed("ui_attack"):
-		$control_layer/magic_spell/animation.play("magic_spell")
-		$terrain_layer/hero.spellcast()
-		$terrain_layer/enemy.hurt()
+		if in_combat_character != null:
+			$control_layer/magic_spell/animation.play("magic_spell")
+			$terrain_layer/hero.spellcast()
+			$in_combat_character.hurt()
+			pass
 	if event.is_action_pressed("ui_left"):
 		_on_left_pressed()
 	if event.is_action_pressed("ui_up"):
@@ -159,28 +164,33 @@ func _on_stage_load(stage, playing_dices_count, puzzle):
 
 # The hero got near to this enemy.
 func _on_near_character(near_character, stage_number):
+	in_combat_character = near_character
 	$stage_manager.load_stage(stage_number)
 	pass
 
 # Called when a dice action is completed.
 func on_playable_value_changed(var dice):
+	# If we are not in combat with any of the characters then we don't have to do anything here.
+	if in_combat_character == null:
+		return
+
 	# Using the action.
 	match action:
 		1:
 			$control_layer/critical_hit.on_action()
 			$terrain_layer/hero.attack()
-			$terrain_layer/enemy.hurt()
+			in_combat_character.hurt()
 		2:
 			$control_layer/counter_attack.on_action()
 			$terrain_layer/hero.hurt()
-			$terrain_layer/enemy.attack()
+			in_combat_character.attack()
 		3, 4:
 			$control_layer/magic_spell.on_action()
 			$terrain_layer/hero.spellcast()
 		5:
 			$control_layer/constitution.on_action()
 			$terrain_layer/hero.attack()
-			$terrain_layer/enemy.hurt()
+			in_combat_character.hurt()
 	# Checking the state of the gameboard.
 	if $dice_checker.check($control_layer/playable_container.get_values(), $control_layer/puzzle_container.get_values()):
 		# We won the puzzle.
@@ -310,5 +320,8 @@ func preparation_back(state):
 	pass
 
 func _on_win_puzzle():
-	$terrain_layer/enemy.die()
+	if in_combat_character != null:
+		in_combat_character.die()
+		in_combat_character = null
+		pass
 	pass
