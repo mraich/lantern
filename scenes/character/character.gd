@@ -64,6 +64,10 @@ func _on_body_enter(other):
 
 func _on_body_near(other):
 	# Nearing an other character.
+	if is_dead():
+		# If we are dead we will not be near other characters.
+		return
+		pass
 	# It means our near area crosses the area of that character.
 	if other.name == "area" and $area != other:
 		# This area is not our own area.
