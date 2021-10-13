@@ -91,9 +91,11 @@ func _on_legs_enter(other):
 	if other.name == "near_area":
 		return
 
-	# In every other cases we are stuck and we go idle
-	stuck = true
-	set_state(STATE.IDLE)
+	if not is_dead():
+		# In every other cases we are stuck and we go idle
+		stuck = true
+		set_state(STATE.IDLE)
+		pass
 	pass
 
 func _on_legs_exit(other):
