@@ -133,6 +133,9 @@ func set_on_near_stage_number(on_near_stage_number):
 
 
 func set_state(new_state):
+	# Dead characters will not do anything.
+	if not state_changeable():
+		return
 	if next_state == null:
 		next_state = new_state
 		_update_animation_by_direction()
@@ -264,6 +267,9 @@ func _update_animation_by_direction():
 
 func is_dead():
 	return state == STATE.SPINNING_LEFT_RIGHT || state == STATE.SPINNING_UP_RIGHT || state == STATE.SPINNING_RIGHT_RIGHT || state == STATE.SPINNING_DOWN_RIGHT || state == STATE.DIE || state == STATE.DEAD
+
+func state_changeable():
+	return state != STATE.DEAD
 
 func _can_interrupt():
 	return !is_dead() || state == STATE.WALK
