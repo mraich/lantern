@@ -184,6 +184,7 @@ func on_playable_value_changed(var dice):
 	# Checking the state of the gameboard.
 	if $dice_checker.check($control_layer/playable_container.get_values(), $control_layer/puzzle_container.get_values()):
 		# We won the puzzle.
+		_on_win_puzzle()
 		pass
 	pass
 
@@ -306,4 +307,8 @@ func preparation_back(state):
 		prepared_states.push_front(state)
 		prepared_states.sort()
 		prepare_state = prepared_states.pop_front()
+	pass
+
+func _on_win_puzzle():
+	$terrain_layer/enemy.die()
 	pass
