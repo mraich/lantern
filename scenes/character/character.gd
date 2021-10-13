@@ -59,7 +59,9 @@ func _on_body_enter(other):
 		if other.friend != self:
 			# Deleting the instance of the item.
 			other.queue_free()
-			set_state(STATE.HURT)
+			# If dying or dead then fireball will not affect the character.
+			if !is_dying() && !is_dead():
+				set_state(STATE.HURT)
 	pass
 
 func _on_body_near(other):
