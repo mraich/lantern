@@ -75,7 +75,7 @@ func _on_body_near(other):
 			# If we know who we are then we tell them.
 			# This will initiate the stage loading function in the world node.
 			if _on_near_stage_number != null:
-				emit_signal("on_near_to_character", _on_near_stage_number)
+				emit_signal("on_near_to_character", self, _on_near_stage_number)
 				pass
 			pass
 	pass

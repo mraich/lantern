@@ -158,7 +158,7 @@ func _on_stage_load(stage, playing_dices_count, puzzle):
 	pass
 
 # The hero got near to this enemy.
-func _on_near_character(stage_number):
+func _on_near_character(near_character, stage_number):
 	$stage_manager.load_stage(stage_number)
 	pass
 
