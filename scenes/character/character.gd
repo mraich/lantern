@@ -404,3 +404,15 @@ func spellcast():
 func stop():
 	set_state(STATE.IDLE)
 	pass
+
+func die():
+	match direction:
+		DIRECTION.LEFT:
+			set_state(STATE.SPINNING_LEFT_RIGHT)
+		DIRECTION.UP:
+			set_state(STATE.SPINNING_UP_RIGHT)
+		DIRECTION.RIGHT:
+			set_state(STATE.SPINNING_RIGHT_RIGHT)
+		DIRECTION.DOWN:
+			set_state(STATE.SPINNING_DOWN_RIGHT)
+	pass
