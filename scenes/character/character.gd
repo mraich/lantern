@@ -271,8 +271,11 @@ func _update_animation_by_direction():
 			$animation.play(animation_string)
 	pass
 
+func is_dying():
+	return state == STATE.SPINNING_LEFT_RIGHT || state == STATE.SPINNING_UP_RIGHT || state == STATE.SPINNING_RIGHT_RIGHT || state == STATE.SPINNING_DOWN_RIGHT || state == STATE.DIE
+
 func is_dead():
-	return state == STATE.SPINNING_LEFT_RIGHT || state == STATE.SPINNING_UP_RIGHT || state == STATE.SPINNING_RIGHT_RIGHT || state == STATE.SPINNING_DOWN_RIGHT || state == STATE.DIE || state == STATE.DEAD
+	return is_dying() || state == STATE.DEAD
 
 func state_changeable():
 	return state != STATE.DEAD
