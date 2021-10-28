@@ -54,6 +54,10 @@ func set_speed_percent(speed_percent):
 	pass
 
 func UpdateSpriteFace(newSpriteFace):
+	if Engine.editor_hint:
+		# Code to execute when in editor.
+		pass
+
 	# Changing the appearance of the hero.
 	$sprite.set_texture(load(newSpriteFace))
 	pass
