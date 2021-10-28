@@ -27,10 +27,9 @@ signal on_near_to_character
 # A fireball summoned signal.
 signal on_fireball_summoned
 
-func _ready():
-	# Changing the appearance of the hero.
-	$sprite.set_texture(load("res://scenes/character/res/hero_001.png"))
+export(String) var sprite_face = "res://scenes/character/res/hero_001.png" setget UpdateSpriteFace
 
+func _ready():
 	# Listening to know if an amination is finished.
 	$animation.connect("animation_finished", self, "_on_anim_finished")
 
@@ -52,6 +51,11 @@ func _ready():
 
 func set_speed_percent(speed_percent):
 	_speed_percent = speed_percent
+	pass
+
+func UpdateSpriteFace(newSpriteFace):
+	# Changing the appearance of the hero.
+	$sprite.set_texture(load(newSpriteFace))
 	pass
 
 func _on_body_enter(other):
