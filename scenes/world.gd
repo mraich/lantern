@@ -39,7 +39,6 @@ func _ready():
 
 	$terrain_layer/hero/sprite.set_texture(load("res://scenes/character/res/hero_002.png"))
 	$terrain_layer/hero.connect("on_fireball_summoned", self, "_on_fireball_summoned")
-	$terrain_layer/enemy/sprite.set_texture(load("res://scenes/character/res/skeleton_with_dagger.png"))
 	$terrain_layer/enemy.set_direction($terrain_layer/enemy.DIRECTION.LEFT)
 	$terrain_layer/enemy.set_attack_thrust()
 	$terrain_layer/enemy.set_on_near_stage_number(1)

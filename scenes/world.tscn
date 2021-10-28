@@ -115,3 +115,4 @@ scale = Vector2( 3.4, 3.4 )
 position = Vector2( 450, 300 )
 scale = Vector2( 3.4, 3.4 )
 z_as_relative = false
+sprite_face = "res://scenes/character/res/skeleton_with_dagger.png"
