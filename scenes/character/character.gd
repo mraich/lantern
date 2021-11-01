@@ -10,7 +10,6 @@ enum ATTACK { THRUST, SLASH, SHOOT }
 var state = STATE.IDLE
 var next_state = null
 var animation = ANIMATION.WALK
-var direction = DIRECTION.LEFT
 var attack = ATTACK.SLASH
 
 var _speed_percent = 100
@@ -28,6 +27,8 @@ signal on_near_to_character
 signal on_fireball_summoned
 
 export(String) var sprite_face = "res://scenes/character/res/hero_001.png" setget _update_sprite_face
+
+export(int) var direction = DIRECTION.RIGHT setget set_direction
 
 func _ready():
 	# Listening to know if an amination is finished.
