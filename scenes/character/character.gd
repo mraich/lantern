@@ -27,7 +27,7 @@ signal on_near_to_character
 # A fireball summoned signal.
 signal on_fireball_summoned
 
-export(String) var sprite_face = "res://scenes/character/res/hero_001.png" setget UpdateSpriteFace
+export(String) var sprite_face = "res://scenes/character/res/hero_001.png" setget _update_sprite_face
 
 func _ready():
 	# Listening to know if an amination is finished.
@@ -53,7 +53,7 @@ func set_speed_percent(speed_percent):
 	_speed_percent = speed_percent
 	pass
 
-func UpdateSpriteFace(newSpriteFace):
+func _update_sprite_face(newSpriteFace):
 	if Engine.editor_hint:
 		# Code to execute when in editor.
 		pass
