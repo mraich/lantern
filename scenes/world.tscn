@@ -29,6 +29,7 @@ position = Vector2( 0, -1 )
 [node name="stage_manager" parent="." instance=ExtResource( 4 )]
 
 [node name="control_layer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
 [node name="playable_container" parent="control_layer" instance=ExtResource( 5 )]
 margin_left = 300.0
