@@ -7,6 +7,14 @@ var random = RandomNumberGenerator.new()
 func _ready():
 	random.randomize()
 
+	# var terrains = [ 0, 5 ]
+	# for i in range(-10, 10):
+	# 	for b in range(-10, 10):
+	# 		var new_value = random.randi_range(0, 1)
+	# 		var index:int = randi() % terrains.size()
+	# 		$tilemap.set_cell(i, b, terrains[index])
+	# 		pass
+	# 	pass
 
 	# Defining map size.
 	var map_size = 10
