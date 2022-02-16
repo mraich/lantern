@@ -1,4 +1,4 @@
-# script: node
+# script: tilemap
 
 extends Node2D
 
