@@ -27,7 +27,7 @@ func _ready():
 		pass
 
 	# Creating patches.
-	var patch_count = map_size
+	var patch_count = map_size * 5
 	for p in range(0, patch_count):
 		var start_x = random.randi_range(-map_size, map_size)
 		var start_y = random.randi_range(-map_size, map_size)
