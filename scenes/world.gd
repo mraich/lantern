@@ -8,6 +8,9 @@ enum PREPARE_STATE { NONE, CRITICAL_HIT, COUNTER_ATTACK, MAGIC_SPELL, CONSTITUTI
 var prepare_state = PREPARE_STATE.NONE
 var prepared_states = []
 
+# This is the player character.
+var player = null
+
 # This is the character whom which we are in combat with.
 var in_combat_character = null
 
@@ -37,12 +40,15 @@ func _ready():
 	# Rolling the selected dices button.
 	$control_layer/roll_selected/animation.play("spinning")
 
-	$terrain_layer/hero/sprite.set_texture(load("res://scenes/character/res/hero_002.png"))
-	$terrain_layer/hero.connect("on_fireball_summoned", self, "_on_fireball_summoned")
-	$terrain_layer/enemy.set_direction($terrain_layer/enemy.DIRECTION.LEFT)
+	# This is the player character.
+	player=$terrain_layer/hero
+
+	player.sprite_face = "res://scenes/character/res/hero_002.png"
+	player.connect("on_fireball_summoned", self, "_on_fireball_summoned")
 	$terrain_layer/enemy.set_attack_thrust()
 	$terrain_layer/enemy.set_on_near_stage_number(1)
 	$terrain_layer/enemy.connect("on_near_to_character", self, "_on_near_character")
+
 
 	# Initial state of the cursor.
 	_on_critical_hit_clicked()
@@ -90,7 +96,7 @@ func _input(event):
 	if event.is_action_pressed("ui_attack"):
 		if in_combat_character != null:
 			$control_layer/magic_spell/animation.play("magic_spell")
-			$terrain_layer/hero.spellcast()
+			player.spellcast()
 			$in_combat_character.hurt()
 			pass
 	if event.is_action_pressed("ui_left"):
@@ -118,19 +124,19 @@ func _input(event):
 	pass
 
 func _on_left_pressed():
-	$terrain_layer/hero.go_left()
+	player.go_left()
 	pass
 
 func _on_up_pressed():
-	$terrain_layer/hero.go_up()
+	player.go_up()
 	pass
 
 func _on_right_pressed():
-	$terrain_layer/hero.go_right()
+	player.go_right()
 	pass
 
 func _on_down_pressed():
-	$terrain_layer/hero.go_down()
+	player.go_down()
 	pass
 
 # On cursor state change.
@@ -177,18 +183,18 @@ func on_playable_value_changed(var dice):
 	match action:
 		1:
 			$control_layer/critical_hit.on_action()
-			$terrain_layer/hero.attack()
+			player.attack()
 			in_combat_character.hurt()
 		2:
 			$control_layer/counter_attack.on_action()
-			$terrain_layer/hero.hurt()
+			player.hurt()
 			in_combat_character.attack()
 		3, 4:
 			$control_layer/magic_spell.on_action()
-			$terrain_layer/hero.spellcast()
+			player.spellcast()
 		5:
 			$control_layer/constitution.on_action()
-			$terrain_layer/hero.attack()
+			player.attack()
 			in_combat_character.hurt()
 	# Checking the state of the gameboard.
 	if $dice_checker.check($control_layer/playable_container.get_values(), $control_layer/puzzle_container.get_values()):
