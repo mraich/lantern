@@ -39,16 +39,12 @@ func _input(event):
 			currentPointerIDX = incomingPointer;
 			showAtPos(Vector2(event.position.x, event.position.y));
 
-	if Input.is_action_pressed("left_click"):
-		print ("DOWN")
-	else:
-		print ("UP")
+	if not Input.is_action_pressed("left_click"):
+		active = false
 
 	if event.is_action_pressed("left_click"):
 		if event.is_pressed():
 			active = true
-		else:
-			active = false
 
 	if isActive():
 		process_input(event)
