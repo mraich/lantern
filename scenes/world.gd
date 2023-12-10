@@ -4,9 +4,9 @@ extends Node2D
 
 var fireball_class = preload("res://scenes/object/fireball/fireball.tscn")
 
-enum PREPARE_STATE { NONE, CRITICAL_HIT, COUNTER_ATTACK, MAGIC_SPELL, CONSTITUTION, EXPERIENCE, END }
-var prepare_state = PREPARE_STATE.NONE
-var prepared_states = []
+enum GAME_STATE { NONE, CRITICAL_HIT, COUNTER_ATTACK, MAGIC_SPELL, CONSTITUTION, EXPERIENCE, END }
+var game_state = GAME_STATE.NONE
+var game_states = []
 
 # This is the player character.
 var player = null
@@ -18,7 +18,7 @@ var in_combat_character = null
 onready var action = 0
 
 func _ready():
-	$control_layer/analog.visible = true
+	$control_layer/analog.visible = false
 
 	# Connecting the state change of the cursor.
 	$control_layer/cursor.connect("on_cursor_state_changed", self, "_on_cursor_state_changed")
@@ -47,10 +47,11 @@ func _ready():
 
 	player.sprite_face = "res://scenes/character/res/hero_002.png"
 	player.connect("on_fireball_summoned", self, "_on_fireball_summoned")
+
 	$terrain_layer/enemy.set_attack_thrust()
+	$terrain_layer/enemy.turn_left()
 	$terrain_layer/enemy.set_on_near_stage_number(1)
 	$terrain_layer/enemy.connect("on_near_to_character", self, "_on_near_character")
-
 
 	# Initial state of the cursor.
 	_on_critical_hit_clicked()
@@ -67,9 +68,9 @@ func _ready():
 	$control_layer/playable_container.roll_all()
 
 	# Setting the basic preparation sequence.
-	prepared_states = [ PREPARE_STATE.CRITICAL_HIT, PREPARE_STATE.COUNTER_ATTACK, PREPARE_STATE.MAGIC_SPELL, PREPARE_STATE.CONSTITUTION, PREPARE_STATE.EXPERIENCE ]
+	game_states = [ GAME_STATE.CRITICAL_HIT, GAME_STATE.COUNTER_ATTACK, GAME_STATE.MAGIC_SPELL, GAME_STATE.CONSTITUTION, GAME_STATE.EXPERIENCE ]
 	# Setting the first preparation object.
-	preparation_forward()
+	game_state_forward()
 	# Aiming for preparation with the cursor.
 	$control_layer/cursor.set_state(6)
 
@@ -151,7 +152,7 @@ func _on_cursor_state_changed(state):
 	$control_layer/playable_container.set_dice_action(state)
 
 	if action == 6:
-		prepare_state = PREPARE_STATE.CRITICAL_HIT
+		game_state = GAME_STATE.CRITICAL_HIT
 	pass
 
 # Rolling the selected dices.
@@ -207,33 +208,33 @@ func on_playable_value_changed(var dice):
 	pass
 
 func on_prepared(var dice):
-	match prepare_state:
-		PREPARE_STATE.CRITICAL_HIT:
+	match game_state:
+		GAME_STATE.CRITICAL_HIT:
 			$control_layer/critical_hit.set_helper(dice)
 			$control_layer/critical_hit/counter_bar.show_value(dice.get_value())
 			pass
-		PREPARE_STATE.COUNTER_ATTACK:
+		GAME_STATE.COUNTER_ATTACK:
 			$control_layer/counter_attack.set_helper(dice)
 			$control_layer/counter_attack/counter_bar.show_value(dice.get_value())
 			pass
-		PREPARE_STATE.MAGIC_SPELL:
+		GAME_STATE.MAGIC_SPELL:
 			$control_layer/magic_spell.set_helper(dice)
 			$control_layer/magic_spell/counter_bar.show_value(dice.get_value())
 			pass
-		PREPARE_STATE.CONSTITUTION:
+		GAME_STATE.CONSTITUTION:
 			$control_layer/constitution.set_helper(dice)
 			$control_layer/constitution/counter_bar.show_value(dice.get_value())
 			pass
-		PREPARE_STATE.EXPERIENCE:
+		GAME_STATE.EXPERIENCE:
 			$control_layer/tent.set_helper_dice(dice)
 			pass
 
-	if prepared_states.size() > 0:
-		preparation_forward()
+	if game_states.size() > 0:
+		game_state_forward()
 	else:
 		$control_layer/playable_container.roll_all()
 		$control_layer/playable_container.visible = false
-		prepare_state = PREPARE_STATE.NONE
+		game_state = GAME_STATE.NONE
 		$control_layer/cursor.set_state(0)
 	pass
 
@@ -247,7 +248,7 @@ func _on_critical_hit_clicked():
 		# Revoking the value.
 		$control_layer/critical_hit.revoke_value()
 		# Go back to the last state for the preparation.
-		preparation_back(PREPARE_STATE.CRITICAL_HIT)
+		game_state_back(GAME_STATE.CRITICAL_HIT)
 	pass
 
 func _on_counter_attack_clicked():
@@ -260,7 +261,7 @@ func _on_counter_attack_clicked():
 		# Revoking the value.
 		$control_layer/counter_attack.revoke_value()
 		# Go back to the last state for the preparation.
-		preparation_back(PREPARE_STATE.COUNTER_ATTACK)
+		game_state_back(GAME_STATE.COUNTER_ATTACK)
 	pass
 
 func _on_magic_spell_clicked():
@@ -272,7 +273,7 @@ func _on_magic_spell_clicked():
 		# Revoking the value.
 		$control_layer/magic_spell.revoke_value()
 		# Go back to the last state for the preparation.
-		preparation_back(PREPARE_STATE.MAGIC_SPELL)
+		game_state_back(GAME_STATE.MAGIC_SPELL)
 	pass
 
 func _on_constitution_clicked():
@@ -285,7 +286,7 @@ func _on_constitution_clicked():
 		# Revoking the value.
 		$control_layer/constitution.revoke_value()
 		# Go back to the last state for the preparation.
-		preparation_back(PREPARE_STATE.CONSTITUTION)
+		game_state_back(GAME_STATE.CONSTITUTION)
 	pass
 
 func _on_tent_clicked(var dice):
@@ -294,7 +295,7 @@ func _on_tent_clicked(var dice):
 		# Showing the dice again.
 		dice.visible = true
 		# Go back to the last state for the preparation.
-		preparation_back(PREPARE_STATE.EXPERIENCE)
+		game_state_back(GAME_STATE.EXPERIENCE)
 	pass
 
 func _on_fireball_summoned(other, position, fireball_direction):
@@ -314,16 +315,16 @@ func _on_fireball_summoned(other, position, fireball_direction):
 	add_child(fireball)
 	pass
 
-func preparation_forward():
-	prepare_state = prepared_states.pop_front()
+func game_state_forward():
+	game_state = game_states.pop_front()
 	pass
 
-func preparation_back(state):
-	if state != prepare_state and not prepared_states.has(state):
-		prepared_states.push_front(prepare_state)
-		prepared_states.push_front(state)
-		prepared_states.sort()
-		prepare_state = prepared_states.pop_front()
+func game_state_back(state):
+	if state != game_state and not game_states.has(state):
+		game_states.push_front(game_state)
+		game_states.push_front(state)
+		game_states.sort()
+		game_states = game_states.pop_front()
 	pass
 
 func _on_win_puzzle():

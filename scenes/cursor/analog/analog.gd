@@ -7,7 +7,7 @@ export var mapAnalogToDpad = true
 
 onready var ball = $ball
 onready var animation_player = $AnimationPlayer
-onready var halfSize = $bg.texture.get_size()/8
+onready var halfSize = $bg.texture.get_size()/2
 
 var active = false
 
