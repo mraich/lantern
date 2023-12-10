@@ -9,6 +9,8 @@ onready var ball = $ball
 onready var animation_player = $AnimationPlayer
 onready var halfSize = $bg.texture.get_size()/2
 
+var active = false
+
 var centerPoint = Vector2(0,0)
 var currentForce = Vector2(0,0)
 var ballPos = Vector2()
@@ -28,7 +30,6 @@ func get_force():
 	return currentForce
 	
 func _input(event):
-	
 	var incomingPointer = extractPointerIdx(event)
 	if incomingPointer == INACTIVE_IDX:
 		return
@@ -38,8 +39,18 @@ func _input(event):
 			currentPointerIDX = incomingPointer;
 			showAtPos(Vector2(event.position.x, event.position.y));
 
-	var theSamePointer = currentPointerIDX == incomingPointer
-	if isActive() and theSamePointer:
+	if Input.is_action_pressed("left_click"):
+		print ("DOWN")
+	else:
+		print ("UP")
+
+	if event.is_action_pressed("left_click"):
+		if event.is_pressed():
+			active = true
+		else:
+			active = false
+
+	if isActive():
 		process_input(event)
 
 func need2ChangeActivePointer(event): #touch down inside analog	
@@ -53,7 +64,7 @@ func need2ChangeActivePointer(event): #touch down inside analog
 		return false
 
 func isActive():
-	return currentPointerIDX != INACTIVE_IDX
+	return active
 
 func extractPointerIdx(event):
 	var touch = event is InputEventScreenTouch
@@ -67,7 +78,7 @@ func extractPointerIdx(event):
 		return 0
 	else:
 		return INACTIVE_IDX
-		
+
 func process_input(event):
 	calculateForce(event.position.x - rect_position.x, event.position.y - rect_position.y)
 	updateBallPos()
@@ -75,7 +86,6 @@ func process_input(event):
 	var isReleased = isReleased(event)
 	if isReleased:
 		reset()
-
 
 func reset():
 	currentPointerIDX = INACTIVE_IDX
@@ -87,12 +97,10 @@ func reset():
 		updateBallPos()
 
 func showAtPos(pos):
-	if AnalogTapToShow:
-		animation_player.play("alpha_in", 0.2)
-		rect_position = pos
+	rect_position = pos
 	
 func hide():
-	animation_player.play("alpha_out", 0.2) 
+	pass
 
 func updateBallPos():
 	ballPos.x = halfSize.x * currentForce.x #+ halfSize.x
