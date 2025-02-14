@@ -29,7 +29,6 @@ position = Vector2( 0, -1 )
 [node name="stage_manager" parent="." instance=ExtResource( 4 )]
 
 [node name="control_layer" type="CanvasLayer" parent="."]
-editor/display_folded = true
 
 [node name="playable_container" parent="control_layer" instance=ExtResource( 5 )]
 margin_left = 300.0
@@ -98,12 +97,12 @@ margin_top = 438.859
 margin_right = 113.778
 margin_bottom = 438.859
 
-[node name="node" parent="." instance=ExtResource( 15 )]
+[node name="terrain_layer" type="YSort" parent="."]
+
+[node name="node" parent="terrain_layer" instance=ExtResource( 15 )]
 position = Vector2( -400, -400 )
 scale = Vector2( 3.4, 3.4 )
 z_index = -10
-
-[node name="terrain_layer" type="YSort" parent="."]
 
 [node name="fire" parent="terrain_layer" instance=ExtResource( 16 )]
 position = Vector2( 300, 300 )
