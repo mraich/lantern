@@ -4,16 +4,16 @@
 [ext_resource path="res://scenes/camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/algorithm/dice_checker.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/algorithm/stage_manager.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/container/playable_container.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/container/puzzle_container.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/gui/icon/roll_selected.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/gui/icon/critical_hit.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/gui/icon/counter_attack.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/gui/icon/magic_spell.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/gui/icon/constitution.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/cursor/action_cursor.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/container/puzzle_container.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/cursor/action_cursor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/cursor/analog/analog.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/container/playable_container.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/gui/icon/critical_hit.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/gui/icon/counter_attack.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/gui/icon/magic_spell.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/gui/icon/constitution.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/gui/icon/tent.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/cursor/analog/analog.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/gui/icon/roll_selected.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/node.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/object/fire/fire.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/character/character.tscn" type="PackedScene" id=17]
@@ -29,73 +29,75 @@ position = Vector2( 0, -1 )
 [node name="stage_manager" parent="." instance=ExtResource( 4 )]
 
 [node name="control_layer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
-[node name="playable_container" parent="control_layer" instance=ExtResource( 5 )]
-margin_left = 300.0
-margin_top = 450.0
-margin_right = 300.0
-margin_bottom = 450.0
-rect_scale = Vector2( 1.2, 1.2 )
-
-[node name="puzzle_container" parent="control_layer" instance=ExtResource( 6 )]
+[node name="puzzle_container" parent="control_layer" instance=ExtResource( 5 )]
 margin_left = 300.0
 margin_top = 550.0
 margin_right = 300.0
 margin_bottom = 550.0
 rect_scale = Vector2( 1.2, 1.2 )
 
-[node name="roll_selected" parent="control_layer" instance=ExtResource( 7 )]
-visible = false
-margin_left = 500.0
-margin_top = 420.0
-margin_right = 500.0
-margin_bottom = 420.0
-rect_scale = Vector2( 3, 3 )
+[node name="cursor" parent="control_layer" instance=ExtResource( 6 )]
+position = Vector2( 300, 400 )
+z_index = 1
 
-[node name="critical_hit" parent="control_layer" instance=ExtResource( 8 )]
+[node name="analog" parent="control_layer" instance=ExtResource( 7 )]
+visible = false
+margin_left = 113.778
+margin_top = 438.859
+margin_right = 113.778
+margin_bottom = 438.859
+
+[node name="input" type="Node2D" parent="control_layer"]
+
+[node name="playable_container" parent="control_layer/input" instance=ExtResource( 8 )]
+margin_left = 300.0
+margin_top = 450.0
+margin_right = 300.0
+margin_bottom = 450.0
+rect_scale = Vector2( 1.2, 1.2 )
+
+[node name="critical_hit" parent="control_layer/input" instance=ExtResource( 9 )]
 margin_left = 100.0
 margin_top = 720.0
 margin_right = 100.0
 margin_bottom = 720.0
 rect_scale = Vector2( 3, 3 )
 
-[node name="counter_attack" parent="control_layer" instance=ExtResource( 9 )]
+[node name="counter_attack" parent="control_layer/input" instance=ExtResource( 10 )]
 margin_left = 230.0
 margin_top = 720.0
 margin_right = 230.0
 margin_bottom = 720.0
 rect_scale = Vector2( 3, 3 )
 
-[node name="magic_spell" parent="control_layer" instance=ExtResource( 10 )]
+[node name="magic_spell" parent="control_layer/input" instance=ExtResource( 11 )]
 margin_left = 360.0
 margin_top = 720.0
 margin_right = 360.0
 margin_bottom = 720.0
 rect_scale = Vector2( 3, 3 )
 
-[node name="constitution" parent="control_layer" instance=ExtResource( 11 )]
+[node name="constitution" parent="control_layer/input" instance=ExtResource( 12 )]
 margin_left = 480.0
 margin_top = 720.0
 margin_right = 480.0
 margin_bottom = 720.0
 rect_scale = Vector2( 3, 3 )
 
-[node name="cursor" parent="control_layer" instance=ExtResource( 12 )]
-position = Vector2( 300, 400 )
-z_index = 1
-
-[node name="tent" parent="control_layer" instance=ExtResource( 13 )]
+[node name="tent" parent="control_layer/input" instance=ExtResource( 13 )]
 margin_left = 540.0
 margin_top = 60.0
 margin_right = 540.0
 margin_bottom = 60.0
 
-[node name="analog" parent="control_layer" instance=ExtResource( 14 )]
-visible = false
-margin_left = 113.778
-margin_top = 438.859
-margin_right = 113.778
-margin_bottom = 438.859
+[node name="roll_selected" parent="control_layer/input" instance=ExtResource( 14 )]
+margin_left = 500.0
+margin_top = 420.0
+margin_right = 500.0
+margin_bottom = 420.0
+rect_scale = Vector2( 3, 3 )
 
 [node name="terrain_layer" type="YSort" parent="."]
 

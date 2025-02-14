@@ -24,15 +24,15 @@ func _ready():
 	$control_layer/cursor.connect("on_cursor_state_changed", self, "_on_cursor_state_changed")
 
 	# Action icons.
-	$control_layer/critical_hit/counter_bar.set_bar_count(7)
-	$control_layer/counter_attack/counter_bar.set_bar_count(7)
-	$control_layer/magic_spell/counter_bar.set_bar_count(7)
-	$control_layer/constitution/counter_bar.set_bar_count(7)
+	$control_layer/input/critical_hit/counter_bar.set_bar_count(7)
+	$control_layer/input/counter_attack/counter_bar.set_bar_count(7)
+	$control_layer/input/magic_spell/counter_bar.set_bar_count(7)
+	$control_layer/input/constitution/counter_bar.set_bar_count(7)
 
 	# Getting notified about the changes made on the playable field.
-	$control_layer/playable_container.connect("on_value_changed", self, "on_playable_value_changed")
+	$control_layer/input/playable_container.connect("on_value_changed", self, "on_playable_value_changed")
 	# Getting notified about the prepared actions.
-	$control_layer/playable_container.connect("on_prepared", self, "on_prepared")
+	$control_layer/input/playable_container.connect("on_prepared", self, "on_prepared")
 
 	$control_layer/puzzle_container.visible = false
 
@@ -40,7 +40,7 @@ func _ready():
 	$stage_manager.connect("on_stage_load", self, "_on_stage_load")
 
 	# Rolling the selected dices button.
-	$control_layer/roll_selected/animation.play("spinning")
+	$control_layer/input/roll_selected/animation.play("spinning")
 
 	# This is the player character.
 	player=$terrain_layer/hero
@@ -50,22 +50,22 @@ func _ready():
 
 	$terrain_layer/enemy.set_attack_thrust()
 	$terrain_layer/enemy.turn_left()
-	$terrain_layer/enemy.set_on_near_stage_number(1)
+	$terrain_layer/enemy.set_on_near_stage_number(2)
 	$terrain_layer/enemy.connect("on_near_to_character", self, "_on_near_character")
 
 	# Initial state of the cursor.
 	_on_critical_hit_clicked()
 
 	# Initial values for counters.
-	$control_layer/critical_hit/counter_bar.show_value(0)
-	$control_layer/counter_attack/counter_bar.show_value(0)
-	$control_layer/magic_spell/counter_bar.show_value(0)
-	$control_layer/constitution/counter_bar.show_value(0)
+	$control_layer/input/critical_hit/counter_bar.show_value(0)
+	$control_layer/input/counter_attack/counter_bar.show_value(0)
+	$control_layer/input/magic_spell/counter_bar.show_value(0)
+	$control_layer/input/constitution/counter_bar.show_value(0)
 
 	# Rolling every dice for stats.
 	# There are 6 stats we have to arrange.
-	$control_layer/playable_container.set_dice_count(6)
-	$control_layer/playable_container.roll_all()
+	$control_layer/input/playable_container.set_dice_count(6)
+	$control_layer/input/playable_container.roll_all()
 
 	# Setting the basic preparation sequence.
 	game_states = [ GAME_STATE.CRITICAL_HIT, GAME_STATE.COUNTER_ATTACK, GAME_STATE.MAGIC_SPELL, GAME_STATE.CONSTITUTION, GAME_STATE.EXPERIENCE ]
@@ -102,7 +102,7 @@ func _input(event):
 				_on_critical_hit_clicked()
 	if event.is_action_pressed("ui_attack"):
 		if in_combat_character != null:
-			$control_layer/magic_spell/animation.play("magic_spell")
+			$control_layer/input/magic_spell/animation.play("magic_spell")
 			player.spellcast()
 			$in_combat_character.hurt()
 			pass
@@ -127,7 +127,7 @@ func _input(event):
 	if event.is_action_pressed("ui_roll_selected_selected"):
 		_on_roll_selected_clicked()
 	if event.is_action_pressed("ui_tent_selected"):
-		$control_layer/tent.on_clicked()
+		$control_layer/input/tent.on_clicked()
 	pass
 
 func _on_left_pressed():
@@ -149,7 +149,7 @@ func _on_down_pressed():
 # On cursor state change.
 func _on_cursor_state_changed(state):
 	action = state
-	$control_layer/playable_container.set_dice_action(state)
+	$control_layer/input/playable_container.set_dice_action(state)
 
 	if action == 6:
 		game_state = GAME_STATE.CRITICAL_HIT
@@ -157,7 +157,7 @@ func _on_cursor_state_changed(state):
 
 # Rolling the selected dices.
 func _on_roll_selected_clicked():
-	$control_layer/playable_container.roll_multiple()
+	$control_layer/input/playable_container.roll_multiple()
 	pass
 
 # On loading the next stage.
@@ -167,8 +167,8 @@ func _on_stage_load(stage, playing_dices_count, puzzle):
 	$control_layer/puzzle_container.set_arrangement(puzzle)
 
 	# The playable container should show this count of dices.
-	$control_layer/playable_container.visible = true
-	$control_layer/playable_container.set_dice_count(playing_dices_count)
+	$control_layer/input/playable_container.visible = true
+	$control_layer/input/playable_container.set_dice_count(playing_dices_count)
 	pass
 
 # The hero got near to this enemy.
@@ -186,22 +186,22 @@ func on_playable_value_changed(var dice):
 	# Using the action.
 	match action:
 		1:
-			$control_layer/critical_hit.on_action()
+			$control_layer/input/critical_hit.on_action()
 			player.attack()
 			in_combat_character.hurt()
 		2:
-			$control_layer/counter_attack.on_action()
+			$control_layer/input/counter_attack.on_action()
 			player.hurt()
 			in_combat_character.attack()
 		3, 4:
-			$control_layer/magic_spell.on_action()
+			$control_layer/input/magic_spell.on_action()
 			player.spellcast()
 		5:
-			$control_layer/constitution.on_action()
+			$control_layer/input/constitution.on_action()
 			player.attack()
 			in_combat_character.hurt()
 	# Checking the state of the gameboard.
-	if $dice_checker.check($control_layer/playable_container.get_values(), $control_layer/puzzle_container.get_values()):
+	if $dice_checker.check($control_layer/input/playable_container.get_values(), $control_layer/puzzle_container.get_values()):
 		# We won the puzzle.
 		_on_win_puzzle()
 		pass
@@ -210,78 +210,78 @@ func on_playable_value_changed(var dice):
 func on_prepared(var dice):
 	match game_state:
 		GAME_STATE.CRITICAL_HIT:
-			$control_layer/critical_hit.set_helper(dice)
-			$control_layer/critical_hit/counter_bar.show_value(dice.get_value())
+			$control_layer/input/critical_hit.set_helper(dice)
+			$control_layer/input/critical_hit/counter_bar.show_value(dice.get_value())
 			pass
 		GAME_STATE.COUNTER_ATTACK:
-			$control_layer/counter_attack.set_helper(dice)
-			$control_layer/counter_attack/counter_bar.show_value(dice.get_value())
+			$control_layer/input/counter_attack.set_helper(dice)
+			$control_layer/input/counter_attack/counter_bar.show_value(dice.get_value())
 			pass
 		GAME_STATE.MAGIC_SPELL:
-			$control_layer/magic_spell.set_helper(dice)
-			$control_layer/magic_spell/counter_bar.show_value(dice.get_value())
+			$control_layer/input/magic_spell.set_helper(dice)
+			$control_layer/input/magic_spell/counter_bar.show_value(dice.get_value())
 			pass
 		GAME_STATE.CONSTITUTION:
-			$control_layer/constitution.set_helper(dice)
-			$control_layer/constitution/counter_bar.show_value(dice.get_value())
+			$control_layer/input/constitution.set_helper(dice)
+			$control_layer/input/constitution/counter_bar.show_value(dice.get_value())
 			pass
 		GAME_STATE.EXPERIENCE:
-			$control_layer/tent.set_helper_dice(dice)
+			$control_layer/input/tent.set_helper_dice(dice)
 			pass
 
 	if game_states.size() > 0:
 		game_state_forward()
 	else:
-		$control_layer/playable_container.roll_all()
-		$control_layer/playable_container.visible = false
+		$control_layer/input/playable_container.roll_all()
+		$control_layer/input/playable_container.visible = false
 		game_state = GAME_STATE.NONE
 		$control_layer/cursor.set_state(0)
 	pass
 
 func _on_critical_hit_clicked():
 	if not action == 6:
-		$control_layer/critical_hit.on_clicked()
-		$control_layer/roll_selected.set_visible(false)
+		$control_layer/input/critical_hit.on_clicked()
+		$control_layer/input/roll_selected.set_visible(false)
 		$control_layer/cursor.set_state(1)
-		$control_layer/magic_spell.set_state(0)
+		$control_layer/input/magic_spell.set_state(0)
 	else:
 		# Revoking the value.
-		$control_layer/critical_hit.revoke_value()
+		$control_layer/input/critical_hit.revoke_value()
 		# Go back to the last state for the preparation.
 		game_state_back(GAME_STATE.CRITICAL_HIT)
 	pass
 
 func _on_counter_attack_clicked():
 	if not action == 6:
-		$control_layer/counter_attack.on_clicked()
-		$control_layer/roll_selected.set_visible(false)
+		$control_layer/input/counter_attack.on_clicked()
+		$control_layer/input/roll_selected.set_visible(false)
 		$control_layer/cursor.set_state(2)
-		$control_layer/magic_spell.set_state(0)
+		$control_layer/input/magic_spell.set_state(0)
 	else:
 		# Revoking the value.
-		$control_layer/counter_attack.revoke_value()
+		$control_layer/input/counter_attack.revoke_value()
 		# Go back to the last state for the preparation.
 		game_state_back(GAME_STATE.COUNTER_ATTACK)
 	pass
 
 func _on_magic_spell_clicked():
 	if not action == 6:
-		$control_layer/magic_spell.on_clicked()
-		$control_layer/roll_selected.set_visible(false)
+		$control_layer/input/magic_spell.on_clicked()
+		$control_layer/input/roll_selected.set_visible(false)
 		$control_layer/cursor.set_state(3)
 	else:
 		# Revoking the value.
-		$control_layer/magic_spell.revoke_value()
+		$control_layer/input/magic_spell.revoke_value()
 		# Go back to the last state for the preparation.
 		game_state_back(GAME_STATE.MAGIC_SPELL)
 	pass
 
 func _on_constitution_clicked():
 	if not action == 6:
-		$control_layer/constitution.on_clicked()
-		$control_layer/roll_selected.set_visible(true)
+		$control_layer/input/constitution.on_clicked()
+		$control_layer/input/roll_selected.set_visible(true)
 		$control_layer/cursor.set_state(5)
-		$control_layer/magic_spell.set_state(0)
+		$control_layer/input/magic_spell.set_state(0)
 	else:
 		# Revoking the value.
 		$control_layer/constitution.revoke_value()
