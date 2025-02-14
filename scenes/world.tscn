@@ -99,7 +99,7 @@ margin_bottom = 438.859
 
 [node name="terrain_layer" type="YSort" parent="."]
 
-[node name="node" parent="terrain_layer" instance=ExtResource( 15 )]
+[node name="terrain" parent="terrain_layer" instance=ExtResource( 15 )]
 position = Vector2( -400, -400 )
 scale = Vector2( 3.4, 3.4 )
 z_index = -10
