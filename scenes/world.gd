@@ -62,11 +62,6 @@ func _ready():
 	$control_layer/input/magic_spell/counter_bar.show_value(0)
 	$control_layer/input/constitution/counter_bar.show_value(0)
 
-	# Rolling every dice for stats.
-	# There are 6 stats we have to arrange.
-	$control_layer/input/playable_container.set_dice_count(6)
-	$control_layer/input/playable_container.roll_all()
-
 	# Setting the basic preparation sequence.
 	game_states = [ GAME_STATE.CRITICAL_HIT, GAME_STATE.COUNTER_ATTACK, GAME_STATE.MAGIC_SPELL, GAME_STATE.CONSTITUTION, GAME_STATE.EXPERIENCE ]
 	# Setting the first preparation object.

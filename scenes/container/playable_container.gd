@@ -9,6 +9,11 @@ var _on_data_change_signal_enabled = true
 
 func _ready():
 	init(playable_class)
+
+	# Rolling every dice for stats.
+	# There are 6 stats we have to arrange.
+	set_dice_count(6)
+	roll_all()
 	pass
 
 func set_dice_action(action):
