@@ -112,9 +112,11 @@ position = Vector2( 300, 300 )
 [node name="hero" parent="terrain_layer" instance=ExtResource( 17 )]
 position = Vector2( 149, 301 )
 scale = Vector2( 3.4, 3.4 )
+direction = "right"
 
 [node name="enemy" parent="terrain_layer" instance=ExtResource( 17 )]
 position = Vector2( 450, 300 )
 scale = Vector2( 3.4, 3.4 )
 z_as_relative = false
 sprite_face = "res://scenes/character/res/skeleton_with_dagger.png"
+direction = "left"

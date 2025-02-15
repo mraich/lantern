@@ -4,7 +4,7 @@ extends Node2D
 
 enum STATE { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESURRECT, TURN_LEFT_UP, TURN_LEFT_RIGHT, TURN_LEFT_DOWN, TURN_UP_RIGHT, TURN_UP_DOWN, TURN_UP_LEFT, TURN_RIGHT_DOWN, TURN_RIGHT_LEFT, TURN_RIGHT_UP, TURN_DOWN_LEFT, TURN_DOWN_UP, TURN_DOWN_RIGHT, SPINNING_LEFT_RIGHT, SPINNING_UP_RIGHT, SPINNING_RIGHT_RIGHT, SPINNING_DOWN_RIGHT }
 enum ANIMATION { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESURRECT, TURN_LEFT_UP, TURN_LEFT_RIGHT, TURN_LEFT_DOWN, TURN_UP_RIGHT, TURN_UP_DOWN, TURN_UP_LEFT, TURN_RIGHT_DOWN, TURN_RIGHT_LEFT, TURN_RIGHT_UP, TURN_DOWN_LEFT, TURN_DOWN_UP, TURN_DOWN_RIGHT, SPINNING_LEFT_RIGHT, SPINNING_UP_RIGHT, SPINNING_RIGHT_RIGHT, SPINNING_DOWN_RIGHT }
-enum DIRECTION { UP, LEFT, DOWN, RIGHT }
+
 enum ATTACK { THRUST, SLASH, SHOOT }
 
 var state = STATE.IDLE
@@ -28,7 +28,8 @@ signal on_fireball_summoned
 
 export(String) var sprite_face = "res://scenes/character/res/hero_001.png" setget _update_sprite_face
 
-export(int) var direction = DIRECTION.RIGHT setget set_direction
+export(String, "up", "left","down", "right") var direction setget set_direction
+
 
 func _ready():
 	# Listening to know if an amination is finished.
@@ -44,8 +45,6 @@ func _ready():
 	# Nearing area.
 	$near_area.connect("area_entered", self, "_on_body_near")
 
-	# For setting default values and start animating the character.
-	set_direction(DIRECTION.RIGHT)
 	set_state(STATE.IDLE)
 	set_attack(ATTACK.SLASH)
 	pass
@@ -120,16 +119,16 @@ func _process(delta):
 	match state:
 		STATE.WALK:
 			match direction:
-				DIRECTION.UP:
+				"up":
 					offset.y = -1
 					speed_scale = scale.y
-				DIRECTION.LEFT:
+				"left":
 					offset.x = -1
 					speed_scale = scale.x
-				DIRECTION.DOWN:
+				"down":
 					offset.y = 1
 					speed_scale = scale.y
-				DIRECTION.RIGHT:
+				"right":
 					offset.x = 1
 					speed_scale = scale.x
 
@@ -182,19 +181,19 @@ func _on_anim_finished(anim_name):
 		STATE.TURN_LEFT_UP, STATE.TURN_LEFT_RIGHT, STATE.TURN_LEFT_DOWN, STATE.TURN_UP_RIGHT, STATE.TURN_UP_DOWN, STATE.TURN_UP_LEFT, STATE.TURN_RIGHT_DOWN, STATE.TURN_RIGHT_LEFT, STATE.TURN_RIGHT_UP, STATE.TURN_DOWN_LEFT, STATE.TURN_DOWN_UP, STATE.TURN_DOWN_RIGHT:
 			match state:
 				STATE.TURN_DOWN_LEFT, STATE.TURN_UP_LEFT, STATE.TURN_RIGHT_LEFT:
-					set_direction(DIRECTION.LEFT)
+					set_direction("left")
 				STATE.TURN_LEFT_UP, STATE.TURN_RIGHT_UP, STATE.TURN_DOWN_UP:
-					set_direction(DIRECTION.UP)
+					set_direction("up")
 				STATE.TURN_UP_RIGHT, STATE.TURN_DOWN_RIGHT, STATE.TURN_LEFT_RIGHT:
-					set_direction(DIRECTION.RIGHT)
+					set_direction("right")
 				STATE.TURN_RIGHT_DOWN, STATE.TURN_LEFT_DOWN, STATE.TURN_UP_DOWN:
-					set_direction(DIRECTION.DOWN)
+					set_direction("down")
 			set_state(STATE.IDLE)
 		STATE.SPINNING_LEFT_RIGHT, STATE.SPINNING_UP_RIGHT, STATE.SPINNING_RIGHT_RIGHT, STATE.SPINNING_DOWN_RIGHT:
-			set_direction(DIRECTION.DOWN)
+			set_direction("down")
 			set_state(STATE.DIE)
 		STATE.DIE:
-			set_direction(DIRECTION.DOWN)
+			set_direction("down")
 			set_state(STATE.DEAD)
 
 	_update_animation_by_direction()
@@ -266,11 +265,10 @@ func _update_animation_by_direction():
 			_set_animation(ANIMATION.SPINNING_DOWN_RIGHT)
 
 	var animation_string = ANIMATION.keys()[animation].to_lower()
-	var dir_string = DIRECTION.keys()[direction].to_lower()
 	match animation:
 		# These animations are affected by the direction.
 		ANIMATION.IDLE, ANIMATION.SPELLCAST, ANIMATION.THRUST, ANIMATION.WALK, ANIMATION.SLASH, ANIMATION.SHOOT:
-			$animation.play(animation_string + "_" + dir_string)
+			$animation.play(animation_string + "_" + direction)
 		# These animations are not affected by the direction.
 		ANIMATION.HURT, ANIMATION.DIE, ANIMATION.DEAD, ANIMATION.RESURRECT:
 			$animation.play(animation_string)
@@ -299,11 +297,11 @@ func turn_left():
 		return
 
 	match direction:
-		DIRECTION.UP:
+		"up":
 			set_state(STATE.TURN_UP_LEFT)
-		DIRECTION.RIGHT:
+		"right":
 			set_state(STATE.TURN_RIGHT_LEFT)
-		DIRECTION.DOWN:
+		"down":
 			set_state(STATE.TURN_DOWN_LEFT)
 	pass
 
@@ -312,11 +310,11 @@ func turn_up():
 		return
 
 	match direction:
-		DIRECTION.RIGHT:
+		"right":
 			set_state(STATE.TURN_RIGHT_UP)
-		DIRECTION.DOWN:
+		"down":
 			set_state(STATE.TURN_DOWN_UP)
-		DIRECTION.LEFT:
+		"left":
 			set_state(STATE.TURN_LEFT_UP)
 	pass
 
@@ -325,11 +323,11 @@ func turn_right():
 		return
 
 	match direction:
-		DIRECTION.LEFT:
+		"left":
 			set_state(STATE.TURN_LEFT_RIGHT)
-		DIRECTION.UP:
+		"up":
 			set_state(STATE.TURN_UP_RIGHT)
-		DIRECTION.DOWN:
+		"down":
 			set_state(STATE.TURN_DOWN_RIGHT)
 	pass
 
@@ -338,11 +336,11 @@ func turn_down():
 		return
 
 	match direction:
-		DIRECTION.LEFT:
+		"left":
 			set_state(STATE.TURN_LEFT_DOWN)
-		DIRECTION.UP:
+		"up":
 			set_state(STATE.TURN_UP_DOWN)
-		DIRECTION.RIGHT:
+		"right":
 			set_state(STATE.TURN_RIGHT_DOWN)
 	pass
 
@@ -350,7 +348,7 @@ func go_left():
 	if !_can_interrupt():
 		return
 
-	if direction == DIRECTION.LEFT:
+	if direction == "left":
 		set_state(STATE.WALK)
 	else:
 		turn_left()
@@ -360,7 +358,7 @@ func go_up():
 	if !_can_interrupt():
 		return
 
-	if direction == DIRECTION.UP:
+	if direction == "up":
 		set_state(STATE.WALK)
 	else:
 		turn_up()
@@ -370,7 +368,7 @@ func go_right():
 	if !_can_interrupt():
 		return
 
-	if direction == DIRECTION.RIGHT:
+	if direction == "right":
 		set_state(STATE.WALK)
 	else:
 		turn_right()
@@ -380,7 +378,7 @@ func go_down():
 	if !_can_interrupt():
 		return
 
-	if direction == DIRECTION.DOWN:
+	if direction == "down":
 		set_state(STATE.WALK)
 	else:
 		turn_down()
@@ -433,12 +431,12 @@ func stop():
 
 func die():
 	match direction:
-		DIRECTION.LEFT:
+		"left":
 			set_state(STATE.SPINNING_LEFT_RIGHT)
-		DIRECTION.UP:
+		"up":
 			set_state(STATE.SPINNING_UP_RIGHT)
-		DIRECTION.RIGHT:
+		"right":
 			set_state(STATE.SPINNING_RIGHT_RIGHT)
-		DIRECTION.DOWN:
+		"down":
 			set_state(STATE.SPINNING_DOWN_RIGHT)
 	pass

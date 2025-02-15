@@ -43,7 +43,6 @@ func _ready():
 	player.connect("on_fireball_summoned", self, "_on_fireball_summoned")
 
 	$terrain_layer/enemy.set_attack_thrust()
-	$terrain_layer/enemy.turn_left()
 	$terrain_layer/enemy.set_on_near_stage_number(2)
 	$terrain_layer/enemy.connect("on_near_to_character", self, "_on_near_character")
 
