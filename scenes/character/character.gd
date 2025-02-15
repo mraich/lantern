@@ -23,10 +23,13 @@ signal on_near_to_character
 # A fireball summoned signal.
 signal on_fireball_summoned
 
+# The look of the character.
 export(String) var sprite_face = "res://scenes/character/res/hero_001.png" setget _update_sprite_face
 
+# The direction of the character facing.
 export(String, "up", "left", "down", "right") var direction setget set_direction
 
+# The type of the attack the character does.
 export(String, "thrust", "slash", "shoot") var attack setget set_attack
 
 func _ready():
