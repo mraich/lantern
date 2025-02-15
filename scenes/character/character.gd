@@ -5,12 +5,9 @@ extends Node2D
 enum STATE { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESURRECT, TURN_LEFT_UP, TURN_LEFT_RIGHT, TURN_LEFT_DOWN, TURN_UP_RIGHT, TURN_UP_DOWN, TURN_UP_LEFT, TURN_RIGHT_DOWN, TURN_RIGHT_LEFT, TURN_RIGHT_UP, TURN_DOWN_LEFT, TURN_DOWN_UP, TURN_DOWN_RIGHT, SPINNING_LEFT_RIGHT, SPINNING_UP_RIGHT, SPINNING_RIGHT_RIGHT, SPINNING_DOWN_RIGHT }
 enum ANIMATION { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESURRECT, TURN_LEFT_UP, TURN_LEFT_RIGHT, TURN_LEFT_DOWN, TURN_UP_RIGHT, TURN_UP_DOWN, TURN_UP_LEFT, TURN_RIGHT_DOWN, TURN_RIGHT_LEFT, TURN_RIGHT_UP, TURN_DOWN_LEFT, TURN_DOWN_UP, TURN_DOWN_RIGHT, SPINNING_LEFT_RIGHT, SPINNING_UP_RIGHT, SPINNING_RIGHT_RIGHT, SPINNING_DOWN_RIGHT }
 
-enum ATTACK { THRUST, SLASH, SHOOT }
-
 var state = STATE.IDLE
 var next_state = null
 var animation = ANIMATION.WALK
-var attack = ATTACK.SLASH
 
 var _speed_percent = 100
 var speed = Vector2(48 / 3.4, 32 / 3.4) * 3
@@ -30,6 +27,7 @@ export(String) var sprite_face = "res://scenes/character/res/hero_001.png" setge
 
 export(String, "up", "left", "down", "right") var direction setget set_direction
 
+export(String, "thrust", "slash", "shoot") var attack setget set_attack
 
 func _ready():
 	# Listening to know if an amination is finished.
@@ -46,7 +44,6 @@ func _ready():
 	$near_area.connect("area_entered", self, "_on_body_near")
 
 	set_state(STATE.IDLE)
-	set_attack(ATTACK.SLASH)
 	pass
 
 func set_speed_percent(speed_percent):
@@ -396,27 +393,15 @@ func set_attack(new_attack):
 	attack = new_attack
 	pass
 
-func set_attack_slash():
-	set_attack(ATTACK.SLASH)
-	pass
-
-func set_attack_shoot():
-	set_attack(ATTACK.SHOOT)
-	pass
-
-func set_attack_thrust():
-	set_attack(ATTACK.THRUST)
-	pass
-
 func attack():
 	match attack:
-		ATTACK.SLASH:
+		"slash":
 			set_state(STATE.SLASH)
 			pass
-		ATTACK.SHOOT:
+		"shoot":
 			set_state(STATE.SHOOT)
 			pass
-		ATTACK.THRUST:
+		"thrust":
 			set_state(STATE.THRUST)
 			pass
 	pass
