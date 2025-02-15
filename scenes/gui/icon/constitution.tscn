@@ -181,6 +181,7 @@ margin_left = 15.0
 margin_top = 15.0
 margin_right = 15.0
 margin_bottom = 15.0
+bar_count = 7
 
 [node name="sprites" type="Node2D" parent="."]
 

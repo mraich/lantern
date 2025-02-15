@@ -13,6 +13,10 @@ enum STATE { PICK_VALUE, VALUE_PICKED, NORMAL, EMPTY }
 
 var state = STATE.PICK_VALUE
 
+export(int) var bar_count = 0 setget set_bar_count
+
+export(int) var value = 0 setget show_value
+
 func _ready():
 	pass
 

@@ -23,12 +23,6 @@ func _ready():
 	# Connecting the state change of the cursor.
 	$control_layer/cursor.connect("on_cursor_state_changed", self, "_on_cursor_state_changed")
 
-	# Action icons.
-	$control_layer/input/critical_hit/counter_bar.set_bar_count(7)
-	$control_layer/input/counter_attack/counter_bar.set_bar_count(7)
-	$control_layer/input/magic_spell/counter_bar.set_bar_count(7)
-	$control_layer/input/constitution/counter_bar.set_bar_count(7)
-
 	# Getting notified about the changes made on the playable field.
 	$control_layer/input/playable_container.connect("on_value_changed", self, "on_playable_value_changed")
 	# Getting notified about the prepared actions.
@@ -55,12 +49,6 @@ func _ready():
 
 	# Initial state of the cursor.
 	_on_critical_hit_clicked()
-
-	# Initial values for counters.
-	$control_layer/input/critical_hit/counter_bar.show_value(0)
-	$control_layer/input/counter_attack/counter_bar.show_value(0)
-	$control_layer/input/magic_spell/counter_bar.show_value(0)
-	$control_layer/input/constitution/counter_bar.show_value(0)
 
 	# Setting the basic preparation sequence.
 	game_states = [ GAME_STATE.CRITICAL_HIT, GAME_STATE.COUNTER_ATTACK, GAME_STATE.MAGIC_SPELL, GAME_STATE.CONSTITUTION, GAME_STATE.EXPERIENCE ]
