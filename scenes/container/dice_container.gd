@@ -5,6 +5,8 @@ extends Control
 var dices = []
 var _dice_class
 
+export(int) var dice_count = 0 setget set_dice_count
+
 # This is the arrangement needs to be loaded later.
 # It won't change the arrangement shown until the load_arrangement function called.
 var arrangement = []
