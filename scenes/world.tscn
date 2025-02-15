@@ -122,3 +122,4 @@ z_as_relative = false
 sprite_face = "res://scenes/character/res/skeleton_with_dagger.png"
 direction = "left"
 attack = "thrust"
+on_near_stage_number = 1

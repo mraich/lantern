@@ -15,11 +15,6 @@ var speed = Vector2(48 / 3.4, 32 / 3.4) * 3
 var stuck = false
 var old_positions = []
 
-# This is the stage number to send when the hero arrives near this character.
-var _on_near_stage_number = null
-# Signal to send when the hero is near.
-signal on_near_to_character
-
 # A fireball summoned signal.
 signal on_fireball_summoned
 
@@ -31,6 +26,12 @@ export(String, "up", "left", "down", "right") var direction setget set_direction
 
 # The type of the attack the character does.
 export(String, "thrust", "slash", "shoot") var attack setget set_attack
+
+# This is the stage number to send when the hero arrives near this character.
+export(int) var on_near_stage_number = 0
+
+# Signal to send when the hero is near.
+signal on_near_to_character
 
 func _ready():
 	# Listening to know if an amination is finished.
@@ -84,8 +85,8 @@ func _on_body_near(other):
 		if $area != other:
 			# If we know who we are then we tell them.
 			# This will initiate the stage loading function in the world node.
-			if _on_near_stage_number != null:
-				emit_signal("on_near_to_character", self, _on_near_stage_number)
+			if (on_near_stage_number != 0):
+				emit_signal("on_near_to_character", self, on_near_stage_number)
 				pass
 			pass
 	pass
@@ -142,11 +143,6 @@ func _process(delta):
 			position = old_positions.pop_front()
 		stuck = false
 	pass
-
-func set_on_near_stage_number(on_near_stage_number):
-	self._on_near_stage_number = on_near_stage_number
-	pass
-
 
 func set_state(new_state):
 	# Dead characters will not do anything.

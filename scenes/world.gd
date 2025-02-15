@@ -42,7 +42,6 @@ func _ready():
 	player.sprite_face = "res://scenes/character/res/hero_002.png"
 	player.connect("on_fireball_summoned", self, "_on_fireball_summoned")
 
-	$terrain_layer/enemy.set_on_near_stage_number(2)
 	$terrain_layer/enemy.connect("on_near_to_character", self, "_on_near_character")
 
 	# Initial state of the cursor.
