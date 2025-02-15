@@ -28,7 +28,7 @@ signal on_fireball_summoned
 
 export(String) var sprite_face = "res://scenes/character/res/hero_001.png" setget _update_sprite_face
 
-export(String, "up", "left","down", "right") var direction setget set_direction
+export(String, "up", "left", "down", "right") var direction setget set_direction
 
 
 func _ready():
