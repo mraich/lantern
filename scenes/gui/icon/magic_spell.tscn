@@ -8,6 +8,8 @@ script/source = "# script: magic_spell
 
 extends Control
 
+export(int) var bar_count = 0 setget set_bar_count
+
 var _state = -1
 
 var _helper = null
@@ -61,7 +63,10 @@ func revoke_value():
 		_helper = null
 		pass
 	pass
-"
+
+func set_bar_count(bar_count):
+	$counter_bar.bar_count = bar_count
+	pass"
 
 [sub_resource type="Animation" id=2]
 loop = true
@@ -315,7 +320,6 @@ margin_left = 15.0
 margin_top = 15.0
 margin_right = 15.0
 margin_bottom = 15.0
-bar_count = 7
 
 [node name="sprites" type="Node2D" parent="."]
 

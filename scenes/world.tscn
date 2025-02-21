@@ -64,6 +64,7 @@ margin_top = 720.0
 margin_right = 100.0
 margin_bottom = 720.0
 rect_scale = Vector2( 3, 3 )
+bar_count = 7
 
 [node name="counter_attack" parent="control_layer/input" instance=ExtResource( 10 )]
 margin_left = 230.0
@@ -71,6 +72,7 @@ margin_top = 720.0
 margin_right = 230.0
 margin_bottom = 720.0
 rect_scale = Vector2( 3, 3 )
+bar_count = 7
 
 [node name="magic_spell" parent="control_layer/input" instance=ExtResource( 11 )]
 margin_left = 360.0
@@ -78,6 +80,7 @@ margin_top = 720.0
 margin_right = 360.0
 margin_bottom = 720.0
 rect_scale = Vector2( 3, 3 )
+bar_count = 7
 
 [node name="constitution" parent="control_layer/input" instance=ExtResource( 12 )]
 margin_left = 480.0
@@ -85,6 +88,7 @@ margin_top = 720.0
 margin_right = 480.0
 margin_bottom = 720.0
 rect_scale = Vector2( 3, 3 )
+bar_count = 7
 
 [node name="tent" parent="control_layer/input" instance=ExtResource( 13 )]
 margin_left = 540.0
