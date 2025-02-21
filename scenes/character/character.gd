@@ -246,16 +246,7 @@ func set_attack(new_attack):
 	pass
 
 func attack():
-	match attack:
-		"slash":
-			set_state("slash")
-			pass
-		"shoot":
-			set_state("shoot")
-			pass
-		"thrust":
-			set_state("thrust")
-			pass
+	set_state(attack)
 	pass
 
 func spellcast():
