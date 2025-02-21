@@ -7,7 +7,7 @@ enum STATE { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESUR
 var state = STATE.IDLE
 var next_state = null
 
-var _speed_percent = 100
+export(int) var speed_percent =100 setget set_speed_percent
 var speed = Vector2(48 / 3.4, 32 / 3.4) * 3
 
 var stuck = false
@@ -48,8 +48,8 @@ func _ready():
 	set_state(STATE.IDLE)
 	pass
 
-func set_speed_percent(speed_percent):
-	_speed_percent = speed_percent
+func set_speed_percent(new_speed_percent):
+	speed_percent = new_speed_percent
 	pass
 
 func _update_sprite_face(newSpriteFace):
@@ -135,7 +135,7 @@ func _process(delta):
 		old_positions.push_back(position)
 		if old_positions.size() > 2:
 			old_positions.pop_front()
-		position += speed * delta * offset * _speed_percent / 100 * speed_scale
+		position += speed * delta * offset * speed_percent / 100 * speed_scale
 	else:
 		if old_positions.size() > 0:
 			position = old_positions.pop_front()
