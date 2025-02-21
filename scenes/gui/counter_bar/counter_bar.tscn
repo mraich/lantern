@@ -9,15 +9,17 @@ var _bar_class = preload(\"res://scenes/gui/counter_bar/bar.tscn\")
 
 var bars = []
 
-enum STATE { PICK_VALUE, VALUE_PICKED, NORMAL, EMPTY }
-
-var state = STATE.PICK_VALUE
+export(String, \"pick_value\", \"value_picked\", \"normal\", \"empty\") var state setget set_state
 
 export(int) var bar_count = 0 setget set_bar_count
 
 export(int) var value = 0 setget show_value
 
 func _ready():
+	pass
+
+func set_state(state):
+	state = state;
 	pass
 
 func set_bar_count(count):
@@ -33,7 +35,7 @@ func show_value(value):
 			bar.switch(false)
 		i += 1
 
-	state = STATE.VALUE_PICKED
+	state = \"value_picked\"
 	pass
 
 func remove_value():
@@ -42,7 +44,7 @@ func remove_value():
 		if bar.is_on():
 			sum += 1
 
-	state = STATE.PICK_VALUE
+	state = \"pick_value\"
 	return sum
 
 func is_enabled():
