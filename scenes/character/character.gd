@@ -200,14 +200,9 @@ func _update_animation_by_direction():
 		# These animations are affected by the direction.
 		"idle", "spellcast", "thrust", "walk", "slash", "shoot":
 			$animation.play(state + "_" + direction)
+		_:
+		# Wildcard for else.
 		# These animations are not affected by the direction.
-		"hurt", "die", "dead", "resurrect":
-			$animation.play(state)
-		# Turning.
-		"turn_left_up", "turn_left_right", "turn_left_down", "turn_up_right", "turn_up_down", "turn_up_left", "turn_right_down", "turn_right_left", "turn_right_up", "turn_down_left", "turn_down_up", "turn_down_right":
-			$animation.play(state)
-		# Spinning.
-		"spinning_left_right", "spinning_up_right", "spinning_right_right", "spinning_down_right":
 			$animation.play(state)
 	pass
 
