@@ -258,13 +258,5 @@ func stop():
 	pass
 
 func die():
-	match direction:
-		"left":
-			set_state("spinning_left_right")
-		"up":
-			set_state("spinning_up_right")
-		"right":
-			set_state("spinning_right_right")
-		"down":
-			set_state("spinning_down_right")
+	set_state("spinning_" + direction + "_right")
 	pass
