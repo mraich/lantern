@@ -223,96 +223,14 @@ func state_changeable():
 func _can_interrupt():
 	return !is_dead() || state == "walk"
 
-func turn_left():
+func go(where):
 	if !_can_interrupt():
 		return
 
-	match direction:
-		"up":
-			set_state("turn_up_left")
-		"right":
-			set_state("turn_right_left")
-		"down":
-			set_state("turn_down_left")
-	pass
-
-func turn_up():
-	if !_can_interrupt():
-		return
-
-	match direction:
-		"right":
-			set_state("turn_right_up")
-		"down":
-			set_state("turn_down_up")
-		"left":
-			set_state("turn_left_up")
-	pass
-
-func turn_right():
-	if !_can_interrupt():
-		return
-
-	match direction:
-		"left":
-			set_state("turn_left_right")
-		"up":
-			set_state("turn_up_right")
-		"down":
-			set_state("turn_down_right")
-	pass
-
-func turn_down():
-	if !_can_interrupt():
-		return
-
-	match direction:
-		"left":
-			set_state("turn_left_down")
-		"up":
-			set_state("turn_up_down")
-		"right":
-			set_state("turn_right_down")
-	pass
-
-func go_left():
-	if !_can_interrupt():
-		return
-
-	if direction == "left":
+	if direction == where:
 		set_state("walk")
 	else:
-		turn_left()
-	pass
-
-func go_up():
-	if !_can_interrupt():
-		return
-
-	if direction == "up":
-		set_state("walk")
-	else:
-		turn_up()
-	pass
-
-func go_right():
-	if !_can_interrupt():
-		return
-
-	if direction == "right":
-		set_state("walk")
-	else:
-		turn_right()
-	pass
-
-func go_down():
-	if !_can_interrupt():
-		return
-
-	if direction == "down":
-		set_state("walk")
-	else:
-		turn_down()
+		set_state("turn_" + direction + "_" + where)
 	pass
 
 func slash():

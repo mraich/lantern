@@ -111,19 +111,19 @@ func _input(event):
 	pass
 
 func _on_left_pressed():
-	player.go_left()
+	player.go("left")
 	pass
 
 func _on_up_pressed():
-	player.go_up()
+	player.go("up")
 	pass
 
 func _on_right_pressed():
-	player.go_right()
+	player.go("right")
 	pass
 
 func _on_down_pressed():
-	player.go_down()
+	player.go("down")
 	pass
 
 # On cursor state change.
