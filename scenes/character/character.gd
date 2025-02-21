@@ -2,7 +2,7 @@
 
 extends Node2D
 
-export(int) var speed_percent =100 setget set_speed_percent
+export(int) var speed_percent = 100 setget set_speed_percent
 var speed = Vector2(48 / 3.4, 32 / 3.4) * 3
 
 var stuck = false
