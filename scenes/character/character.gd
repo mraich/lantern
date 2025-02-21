@@ -4,11 +4,8 @@ extends Node2D
 
 enum STATE { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESURRECT, TURN_LEFT_UP, TURN_LEFT_RIGHT, TURN_LEFT_DOWN, TURN_UP_RIGHT, TURN_UP_DOWN, TURN_UP_LEFT, TURN_RIGHT_DOWN, TURN_RIGHT_LEFT, TURN_RIGHT_UP, TURN_DOWN_LEFT, TURN_DOWN_UP, TURN_DOWN_RIGHT, SPINNING_LEFT_RIGHT, SPINNING_UP_RIGHT, SPINNING_RIGHT_RIGHT, SPINNING_DOWN_RIGHT }
 
-export(String, "idle", "spellcast", "thrust", "walk", "slash", "shoot", "hurt", "die", "dead", "resurrect", "turn_left_up", "turn_left_right", "turn_left_down", "turn_up_right", "turn_up_down", "turn_up_left", "turn_right_down", "turn_right_left", "turn_right_up", "turn_down_left", "turn_down_up", "turn_down_right", "spinning_left_right", "spinning_up_right", "spinning_right_right", "spinning_down_right") var animation setget set_animation
-
 var state = STATE.IDLE
 var next_state = null
-# var animation = ANIMATION.WALK
 
 var _speed_percent = 100
 var speed = Vector2(48 / 3.4, 32 / 3.4) * 3
@@ -196,11 +193,6 @@ func _on_anim_finished(anim_name):
 	_update_animation_by_direction()
 	pass
 
-# Setting the current animation.
-func set_animation(new_animation):
-#	animation = new_animation
-	pass
-
 # Choosing the animation keeping in mind the direction.
 func _update_animation_by_direction():
 	if next_state != null:
@@ -208,21 +200,20 @@ func _update_animation_by_direction():
 		next_state = null
 
 	var state_string = STATE.keys()[state].to_lower()
-	animation = state_string
 
-	match animation:
+	match state_string:
 		# These animations are affected by the direction.
 		"idle", "spellcast", "thrust", "walk", "slash", "shoot":
-			$animation.play(animation + "_" + direction)
+			$animation.play(state_string + "_" + direction)
 		# These animations are not affected by the direction.
 		"hurt", "die", "dead", "resurrect":
-			$animation.play(animation)
+			$animation.play(state_string)
 		# Turning.
 		"turn_left_up", "turn_left_right", "turn_left_down", "turn_up_right", "turn_up_down", "turn_up_left", "turn_right_down", "turn_right_left", "turn_right_up", "turn_down_left", "turn_down_up", "turn_down_right":
-			$animation.play(animation)
+			$animation.play(state_string)
 		# Spinning.
 		"spinning_left_right", "spinning_up_right", "spinning_right_right", "spinning_down_right":
-			$animation.play(animation)
+			$animation.play(state_string)
 	pass
 
 func is_dying():
