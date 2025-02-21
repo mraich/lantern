@@ -3,11 +3,12 @@
 extends Node2D
 
 enum STATE { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESURRECT, TURN_LEFT_UP, TURN_LEFT_RIGHT, TURN_LEFT_DOWN, TURN_UP_RIGHT, TURN_UP_DOWN, TURN_UP_LEFT, TURN_RIGHT_DOWN, TURN_RIGHT_LEFT, TURN_RIGHT_UP, TURN_DOWN_LEFT, TURN_DOWN_UP, TURN_DOWN_RIGHT, SPINNING_LEFT_RIGHT, SPINNING_UP_RIGHT, SPINNING_RIGHT_RIGHT, SPINNING_DOWN_RIGHT }
-enum ANIMATION { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESURRECT, TURN_LEFT_UP, TURN_LEFT_RIGHT, TURN_LEFT_DOWN, TURN_UP_RIGHT, TURN_UP_DOWN, TURN_UP_LEFT, TURN_RIGHT_DOWN, TURN_RIGHT_LEFT, TURN_RIGHT_UP, TURN_DOWN_LEFT, TURN_DOWN_UP, TURN_DOWN_RIGHT, SPINNING_LEFT_RIGHT, SPINNING_UP_RIGHT, SPINNING_RIGHT_RIGHT, SPINNING_DOWN_RIGHT }
+
+export(String, "idle", "spellcast", "thrust", "walk", "slash", "shoot", "hurt", "die", "dead", "resurrect", "turn_left_up", "turn_left_right", "turn_left_down", "turn_up_right", "turn_up_down", "turn_up_left", "turn_right_down", "turn_right_left", "turn_right_up", "turn_down_left", "turn_down_up", "turn_down_right", "spinning_left_right", "spinning_up_right", "spinning_right_right", "spinning_down_right") var animation setget set_animation
 
 var state = STATE.IDLE
 var next_state = null
-var animation = ANIMATION.WALK
+# var animation = ANIMATION.WALK
 
 var _speed_percent = 100
 var speed = Vector2(48 / 3.4, 32 / 3.4) * 3
@@ -196,8 +197,8 @@ func _on_anim_finished(anim_name):
 	pass
 
 # Setting the current animation.
-func _set_animation(new_animation):
-	animation = new_animation
+func set_animation(new_animation):
+#	animation = new_animation
 	pass
 
 # Choosing the animation keeping in mind the direction.
@@ -206,74 +207,22 @@ func _update_animation_by_direction():
 		state = next_state
 		next_state = null
 
-	match state:
-		STATE.IDLE:
-			_set_animation(ANIMATION.IDLE)
-		STATE.SPELLCAST:
-			_set_animation(ANIMATION.SPELLCAST)
-		STATE.THRUST:
-			_set_animation(ANIMATION.THRUST)
-		STATE.WALK:
-			_set_animation(ANIMATION.WALK)
-		STATE.SLASH:
-			_set_animation(ANIMATION.SLASH)
-		STATE.SHOOT:
-			_set_animation(ANIMATION.SHOOT)
-		STATE.HURT:
-			_set_animation(ANIMATION.HURT)
-		STATE.DIE:
-			_set_animation(ANIMATION.DIE)
-		STATE.DEAD:
-			_set_animation(ANIMATION.DEAD)
-		STATE.RESURRECT:
-			_set_animation(ANIMATION.RESURRECT)
-		STATE.TURN_LEFT_UP:
-			_set_animation(ANIMATION.TURN_LEFT_UP)
-		STATE.TURN_LEFT_RIGHT:
-			_set_animation(ANIMATION.TURN_LEFT_RIGHT)
-		STATE.TURN_LEFT_DOWN:
-			_set_animation(ANIMATION.TURN_LEFT_DOWN)
-		STATE.TURN_UP_RIGHT:
-			_set_animation(ANIMATION.TURN_UP_RIGHT)
-		STATE.TURN_UP_DOWN:
-			_set_animation(ANIMATION.TURN_UP_DOWN)
-		STATE.TURN_UP_LEFT:
-			_set_animation(ANIMATION.TURN_UP_LEFT)
-		STATE.TURN_RIGHT_DOWN:
-			_set_animation(ANIMATION.TURN_RIGHT_DOWN)
-		STATE.TURN_RIGHT_LEFT:
-			_set_animation(ANIMATION.TURN_RIGHT_LEFT)
-		STATE.TURN_RIGHT_UP:
-			_set_animation(ANIMATION.TURN_RIGHT_UP)
-		STATE.TURN_DOWN_LEFT:
-			_set_animation(ANIMATION.TURN_DOWN_LEFT)
-		ANIMATION.TURN_DOWN_UP:
-			_set_animation(STATE.TURN_DOWN_UP)
-		STATE.TURN_DOWN_RIGHT:
-			_set_animation(ANIMATION.TURN_DOWN_RIGHT)
-		STATE.SPINNING_LEFT_RIGHT:
-			_set_animation(ANIMATION.SPINNING_LEFT_RIGHT)
-		STATE.SPINNING_UP_RIGHT:
-			_set_animation(ANIMATION.SPINNING_UP_RIGHT)
-		STATE.SPINNING_RIGHT_RIGHT:
-			_set_animation(ANIMATION.SPINNING_RIGHT_RIGHT)
-		STATE.SPINNING_DOWN_RIGHT:
-			_set_animation(ANIMATION.SPINNING_DOWN_RIGHT)
+	var state_string = STATE.keys()[state].to_lower()
+	animation = state_string
 
-	var animation_string = ANIMATION.keys()[animation].to_lower()
 	match animation:
 		# These animations are affected by the direction.
-		ANIMATION.IDLE, ANIMATION.SPELLCAST, ANIMATION.THRUST, ANIMATION.WALK, ANIMATION.SLASH, ANIMATION.SHOOT:
-			$animation.play(animation_string + "_" + direction)
+		"idle", "spellcast", "thrust", "walk", "slash", "shoot":
+			$animation.play(animation + "_" + direction)
 		# These animations are not affected by the direction.
-		ANIMATION.HURT, ANIMATION.DIE, ANIMATION.DEAD, ANIMATION.RESURRECT:
-			$animation.play(animation_string)
+		"hurt", "die", "dead", "resurrect":
+			$animation.play(animation)
 		# Turning.
-		ANIMATION.TURN_LEFT_UP, ANIMATION.TURN_LEFT_RIGHT, ANIMATION.TURN_LEFT_DOWN, ANIMATION.TURN_UP_RIGHT, ANIMATION.TURN_UP_DOWN, ANIMATION.TURN_UP_LEFT, ANIMATION.TURN_RIGHT_DOWN, ANIMATION.TURN_RIGHT_LEFT, ANIMATION.TURN_RIGHT_UP, ANIMATION.TURN_DOWN_LEFT, ANIMATION.TURN_DOWN_UP, ANIMATION.TURN_DOWN_RIGHT:
-			$animation.play(animation_string)
+		"turn_left_up", "turn_left_right", "turn_left_down", "turn_up_right", "turn_up_down", "turn_up_left", "turn_right_down", "turn_right_left", "turn_right_up", "turn_down_left", "turn_down_up", "turn_down_right":
+			$animation.play(animation)
 		# Spinning.
-		ANIMATION.SPINNING_LEFT_RIGHT, ANIMATION.SPINNING_UP_RIGHT, ANIMATION.SPINNING_RIGHT_RIGHT, ANIMATION.SPINNING_DOWN_RIGHT:
-			$animation.play(animation_string)
+		"spinning_left_right", "spinning_up_right", "spinning_right_right", "spinning_down_right":
+			$animation.play(animation)
 	pass
 
 func is_dying():
