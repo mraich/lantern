@@ -194,6 +194,7 @@ func _update_animation_by_direction():
 	if next_state != null:
 		state = next_state
 		next_state = null
+	$animation.stop();
 
 	match state:
 		# These animations are affected by the direction.
