@@ -168,7 +168,7 @@ func _on_anim_finished(anim_name):
 				# Telling the outside world that a fireball must be summoned.
 				emit_signal("on_fireball_summoned", self, position - Vector2(0, scale.y * 22), direction)
 			set_state("idle")
-		"turn_left_up", "turn_left_right", "turn_left_down", "turn_up_right", "turn_up_down", "turn_up_left", "turn_right_down", "turn_right_left", "turn_rightup", "turn_down_left", "turn_down_up", "turn_down_right":
+		"turn_left_up", "turn_left_right", "turn_left_down", "turn_up_right", "turn_up_down", "turn_up_left", "turn_right_down", "turn_right_left", "turn_right_up", "turn_down_left", "turn_down_up", "turn_down_right":
 			match state:
 				"turn_down_left", "turn_up_left", "turn_right_left":
 					set_direction("left")
