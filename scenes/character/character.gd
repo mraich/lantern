@@ -2,11 +2,6 @@
 
 extends Node2D
 
-enum STATE { IDLE, SPELLCAST, THRUST, WALK, SLASH, SHOOT, HURT, DIE, DEAD, RESURRECT, TURN_LEFT_UP, TURN_LEFT_RIGHT, TURN_LEFT_DOWN, TURN_UP_RIGHT, TURN_UP_DOWN, TURN_UP_LEFT, TURN_RIGHT_DOWN, TURN_RIGHT_LEFT, TURN_RIGHT_UP, TURN_DOWN_LEFT, TURN_DOWN_UP, TURN_DOWN_RIGHT, SPINNING_LEFT_RIGHT, SPINNING_UP_RIGHT, SPINNING_RIGHT_RIGHT, SPINNING_DOWN_RIGHT }
-
-var state = STATE.IDLE
-var next_state = null
-
 export(int) var speed_percent =100 setget set_speed_percent
 var speed = Vector2(48 / 3.4, 32 / 3.4) * 3
 
@@ -24,6 +19,9 @@ export(String, "up", "left", "down", "right") var direction setget set_direction
 
 # The type of the attack the character does.
 export(String, "thrust", "slash", "shoot") var attack setget set_attack
+
+export(String, "idle", "spellcast", "thrust", "walk", "slash", "shoot", "hurt", "die", "dead", "resurrect", "turn_left_up", "turn_left_right", "turn_left_down", "turn_up_right", "turn_up_down", "turn_up_left", "turn_right_down", "turn_right_left", "turn_right_up", "turn_down_left", "turn_down_up", "turn_down_right", "spinning_left_right", "spinning_up_right", "spinning_right_right", "spinning_down_right") var state = "idle" setget set_state
+var next_state = null
 
 # This is the stage number to send when the hero arrives near this character.
 export(int) var on_near_stage_number = 0
@@ -44,8 +42,6 @@ func _ready():
 
 	# Nearing area.
 	$near_area.connect("area_entered", self, "_on_body_near")
-
-	set_state(STATE.IDLE)
 	pass
 
 func set_speed_percent(new_speed_percent):
@@ -68,7 +64,7 @@ func _on_body_enter(other):
 			other.queue_free()
 			# If dying or dead then fireball will not affect the character.
 			if !is_dying() && !is_dead():
-				set_state(STATE.HURT)
+				set_state("hurt")
 	pass
 
 func _on_body_near(other):
@@ -103,7 +99,7 @@ func _on_legs_enter(other):
 	if not is_dead():
 		# In every other cases we are stuck and we go idle
 		stuck = true
-		set_state(STATE.IDLE)
+		set_state("idle")
 		pass
 	pass
 
@@ -116,7 +112,7 @@ func _process(delta):
 	var speed_scale = 1
 
 	match state:
-		STATE.WALK:
+		"walk":
 			match direction:
 				"up":
 					offset.y = -1
@@ -167,28 +163,28 @@ func _on_anim_finished(anim_name):
 	# Automatic transitions between states.
 	# The other states are periodic because we set them again in the _update_animation_by_direction function.
 	match state:
-		STATE.IDLE, STATE.SPELLCAST, STATE.THRUST, STATE.SLASH, STATE.SHOOT, STATE.HURT, STATE.RESURRECT:
-			if state == STATE.SPELLCAST:
+		"idle", "spellcast", "thrust", "slash", "shoot", "hurt", "recurrect":
+			if state == "spellcast":
 				# Telling the outside world that a fireball must be summoned.
 				emit_signal("on_fireball_summoned", self, position - Vector2(0, scale.y * 22), direction)
-			set_state(STATE.IDLE)
-		STATE.TURN_LEFT_UP, STATE.TURN_LEFT_RIGHT, STATE.TURN_LEFT_DOWN, STATE.TURN_UP_RIGHT, STATE.TURN_UP_DOWN, STATE.TURN_UP_LEFT, STATE.TURN_RIGHT_DOWN, STATE.TURN_RIGHT_LEFT, STATE.TURN_RIGHT_UP, STATE.TURN_DOWN_LEFT, STATE.TURN_DOWN_UP, STATE.TURN_DOWN_RIGHT:
+			set_state("idle")
+		"turn_left_up", "turn_left_right", "turn_left_down", "turn_up_right", "turn_up_down", "turn_up_left", "turn_right_down", "turn_right_left", "turn_rightup", "turn_down_left", "turn_down_up", "turn_down_right":
 			match state:
-				STATE.TURN_DOWN_LEFT, STATE.TURN_UP_LEFT, STATE.TURN_RIGHT_LEFT:
+				"turn_down_left", "turn_up_left", "turn_right_left":
 					set_direction("left")
-				STATE.TURN_LEFT_UP, STATE.TURN_RIGHT_UP, STATE.TURN_DOWN_UP:
+				"turn_left_up", "turn_right_up", "turn_down_up":
 					set_direction("up")
-				STATE.TURN_UP_RIGHT, STATE.TURN_DOWN_RIGHT, STATE.TURN_LEFT_RIGHT:
+				"turn_up_right", "turn_down_right", "turn_left_right":
 					set_direction("right")
-				STATE.TURN_RIGHT_DOWN, STATE.TURN_LEFT_DOWN, STATE.TURN_UP_DOWN:
+				"turn_right_down", "turn_left_down", "turn_up_down":
 					set_direction("down")
-			set_state(STATE.IDLE)
-		STATE.SPINNING_LEFT_RIGHT, STATE.SPINNING_UP_RIGHT, STATE.SPINNING_RIGHT_RIGHT, STATE.SPINNING_DOWN_RIGHT:
+			set_state("idle")
+		"spinning_left_right", "spinning_up_right", "spinning_right_right", "spinning_down_right":
 			set_direction("down")
-			set_state(STATE.DIE)
-		STATE.DIE:
+			set_state("die")
+		"die":
 			set_direction("down")
-			set_state(STATE.DEAD)
+			set_state("dead")
 
 	_update_animation_by_direction()
 	pass
@@ -199,34 +195,32 @@ func _update_animation_by_direction():
 		state = next_state
 		next_state = null
 
-	var state_string = STATE.keys()[state].to_lower()
-
-	match state_string:
+	match state:
 		# These animations are affected by the direction.
 		"idle", "spellcast", "thrust", "walk", "slash", "shoot":
-			$animation.play(state_string + "_" + direction)
+			$animation.play(state + "_" + direction)
 		# These animations are not affected by the direction.
 		"hurt", "die", "dead", "resurrect":
-			$animation.play(state_string)
+			$animation.play(state)
 		# Turning.
 		"turn_left_up", "turn_left_right", "turn_left_down", "turn_up_right", "turn_up_down", "turn_up_left", "turn_right_down", "turn_right_left", "turn_right_up", "turn_down_left", "turn_down_up", "turn_down_right":
-			$animation.play(state_string)
+			$animation.play(state)
 		# Spinning.
 		"spinning_left_right", "spinning_up_right", "spinning_right_right", "spinning_down_right":
-			$animation.play(state_string)
+			$animation.play(state)
 	pass
 
 func is_dying():
-	return state == STATE.SPINNING_LEFT_RIGHT || state == STATE.SPINNING_UP_RIGHT || state == STATE.SPINNING_RIGHT_RIGHT || state == STATE.SPINNING_DOWN_RIGHT || state == STATE.DIE
+	return state == "spinning_left_right" || state == "spinning_up_right" || state == "spinning_right_right" || state == "spinning_down_right" || state == "die"
 
 func is_dead():
-	return is_dying() || state == STATE.DEAD
+	return is_dying() || state == "dead"
 
 func state_changeable():
-	return state != STATE.DEAD
+	return state != "dead"
 
 func _can_interrupt():
-	return !is_dead() || state == STATE.WALK
+	return !is_dead() || state == "walk"
 
 func turn_left():
 	if !_can_interrupt():
@@ -234,11 +228,11 @@ func turn_left():
 
 	match direction:
 		"up":
-			set_state(STATE.TURN_UP_LEFT)
+			set_state("turn_up_left")
 		"right":
-			set_state(STATE.TURN_RIGHT_LEFT)
+			set_state("turn_right_left")
 		"down":
-			set_state(STATE.TURN_DOWN_LEFT)
+			set_state("turn_down_left")
 	pass
 
 func turn_up():
@@ -247,11 +241,11 @@ func turn_up():
 
 	match direction:
 		"right":
-			set_state(STATE.TURN_RIGHT_UP)
+			set_state("turn_right_up")
 		"down":
-			set_state(STATE.TURN_DOWN_UP)
+			set_state("turn_down_up")
 		"left":
-			set_state(STATE.TURN_LEFT_UP)
+			set_state("turn_left_up")
 	pass
 
 func turn_right():
@@ -260,11 +254,11 @@ func turn_right():
 
 	match direction:
 		"left":
-			set_state(STATE.TURN_LEFT_RIGHT)
+			set_state("turn_left_right")
 		"up":
-			set_state(STATE.TURN_UP_RIGHT)
+			set_state("turn_up_right")
 		"down":
-			set_state(STATE.TURN_DOWN_RIGHT)
+			set_state("turn_down_right")
 	pass
 
 func turn_down():
@@ -273,11 +267,11 @@ func turn_down():
 
 	match direction:
 		"left":
-			set_state(STATE.TURN_LEFT_DOWN)
+			set_state("turn_left_down")
 		"up":
-			set_state(STATE.TURN_UP_DOWN)
+			set_state("turn_up_down")
 		"right":
-			set_state(STATE.TURN_RIGHT_DOWN)
+			set_state("turn_right_down")
 	pass
 
 func go_left():
@@ -285,7 +279,7 @@ func go_left():
 		return
 
 	if direction == "left":
-		set_state(STATE.WALK)
+		set_state("walk")
 	else:
 		turn_left()
 	pass
@@ -295,7 +289,7 @@ func go_up():
 		return
 
 	if direction == "up":
-		set_state(STATE.WALK)
+		set_state("walk")
 	else:
 		turn_up()
 	pass
@@ -305,7 +299,7 @@ func go_right():
 		return
 
 	if direction == "right":
-		set_state(STATE.WALK)
+		set_state("walk")
 	else:
 		turn_right()
 	pass
@@ -315,17 +309,17 @@ func go_down():
 		return
 
 	if direction == "down":
-		set_state(STATE.WALK)
+		set_state("walk")
 	else:
 		turn_down()
 	pass
 
 func slash():
-	set_state(STATE.SLASH)
+	set_state("slash")
 	pass
 
 func hurt():
-	set_state(STATE.HURT)
+	set_state("hurt")
 	pass
 
 func set_attack(new_attack):
@@ -335,32 +329,32 @@ func set_attack(new_attack):
 func attack():
 	match attack:
 		"slash":
-			set_state(STATE.SLASH)
+			set_state("slash")
 			pass
 		"shoot":
-			set_state(STATE.SHOOT)
+			set_state("shoot")
 			pass
 		"thrust":
-			set_state(STATE.THRUST)
+			set_state("thrust")
 			pass
 	pass
 
 func spellcast():
-	set_state(STATE.SPELLCAST)
+	set_state("spellcast")
 	pass
 
 func stop():
-	set_state(STATE.IDLE)
+	set_state("idle")
 	pass
 
 func die():
 	match direction:
 		"left":
-			set_state(STATE.SPINNING_LEFT_RIGHT)
+			set_state("spinning_left_right")
 		"up":
-			set_state(STATE.SPINNING_UP_RIGHT)
+			set_state("spinning_up_right")
 		"right":
-			set_state(STATE.SPINNING_RIGHT_RIGHT)
+			set_state("spinning_right_right")
 		"down":
-			set_state(STATE.SPINNING_DOWN_RIGHT)
+			set_state("spinning_down_right")
 	pass
